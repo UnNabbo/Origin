@@ -1,16 +1,13 @@
 #include "Origin.h"
 
-#include <stdio.h>
-
 class Sandbox : public Origin::Application {
 public:
 
 	void OnStart(){
-		printf("Start\n");
+		ORIGIN_INFO("HELLO");
 	}
 
 	void OnUpdate() {
-		printf("Update\n");
 	}
 };
 

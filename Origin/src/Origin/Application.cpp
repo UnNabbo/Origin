@@ -3,6 +3,7 @@
 namespace Origin {
 
 	Application::Application(){
+
 	}
 
 	Application::~Application() {

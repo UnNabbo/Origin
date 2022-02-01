@@ -5,6 +5,9 @@
 extern Origin::Application* CreateApplication();
 
 void main() {
+
+	Origin::Log::Init();
+
 	auto app = CreateApplication();
 	app->Run();
 	delete app;

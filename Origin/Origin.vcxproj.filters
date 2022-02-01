@@ -1,36 +1,37 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Origin">
+      <UniqueIdentifier>{CDCF70C8-B971-9B9E-A22C-AFF28E6D22EF}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="Origin\util">
+      <UniqueIdentifier>{5A5B104C-C610-8941-4F05-8318BBB97F45}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Origin\util\log">
+      <UniqueIdentifier>{4B183E49-B7A3-AB0D-C0B4-2E022CBF070E}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Origin\Core.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Origin.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClInclude Include="src\Origin.h" />
     <ClInclude Include="src\Origin\Application.h">
-      <Filter>Header Files</Filter>
+      <Filter>Origin</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Origin\Core.h">
+      <Filter>Origin</Filter>
     </ClInclude>
     <ClInclude Include="src\Origin\EntryPoint.h">
-      <Filter>Header Files</Filter>
+      <Filter>Origin</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Origin\util\log\Log.h">
+      <Filter>Origin\util\log</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Origin\Application.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Origin</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Origin\util\log\Log.cpp">
+      <Filter>Origin\util\log</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
