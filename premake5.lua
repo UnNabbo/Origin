@@ -11,6 +11,11 @@ workspace "Origin"
 
     outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+    IncludeDir = {}
+    IncludeDir["GLFW"] = "Origin/vendor/glfw/include"
+
+    include "Origin/vendor/GLFW"
+
     project "Origin"
         location "Origin"
         kind "SharedLib"
@@ -19,6 +24,9 @@ workspace "Origin"
         targetdir ("bin/" .. outputdir .. "/%{prj.name}")
         objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+        pchheader "OGpch.h"
+        pchsource "Origin/src/OGpch.cpp"
+
         files{
             "%{prj.name}/src/**.h",
             "%{prj.name}/src/**.cpp"
@@ -26,8 +34,15 @@ workspace "Origin"
 
         includedirs{
             "%{prj.name}/vendor/spdlog/include",
-            "Origin/src"
+            "Origin/src",
+            "%{IncludeDir.GLFW}"
         }
+
+        links{
+            "GLFW",
+            "opengl32.lib"
+        }
+
 
         filter "system:windows"
             cppdialect "C++17"
@@ -35,12 +50,12 @@ workspace "Origin"
             systemversion "latest"
 
             defines{
-                "ORIGIN_PLATFORM_WINDOWS",
-                "ORIGIN_BUILD_DLL",
+                "OG_PLATFORM_WINDOWS",
+                "OG_BUILD_DLL",
             }
             
             postbuildcommands{
-                ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sanbox/ ")
+                ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox/ ")
             }
 
         filter "configurations:Debug"
@@ -71,7 +86,9 @@ workspace "Origin"
 
         includedirs{
             "Origin/vendor/spdlog/include",
-            "Origin/src"
+            "Origin/src",
+            "%{IncludeDir.GLFW}",
+
         }
 
         links{
@@ -84,7 +101,7 @@ workspace "Origin"
             systemversion "latest"
 
             defines{
-                "ORIGIN_PLATFORM_WINDOWS",
+                "OG_PLATFORM_WINDOWS",
             }
 
         filter "configurations:Debug"

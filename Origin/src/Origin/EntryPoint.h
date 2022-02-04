@@ -1,12 +1,15 @@
 #pragma once
 
-#ifdef ORIGIN_PLATFORM_WINDOWS
+
+
+#ifdef OG_PLATFORM_WINDOWS
 
 extern Origin::Application* CreateApplication();
 
 void main() {
 
 	Origin::Log::Init();
+
 
 	auto app = CreateApplication();
 	app->Run();

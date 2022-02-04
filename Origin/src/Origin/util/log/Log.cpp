@@ -1,3 +1,5 @@
+#include "OGpch.h"
+
 #include "Log.h"
 
 #include "spdlog/sinks/stdout_color_sinks.h"
@@ -15,8 +17,5 @@ namespace Origin {
 		s_ClientLogger->set_level(spdlog::level::trace);
 
 	}
-
-	std::shared_ptr<spdlog::logger> Log::s_CoreLogger;
-	std::shared_ptr<spdlog::logger> Log::s_ClientLogger;
 }
 

@@ -4,6 +4,15 @@
     <Filter Include="Origin">
       <UniqueIdentifier>{CDCF70C8-B971-9B9E-A22C-AFF28E6D22EF}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Origin\Events">
+      <UniqueIdentifier>{1113BF21-7DD3-3A58-460E-84D5B28D7F34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Origin\Platform">
+      <UniqueIdentifier>{C122EEA9-2DAE-5B6E-36BF-DE62A2C9B76E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Origin\Platform\Windows">
+      <UniqueIdentifier>{FBFDCE96-6735-172E-703F-7B51DCF53D27}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Origin\util">
       <UniqueIdentifier>{5A5B104C-C610-8941-4F05-8318BBB97F45}</UniqueIdentifier>
     </Filter>
@@ -12,6 +21,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\OGpch.h" />
     <ClInclude Include="src\Origin.h" />
     <ClInclude Include="src\Origin\Application.h">
       <Filter>Origin</Filter>
@@ -22,13 +32,32 @@
     <ClInclude Include="src\Origin\EntryPoint.h">
       <Filter>Origin</Filter>
     </ClInclude>
+    <ClInclude Include="src\Origin\Events\ApplicationEvents.h">
+      <Filter>Origin\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Origin\Events\Events.h">
+      <Filter>Origin\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Origin\Events\InputEvents.h">
+      <Filter>Origin\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Origin\Platform\Windows\WindowsWindow.h">
+      <Filter>Origin\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Origin\Window.h">
+      <Filter>Origin</Filter>
+    </ClInclude>
     <ClInclude Include="src\Origin\util\log\Log.h">
       <Filter>Origin\util\log</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\OGpch.cpp" />
     <ClCompile Include="src\Origin\Application.cpp">
       <Filter>Origin</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Origin\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Origin\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Origin\util\log\Log.cpp">
       <Filter>Origin\util\log</Filter>

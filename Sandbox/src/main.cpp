@@ -1,10 +1,11 @@
 #include "Origin.h"
 
+
 class Sandbox : public Origin::Application {
 public:
 
 	void OnStart(){
-		ORIGIN_INFO("HELLO");
+		Origin::KeyPressedEvent a(100, 1);
 	}
 
 	void OnUpdate() {
