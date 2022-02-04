@@ -7,6 +7,13 @@
 
 namespace Origin {
 
+#define EVENT_CLASS_TYPE(type) inline static EventType GetStaticType() { return EventType::##type; }\
+								virtual EventType GetEventType() const override { return GetStaticType(); }\
+								virtual const char* GetName() const override { return #type; }
+
+
+#define EVENT_CLASS_CATEGORY(categoryFlags) virtual int GetCategoryFlags() const override { return categoryFlags; }
+
 
 	enum class EventType {
 		None = 0,
@@ -25,7 +32,7 @@ namespace Origin {
 	};
 
 	class ORIGIN_API Event {
-		//friend class Dispatcher;
+		friend class EventsDispatcher;
 	public:
 		virtual EventType GetEventType() const = 0;
 		virtual const char* GetName() const = 0;
@@ -39,16 +46,16 @@ namespace Origin {
 		bool m_handled = false;
 	};
 
-	class ORIGIN_API Dispatcher {
+	class ORIGIN_API EventsDispatcher {
 		template<typename T>
 		using EventFn = std::function<bool(T&)>;
 	public:
-		Dispatcher(Event& event) : m_Event(event) {}
+		EventsDispatcher(Event& event) : m_Event(event) {}
 
 		template<typename T>
-		void Dispatch(EventFn<T> func) {
-			if (m_Event.GetEventType() != T::GetStaticType()) {
-				m_Event.m_handled = func(*(*T) & m_Event);
+		bool Dispatch(EventFn<T> func) {
+			if (m_Event.GetEventType() == T::GetStaticType()) {
+				m_Event.m_handled = func(*(T*) & m_Event);
 				return true;
 			}
 			return false;
@@ -57,12 +64,9 @@ namespace Origin {
 		Event& m_Event;
 	};
 
+	inline std::ostream& operator<<(std::ostream& os, const Event& e) {
+		return os;
+	}
 
-#define EVENT_CLASS_TYPE(type) inline static EventType GetStaticType() { return EventType::##type; }\
-								virtual EventType GetEventType() const override { return GetStaticType(); }\
-								virtual const char* GetName() const override { return #type; }
-
-
-#define EVENT_CLASS_CATEGORY(categoryFlags) virtual int GetCategoryFlags() const override { return categoryFlags; }
 
 }

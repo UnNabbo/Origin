@@ -10,8 +10,9 @@ namespace Origin {
 	public:
 		WindowCloseEvent() {}
 
-		EVENT_CLASS_TYPE(WindowClose);
-		EVENT_CLASS_CATEGORY(EventCategoryApplication);
+		EVENT_CLASS_TYPE(WindowClose)
+		EVENT_CLASS_CATEGORY(EventCategoryApplication)
+
 	};
 
 	class ORIGIN_API WindowLostFocusEvent : public Event {
@@ -20,6 +21,7 @@ namespace Origin {
 
 		EVENT_CLASS_TYPE(WindowLostFocus);
 		EVENT_CLASS_CATEGORY(EventCategoryApplication);
+
 	};
 
 	class ORIGIN_API WindowFocusEvent : public Event {
@@ -28,14 +30,20 @@ namespace Origin {
 
 		EVENT_CLASS_TYPE(WindowFocus);
 		EVENT_CLASS_CATEGORY(EventCategoryApplication);
+
+
 	};
 
 	class ORIGIN_API WindowMovedEvent : public Event {
 	public:
-		WindowMovedEvent() {}
+		WindowMovedEvent(uint32_t xPos, uint32_t yPos)
+			: m_xPos(xPos), m_yPos(yPos) {}
 
 		EVENT_CLASS_TYPE(WindowMoved);
 		EVENT_CLASS_CATEGORY(EventCategoryApplication);
+
+	private:
+		uint32_t m_xPos, m_yPos;
 	};
 
 

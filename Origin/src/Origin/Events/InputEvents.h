@@ -1,6 +1,7 @@
 #pragma once
-
 #include "Origin\Events\Events.h"
+#include <iostream>
+#include <string>
 
 namespace Origin {
 
@@ -18,6 +19,7 @@ namespace Origin {
 	};
 
 	class ORIGIN_API KeyPressedEvent : public KeyEvent {
+		friend std::ostream& operator<<(std::ostream& os, KeyPressedEvent& e);
 	public:
 		KeyPressedEvent(int keycode, bool held)
 			: KeyEvent(keycode), m_held(held){}
@@ -28,6 +30,11 @@ namespace Origin {
 	private:
 		bool m_held;
 	};
+
+	std::ostream& operator<<(std::ostream& os, KeyPressedEvent& e) {
+		os << e.GetKeyCode();
+		return os;
+	}
 
 	class ORIGIN_API KeyReleasedEvent : public KeyEvent {
 	public:

@@ -1,7 +1,11 @@
 #include "OGpch.h"
+
 #include "WindowsWindow.h"
 
-#include "Origin\util\log\Log.h"
+#include "Origin/util/log/Log.h"
+#include "Origin/Events/InputEvents.h"
+#include "Origin/Events/ApplicationEvents.h"
+
 
 namespace Origin {
 
@@ -39,6 +43,110 @@ namespace Origin {
 		glfwSetWindowUserPointer(m_Window, &m_data);
 		glfwMakeContextCurrent(m_Window);
 		setVsync(true);
+
+		
+
+		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int keycode, int scancode, int action, int mods){
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			switch (action) {
+			case GLFW_PRESS:
+				{
+					KeyPressedEvent event(keycode, 0);
+					data.EventCallback(event);
+					break;
+				}
+			case GLFW_REPEAT:
+				{
+					KeyPressedEvent event(keycode, 1);
+					data.EventCallback(event);
+					break;
+				}
+			case GLFW_RELEASE:
+				{
+					KeyReleasedEvent event(keycode);
+					data.EventCallback(event);
+					break;
+				}
+			}
+
+		});
+
+		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double xpos, double ypos) {
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			MouseMovedEvent event(xpos, ypos);
+			data.EventCallback(event);
+		});
+
+		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods) {
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+			switch (action) {
+				case GLFW_PRESS:
+				{
+					MouseButtonPressedEvent event(button, 0);
+					data.EventCallback(event);
+					break;
+				}
+				case GLFW_REPEAT:
+				{
+					MouseButtonPressedEvent event(button,1);
+					data.EventCallback(event);
+					break;
+				}
+				case GLFW_RELEASE:
+				{
+					MouseButtonReleasedEvent event(button);
+					data.EventCallback(event);
+					break;
+				}
+			}
+		});
+
+		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xoffset, double yoffset) {
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			MouseScrolledEvent event(xoffset, yoffset);
+			data.EventCallback(event);
+		});
+
+		
+		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window) {
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			WindowCloseEvent event;
+
+			data.EventCallback(event);
+		});
+
+
+		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height) {
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			WindowResizeEvent event(width, height);
+			data.Height = height;
+			data.Width = width;
+			data.EventCallback(event);
+			glViewport(0, 0, width, height);
+		});
+
+
+		glfwSetWindowPosCallback(m_Window, [](GLFWwindow* window, int xpos, int ypos) {
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			WindowMovedEvent event(xpos, ypos);
+			data.EventCallback(event);
+		});
+
+
+		glfwSetWindowFocusCallback(m_Window, [](GLFWwindow* window, int focused) {
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+			if (focused) {
+				WindowFocusEvent event;
+				data.EventCallback(event);
+			}
+			else {
+				WindowLostFocusEvent event;
+				data.EventCallback(event);
+			}
+
+			});
 	}
 
 	void WindowsWindow::Shutdown() {
