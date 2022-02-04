@@ -146,7 +146,7 @@ namespace Origin {
 				data.EventCallback(event);
 			}
 
-			});
+		});
 	}
 
 	void WindowsWindow::Shutdown() {
