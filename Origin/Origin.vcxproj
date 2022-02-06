@@ -149,6 +149,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Origin\Layer.h" />
+    <ClInclude Include="src\Origin\LayerStack.h" />
     <ClInclude Include="src\OGpch.h" />
     <ClInclude Include="src\Origin.h" />
     <ClInclude Include="src\Origin\Application.h" />
@@ -162,6 +164,8 @@
     <ClInclude Include="src\Origin\util\log\Log.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Origin\Layer.cpp" />
+    <ClCompile Include="src\Origin\LayerStack.cpp" />
     <ClCompile Include="src\OGpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>

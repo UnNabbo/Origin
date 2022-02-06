@@ -18,10 +18,6 @@ namespace Origin {
 
 	}
 
-	void Application::OnStart() {}
-
-	void Application::OnUpdate() {}
-
 	bool Application::OnKeyPress(KeyPressedEvent& e) {
 		ORIGIN_INFO("DIO");
 		return true;
@@ -45,17 +41,26 @@ namespace Origin {
 	void Application::OnEvents(Event& e) {
 		EventsDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
-		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
 
+		for (auto layer = m_LayerStack.end(); layer != m_LayerStack.begin();) {
+			(*--layer)->OnEvent(e);
+			if (e.handled) {
+				break;
+			}
+		}
 	}
 
 
+
 	void Application::Run() {
-		OnStart();
 		while (m_Running) {
-			OnUpdate();
 			glClearColor(1,0,1,1);
 			glClear(GL_COLOR_BUFFER_BIT);
+
+			for (Layer* layer : m_LayerStack) {
+				layer->OnUpdate();
+			}
+
 			m_Window->onUpdate();
 		}
 	}

@@ -42,8 +42,8 @@ namespace Origin {
 			return GetCategoryFlags() & category;
 		}
 
-	protected:
-		bool m_handled = false;
+
+		bool handled = false;
 	};
 
 	class ORIGIN_API EventsDispatcher {
@@ -55,7 +55,7 @@ namespace Origin {
 		template<typename T>
 		bool Dispatch(EventFn<T> func) {
 			if (m_Event.GetEventType() == T::GetStaticType()) {
-				m_Event.m_handled = func(*(T*) & m_Event);
+				m_Event.handled = func(*(T*) & m_Event);
 				return true;
 			}
 			return false;

@@ -2,9 +2,9 @@
 
 #include "Core.h"
 
-#include "Events/InputEvents.h"
-
+#include "LayerStack.h"
 #include "Platform/Windows/WindowsWindow.h"
+#include "Events/InputEvents.h"
 #include "Events/ApplicationEvents.h"
 
 namespace Origin {
@@ -12,13 +12,16 @@ namespace Origin {
 	public:
 		Application();
 
-		~Application();
-
-		virtual void OnStart();
-
-		virtual void OnUpdate();
+		virtual ~Application();
 
 		void OnEvents(Event& e);
+
+
+		inline void PushLayer(Layer* layer) { m_LayerStack.PushLayer(layer);  }
+		inline void PushOverlay(Layer* overlay) { m_LayerStack.PushOverlay(overlay); }
+		inline void PopLayer(Layer* layer) { m_LayerStack.PopLayer(layer); }
+		inline void PopOverlay(Layer* overlay) { m_LayerStack.PopOverlay(overlay); }
+
 
 		void Run();
 	private:
@@ -31,7 +34,7 @@ namespace Origin {
 		bool OnWindowResize(WindowResizeEvent& e);
 
 
-
+		LayerStack m_LayerStack;
 		std::unique_ptr<Window> m_Window;
 		bool m_Running = true;
 	};

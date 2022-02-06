@@ -8,6 +8,9 @@
 
 #include "Origin/util/log/Log.h"
 
-#include "Origin\Events\InputEvents.h"
+#include "Origin/Layer.h"
+
+#include "Origin/Events/InputEvents.h"
+
 
 #include "Origin/EntryPoint.h"

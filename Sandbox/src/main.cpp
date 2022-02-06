@@ -1,14 +1,29 @@
 #include "Origin.h"
 
+class Example : public Origin::Layer {
+public:
+	Example()
+		: Layer("Example") {
+	}
+
+	void OnUpdate() override {
+		ORIGIN_INFO("Example");
+	}
+
+	void OnEvent(Origin::Event& e) override {
+		ORIGIN_INFO("Event");
+	}
+};
 
 class Sandbox : public Origin::Application {
 public:
 
-	void OnStart(){
-		
+	Sandbox() {
+		PushLayer(new Example);
 	}
 
-	void OnUpdate() {
+	~Sandbox() {
+
 	}
 };
 
