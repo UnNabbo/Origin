@@ -12,12 +12,14 @@ namespace Origin {
 
 		virtual void OnAttach();
 		virtual void OnDeattach();
-		virtual void OnUpdate() = 0;
-		virtual void OnEvent(Event& e) = 0;
+		virtual void OnImGuiRender();
+		virtual void OnUpdate();
+		virtual void OnEvent(Event& e);
 
 		inline void setName(const char* name) { m_name = name; }
 	protected:
 		const char* m_name;
+		inline static bool show = true;
 	};
 
 }

@@ -26,7 +26,7 @@ namespace Origin {
 }
 
 
-#ifdef OG_BUILD_DLL
+#ifdef OG_CORE
 
 	#define ORIGIN_TRACE(...) ::Origin::Log::getCoreLogger()->trace(__VA_ARGS__)
 	#define ORIGIN_INFO(...) ::Origin::Log::getCoreLogger()->info(__VA_ARGS__)

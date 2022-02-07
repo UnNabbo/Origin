@@ -3,13 +3,12 @@
 #include "Core.h"
 
 #include "Layer/LayerStack.h"
-
-#include "Events/InputEvents.h"
 #include "Events/ApplicationEvents.h"
 
 #include "Origin/Window.h"
 #include "Origin/Input/Input.h"
 
+#include "Origin/Utility/Imgui/ImGuiLayer.h"
 
 namespace Origin {
 	class ORIGIN_API Application {
@@ -31,17 +30,12 @@ namespace Origin {
 
 		void Run();
 	private:
-		bool OnKeyPress(KeyPressedEvent& e);
-
-		bool OnMouseMove(MouseMovedEvent& e);
-
 		bool OnWindowClose(WindowCloseEvent& e);
-
-		bool OnWindowResize(WindowResizeEvent& e);
-
 
 		LayerStack m_LayerStack;
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
+
 		bool m_Running = true;
 
 		inline static Application* s_Instace = nullptr;

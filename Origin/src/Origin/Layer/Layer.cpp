@@ -13,4 +13,10 @@ namespace Origin {
 
 	void Layer::OnDeattach() {}
 
+	void Layer::OnImGuiRender() {}
+
+	void Layer::OnUpdate() {}
+
+	void Layer::OnEvent(Event& e) {}
+
 }

@@ -12,8 +12,8 @@ namespace Origin {
 
 		void onUpdate();
 
-		inline uint32_t getHeight() const override { return m_data.Height; }
-		inline uint32_t getWidth() const override { return m_data.Width; }
+		inline uint32_t GetHeight() const override { return m_data.Height; }
+		inline uint32_t GetWidth() const override { return m_data.Width; }
 		inline void* GetNativeWindow() const override { return m_Window; }
 		inline bool isVsync() const override { return m_data.Vsync; }
 		inline void setEventCallback(const EventCallbackFn& callback) override { m_data.EventCallback = callback; };

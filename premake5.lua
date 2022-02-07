@@ -15,6 +15,8 @@ workspace "Origin"
     IncludeDir["GLFW"] = "Origin/vendor/glfw/include"
     IncludeDir["Glad"] = "Origin/vendor/Glad/include"
     IncludeDir["ImGui"] = "Origin/vendor/ImGui"
+    IncludeDir["glm"] = "Origin/vendor/glm"
+
 
 
     include "Origin/vendor/GLFW"
@@ -25,8 +27,10 @@ workspace "Origin"
 
     project "Origin"
         location "Origin"
-        kind "SharedLib"
+        kind "StaticLib"
+        staticruntime "on"
         language "C++"
+        cppdialect "C++17"
 
         targetdir ("bin/" .. outputdir .. "/%{prj.name}")
         objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -44,7 +48,8 @@ workspace "Origin"
             "Origin/src",
             "%{IncludeDir.GLFW}",
             "%{IncludeDir.Glad}",
-            "%{IncludeDir.ImGui}"
+            "%{IncludeDir.ImGui}",
+            "%{IncludeDir.glm}",
 
         }
 
@@ -55,39 +60,41 @@ workspace "Origin"
             "opengl32.lib"
         }
 
+        defines{
+		    "_CRT_SECURE_NO_WARNINGS"
+	    }
+
+            
 
         filter "system:windows"
-            cppdialect "C++17"
-            staticruntime "Off"
             systemversion "latest"
 
             defines{
                 "OG_PLATFORM_WINDOWS",
-                "OG_BUILD_DLL",
+                "OG_STATIC_LINK",
+                "OG_CORE",
                 "GLFW_INCLUDE_NONE"
-            }
-            
-            postbuildcommands{
-                ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox/ ")
             }
 
         filter "configurations:Debug"
             defines "ORIGIN_DEBUG"
-            symbols "On"
+            symbols "on"
 
         filter "configurations:Release"
             defines "ORIGIN_RELEASE"
-            optimize "On"
+            optimize "on"
 
         filter "configurations:Dist"
             defines "ORIGIN_DIST"
-            optimize "On"
+            optimize "on"
 
 
     project "Sandbox"
         location "Sandbox"
         kind "ConsoleApp"
+        staticruntime "on"
         language "C++"
+        cppdialect "C++17"
 
         targetdir ("bin/" .. outputdir .. "/%{prj.name}")
         objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -101,6 +108,8 @@ workspace "Origin"
             "Origin/vendor/spdlog/include",
             "Origin/src",
             "%{IncludeDir.GLFW}",
+            "Origin/vendor",
+            "%{IncludeDir.glm}",
 
         }
 

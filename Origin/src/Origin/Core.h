@@ -1,10 +1,14 @@
 #pragma once
 
 #ifdef OG_PLATFORM_WINDOWS
-	#ifdef OG_BUILD_DLL
-		#define ORIGIN_API __declspec(dllexport)
+	#ifdef OG_DYNAMIC_LINK
+		#ifdef OG_BUILD_DLL
+			#define ORIGIN_API __declspec(dllexport)
+		#else
+			#define ORIGIN_API __declspec(dllimport)
+		#endif
 	#else
-		#define ORIGIN_API __declspec(dllimport)
+		#define ORIGIN_API
 	#endif
 #else
 	#error Origin only support Windows! For more info read the github page: https://github.com/UnNabbo/Origin 

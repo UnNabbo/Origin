@@ -1,4 +1,7 @@
 #include "Origin.h"
+#include "ImGui\imgui.h"
+
+
 
 class Example : public Origin::Layer {
 public:
@@ -7,6 +10,22 @@ public:
 	}
 
 	void OnUpdate() override {
+
+	}
+
+	void OnImGuiRender() override{
+		
+		if (!show) {
+			return;
+		}
+
+		if (!ImGui::Begin("TEXT", &show)) {
+			ImGui::End();
+			return;
+		}
+
+		ImGui::Text("DIO");
+		ImGui::End();
 
 	}
 
@@ -20,7 +39,6 @@ public:
 
 	Sandbox() {
 		PushLayer(new Example);
-		PushOverlay(new Origin::ImGuiLayer);
 	}
 
 	~Sandbox() {

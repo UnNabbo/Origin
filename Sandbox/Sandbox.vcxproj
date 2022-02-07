@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OG_PLATFORM_WINDOWS;ORIGIN_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Origin\vendor\spdlog\include;..\Origin\src;..\Origin\vendor\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Origin\vendor\spdlog\include;..\Origin\src;..\Origin\vendor\glfw\include;..\Origin\vendor;..\Origin\vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -95,7 +95,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OG_PLATFORM_WINDOWS;ORIGIN_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Origin\vendor\spdlog\include;..\Origin\src;..\Origin\vendor\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Origin\vendor\spdlog\include;..\Origin\src;..\Origin\vendor\glfw\include;..\Origin\vendor;..\Origin\vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -115,7 +115,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OG_PLATFORM_WINDOWS;ORIGIN_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Origin\vendor\spdlog\include;..\Origin\src;..\Origin\vendor\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Origin\vendor\spdlog\include;..\Origin\src;..\Origin\vendor\glfw\include;..\Origin\vendor;..\Origin\vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>

@@ -4,7 +4,6 @@
 
 #include "Origin/Utility/Log/Log.h"
 
-
 #include "glad/glad.h"
 
 
@@ -17,29 +16,17 @@ namespace Origin {
 		s_Instace = this;
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->setEventCallback(BIND_EVENT_FN(Application::OnEvents));
+
+		m_ImGuiLayer = new ImGuiLayer;
+		PushOverlay(m_ImGuiLayer);
 	}
 
 	Application::~Application() {
 
 	}
 
-	bool Application::OnKeyPress(KeyPressedEvent& e) {
-		ORIGIN_INFO("DIO");
-		return true;
-	}
-
-	bool Application::OnMouseMove(MouseMovedEvent& e) {
-		ORIGIN_INFO("Moved");
-		return true;
-	}
-
 	bool Application::OnWindowClose(WindowCloseEvent& e) {
 		m_Running = false;
-		return true;
-	}
-
-	bool Application::OnWindowResize(WindowResizeEvent& e) {
-		ORIGIN_INFO("Width: {0}  Height {1}", m_Window->getWidth(), m_Window->getHeight());
 		return true;
 	}
 
@@ -66,8 +53,11 @@ namespace Origin {
 				layer->OnUpdate();
 			}
 
-			auto [x, y] = Input::GetMousePos();
-			ORIGIN_TRACE("{0}, {1}", x, y);
+			m_ImGuiLayer->Begin();
+			for (Layer* layer : m_LayerStack) {
+				layer->OnImGuiRender();
+			}
+			m_ImGuiLayer->End();
 
 			m_Window->onUpdate();
 		}

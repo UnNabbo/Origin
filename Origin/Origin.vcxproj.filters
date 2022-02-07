@@ -7,11 +7,11 @@
     <Filter Include="Origin\Events">
       <UniqueIdentifier>{1113BF21-7DD3-3A58-460E-84D5B28D7F34}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Origin\Platform">
-      <UniqueIdentifier>{C122EEA9-2DAE-5B6E-36BF-DE62A2C9B76E}</UniqueIdentifier>
+    <Filter Include="Origin\Input">
+      <UniqueIdentifier>{8C65FCCA-78C8-8B6F-214E-C4250D9057F2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Origin\Platform\Windows">
-      <UniqueIdentifier>{FBFDCE96-6735-172E-703F-7B51DCF53D27}</UniqueIdentifier>
+    <Filter Include="Origin\Layer">
+      <UniqueIdentifier>{59B22BCB-4515-BB6F-EE9A-F325DADC86F2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Origin\Utility">
       <UniqueIdentifier>{100BE224-FCD8-D52A-E56C-4651D1D9B18F}</UniqueIdentifier>
@@ -21,6 +21,12 @@
     </Filter>
     <Filter Include="Origin\Utility\Log">
       <UniqueIdentifier>{E12A2C8E-CD0E-EDE3-366F-E7362272D765}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -44,14 +50,20 @@
     <ClInclude Include="src\Origin\Events\InputEvents.h">
       <Filter>Origin\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Origin\Input\Input.h">
+      <Filter>Origin\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Origin\Input\KeyCodes.h">
+      <Filter>Origin\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Origin\Input\MouseCodes.h">
+      <Filter>Origin\Input</Filter>
+    </ClInclude>
     <ClInclude Include="src\Origin\Layer\Layer.h">
-      <Filter>Origin</Filter>
+      <Filter>Origin\Layer</Filter>
     </ClInclude>
     <ClInclude Include="src\Origin\Layer\LayerStack.h">
-      <Filter>Origin</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
-      <Filter>Origin\Platform\Windows</Filter>
+      <Filter>Origin\Layer</Filter>
     </ClInclude>
     <ClInclude Include="src\Origin\Utility\Imgui\ImGuiLayer.h">
       <Filter>Origin\Utility\Imgui</Filter>
@@ -62,10 +74,12 @@
     <ClInclude Include="src\Origin\Window.h">
       <Filter>Origin</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\Opengl\ImGuiOpenGLRenderer.h" />
-    <ClInclude Include="src\Origin\Input\Input.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
-    <ClInclude Include="src\Origin\Input\KeyCodes.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\OGpch.cpp" />
@@ -73,13 +87,13 @@
       <Filter>Origin</Filter>
     </ClCompile>
     <ClCompile Include="src\Origin\Layer\Layer.cpp">
-      <Filter>Origin</Filter>
+      <Filter>Origin\Layer</Filter>
     </ClCompile>
     <ClCompile Include="src\Origin\Layer\LayerStack.cpp">
-      <Filter>Origin</Filter>
+      <Filter>Origin\Layer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
-      <Filter>Origin\Platform\Windows</Filter>
+    <ClCompile Include="src\Origin\Utility\Imgui\ImGuiBuild.cpp">
+      <Filter>Origin\Utility\Imgui</Filter>
     </ClCompile>
     <ClCompile Include="src\Origin\Utility\Imgui\ImGuiLayer.cpp">
       <Filter>Origin\Utility\Imgui</Filter>
@@ -87,7 +101,11 @@
     <ClCompile Include="src\Origin\Utility\Log\Log.cpp">
       <Filter>Origin\Utility\Log</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\Opengl\ImGuiOpenGLRenderer.cpp" />
-    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
