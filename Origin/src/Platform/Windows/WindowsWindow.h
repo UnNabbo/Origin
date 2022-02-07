@@ -2,7 +2,7 @@
 
 #include "Origin\Window.h"
 
-#include "GLFW\glfw3.h"
+struct GLFWwindow;
 
 namespace Origin {
 	class ORIGIN_API WindowsWindow : public Window {
@@ -14,6 +14,7 @@ namespace Origin {
 
 		inline uint32_t getHeight() const override { return m_data.Height; }
 		inline uint32_t getWidth() const override { return m_data.Width; }
+		inline void* GetNativeWindow() const override { return m_Window; }
 		inline bool isVsync() const override { return m_data.Vsync; }
 		inline void setEventCallback(const EventCallbackFn& callback) override { m_data.EventCallback = callback; };
 

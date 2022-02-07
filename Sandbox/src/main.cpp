@@ -7,11 +7,11 @@ public:
 	}
 
 	void OnUpdate() override {
-		ORIGIN_INFO("Example");
+
 	}
 
 	void OnEvent(Origin::Event& e) override {
-		ORIGIN_INFO("Event");
+
 	}
 };
 
@@ -20,6 +20,7 @@ public:
 
 	Sandbox() {
 		PushLayer(new Example);
+		PushOverlay(new Origin::ImGuiLayer);
 	}
 
 	~Sandbox() {

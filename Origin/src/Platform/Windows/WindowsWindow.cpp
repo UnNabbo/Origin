@@ -2,9 +2,13 @@
 
 #include "WindowsWindow.h"
 
-#include "Origin/util/log/Log.h"
+#include "Origin/Utility/Log/Log.h"
 #include "Origin/Events/InputEvents.h"
 #include "Origin/Events/ApplicationEvents.h"
+
+#include "GLFW\glfw3.h"
+
+#include "glad\glad.h"
 
 
 namespace Origin {
@@ -40,8 +44,10 @@ namespace Origin {
 		}
 
 		m_Window = glfwCreateWindow(m_data.Width, m_data.Height, m_data.Title, nullptr, nullptr);
-		glfwSetWindowUserPointer(m_Window, &m_data);
 		glfwMakeContextCurrent(m_Window);
+		int GL_status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		ORIGIN_ASSERT(GL_status, "Failed to initialize Glad!");
+		glfwSetWindowUserPointer(m_Window, &m_data);
 		setVsync(true);
 
 		
@@ -51,13 +57,13 @@ namespace Origin {
 			switch (action) {
 			case GLFW_PRESS:
 				{
-					KeyPressedEvent event(keycode, 0);
+					KeyPressedEvent event(keycode, mods, 0);
 					data.EventCallback(event);
 					break;
 				}
 			case GLFW_REPEAT:
 				{
-					KeyPressedEvent event(keycode, 1);
+					KeyPressedEvent event(keycode, mods, 1);
 					data.EventCallback(event);
 					break;
 				}
@@ -146,6 +152,12 @@ namespace Origin {
 				data.EventCallback(event);
 			}
 
+		});
+
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, uint32_t character) {
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			KeyTypedEvent event(character);
+			data.EventCallback(event);
 		});
 	}
 

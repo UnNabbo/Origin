@@ -13,11 +13,14 @@
     <Filter Include="Origin\Platform\Windows">
       <UniqueIdentifier>{FBFDCE96-6735-172E-703F-7B51DCF53D27}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Origin\util">
-      <UniqueIdentifier>{5A5B104C-C610-8941-4F05-8318BBB97F45}</UniqueIdentifier>
+    <Filter Include="Origin\Utility">
+      <UniqueIdentifier>{100BE224-FCD8-D52A-E56C-4651D1D9B18F}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Origin\util\log">
-      <UniqueIdentifier>{4B183E49-B7A3-AB0D-C0B4-2E022CBF070E}</UniqueIdentifier>
+    <Filter Include="Origin\Utility\Imgui">
+      <UniqueIdentifier>{5A14ABC9-46A3-3493-EFC1-488EDB2F4539}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Origin\Utility\Log">
+      <UniqueIdentifier>{E12A2C8E-CD0E-EDE3-366F-E7362272D765}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -41,38 +44,50 @@
     <ClInclude Include="src\Origin\Events\InputEvents.h">
       <Filter>Origin\Events</Filter>
     </ClInclude>
-    <ClInclude Include="src\Origin\Platform\Windows\WindowsWindow.h">
+    <ClInclude Include="src\Origin\Layer\Layer.h">
+      <Filter>Origin</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Origin\Layer\LayerStack.h">
+      <Filter>Origin</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Origin\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Origin\Utility\Imgui\ImGuiLayer.h">
+      <Filter>Origin\Utility\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Origin\Utility\Log\Log.h">
+      <Filter>Origin\Utility\Log</Filter>
     </ClInclude>
     <ClInclude Include="src\Origin\Window.h">
       <Filter>Origin</Filter>
     </ClInclude>
-    <ClInclude Include="src\Origin\util\log\Log.h">
-      <Filter>Origin\util\log</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Origin\Layer.h">
-      <Filter>Origin</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Origin\LayerStack.h">
-      <Filter>Origin</Filter>
-    </ClInclude>
+    <ClInclude Include="src\Platform\Opengl\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="src\Origin\Input\Input.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\Origin\Input\KeyCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\OGpch.cpp" />
     <ClCompile Include="src\Origin\Application.cpp">
       <Filter>Origin</Filter>
     </ClCompile>
-    <ClCompile Include="src\Origin\Platform\Windows\WindowsWindow.cpp">
+    <ClCompile Include="src\Origin\Layer\Layer.cpp">
+      <Filter>Origin</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Origin\Layer\LayerStack.cpp">
+      <Filter>Origin</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Origin\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\Origin\util\log\Log.cpp">
-      <Filter>Origin\util\log</Filter>
+    <ClCompile Include="src\Origin\Utility\Imgui\ImGuiLayer.cpp">
+      <Filter>Origin\Utility\Imgui</Filter>
     </ClCompile>
-    <ClCompile Include="src\Origin\Layer.cpp">
-      <Filter>Origin</Filter>
+    <ClCompile Include="src\Origin\Utility\Log\Log.cpp">
+      <Filter>Origin\Utility\Log</Filter>
     </ClCompile>
-    <ClCompile Include="src\Origin\LayerStack.cpp">
-      <Filter>Origin</Filter>
-    </ClCompile>
+    <ClCompile Include="src\Platform\Opengl\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
 </Project>

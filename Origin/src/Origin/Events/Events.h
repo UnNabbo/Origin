@@ -1,11 +1,13 @@
 #pragma once
+
 #include "Origin\Core.h"
 
 #include <functional>
-
 #include <sstream>
 
 namespace Origin {
+	
+#define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
 
 #define EVENT_CLASS_TYPE(type) inline static EventType GetStaticType() { return EventType::##type; }\
 								virtual EventType GetEventType() const override { return GetStaticType(); }\
@@ -18,7 +20,7 @@ namespace Origin {
 	enum class EventType {
 		None = 0,
 		WindowClose, WindowLostFocus, WindowFocus, WindowMoved, WindowResize,
-		KeyPressed, KeyReleased,
+		KeyPressed, KeyReleased, KeyTyped,
 		MouseButtonPressed, MouseButtonReleased, MouseScrolled, MouseMoved,
 	};
 

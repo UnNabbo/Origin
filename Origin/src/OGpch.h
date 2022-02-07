@@ -18,8 +18,6 @@
 
 #include "Origin\Events\ApplicationEvents.h"
 
-#include "Origin\Events\InputEvents.h"
-
 #ifdef OG_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif // OG_PLATFORM_WINDOWS

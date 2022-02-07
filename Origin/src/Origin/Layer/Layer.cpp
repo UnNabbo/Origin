@@ -1,4 +1,5 @@
 #include "OGpch.h"
+
 #include "Layer.h"
 
 namespace Origin {
@@ -11,6 +12,5 @@ namespace Origin {
 	void Layer::OnAttach() {}
 
 	void Layer::OnDeattach() {}
-
 
 }

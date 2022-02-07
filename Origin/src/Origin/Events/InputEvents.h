@@ -1,5 +1,7 @@
 #pragma once
-#include "Origin\Events\Events.h"
+
+#include "Events.h"
+
 #include <iostream>
 #include <string>
 
@@ -21,14 +23,17 @@ namespace Origin {
 	class ORIGIN_API KeyPressedEvent : public KeyEvent {
 		friend std::ostream& operator<<(std::ostream& os, KeyPressedEvent& e);
 	public:
-		KeyPressedEvent(int keycode, bool held)
-			: KeyEvent(keycode), m_held(held){}
+		KeyPressedEvent(int keycode,int mods, bool held)
+			: KeyEvent(keycode), m_mods(mods),m_held(held){}
 
 		inline bool IsHeld() { return m_held; }
+		inline int getMods() { return m_mods; }
+
 
 		EVENT_CLASS_TYPE(KeyPressed)
 	private:
 		bool m_held;
+		int m_mods;
 	};
 
 	std::ostream& operator<<(std::ostream& os, KeyPressedEvent& e) {
@@ -45,34 +50,43 @@ namespace Origin {
 		EVENT_CLASS_TYPE(KeyReleased)
 	};
 
+	class ORIGIN_API KeyTypedEvent : public KeyEvent {
+	public:
+		KeyTypedEvent(uint32_t character)
+			: KeyEvent(character) {
+		}
+
+		EVENT_CLASS_TYPE(KeyTyped)
+	};
+
 	class ORIGIN_API MouseButtonPressedEvent : public Event {
 	public:
-		MouseButtonPressedEvent(int keycode, bool held)
-			: m_keycode(keycode), m_held(held){
+		MouseButtonPressedEvent(int button, bool held)
+			: m_button(button), m_held(held){
 			int x = 0;
 		}
 
-		inline int GetKeyCode() { return m_keycode; }
+		inline int GetButton() { return m_button; }
 
 		EVENT_CLASS_TYPE(MouseButtonPressed)
 		EVENT_CLASS_CATEGORY(EventCategoryInput | EventCategoryMouse)
 	private:
-		int m_keycode;
+		int m_button;
 		bool m_held;
 	};
 
 
 	class ORIGIN_API MouseButtonReleasedEvent : public Event {
 	public:
-		MouseButtonReleasedEvent(int keycode)
-			: m_keycode(keycode) {}
+		MouseButtonReleasedEvent(int button)
+			: m_button(button) {}
 
-		inline int GetKeyCode() { return m_keycode; }
+		inline int GetButton() { return m_button; }
 
 		EVENT_CLASS_TYPE(MouseButtonReleased)
 		EVENT_CLASS_CATEGORY(EventCategoryInput | EventCategoryMouse)
 	private:
-		int m_keycode;
+		int m_button;
 	};
 
 	class ORIGIN_API MouseMovedEvent : public Event {

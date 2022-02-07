@@ -2,10 +2,14 @@
 
 #include "Core.h"
 
-#include "LayerStack.h"
-#include "Platform/Windows/WindowsWindow.h"
+#include "Layer/LayerStack.h"
+
 #include "Events/InputEvents.h"
 #include "Events/ApplicationEvents.h"
+
+#include "Origin/Window.h"
+#include "Origin/Input/Input.h"
+
 
 namespace Origin {
 	class ORIGIN_API Application {
@@ -22,6 +26,8 @@ namespace Origin {
 		inline void PopLayer(Layer* layer) { m_LayerStack.PopLayer(layer); }
 		inline void PopOverlay(Layer* overlay) { m_LayerStack.PopOverlay(overlay); }
 
+		inline Window& GetWindow() { return *m_Window; }
+		inline static Application& Get() { return *s_Instace; }
 
 		void Run();
 	private:
@@ -37,6 +43,8 @@ namespace Origin {
 		LayerStack m_LayerStack;
 		std::unique_ptr<Window> m_Window;
 		bool m_Running = true;
+
+		inline static Application* s_Instace = nullptr;
 	};
 }
 

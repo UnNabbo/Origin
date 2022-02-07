@@ -4,3 +4,6 @@
 [submodule "Origin/vendor/glfw"]
 	path = Origin/vendor/glfw
 	url = https://github.com/TheCherno/glfw
+[submodule "Origin/vendor/imgui"]
+	path = Origin/vendor/imgui
+	url = https://github.com/ocornut/imgui

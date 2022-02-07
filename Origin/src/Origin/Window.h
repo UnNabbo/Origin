@@ -12,7 +12,7 @@ namespace Origin {
 		uint32_t Width, Height;
 
 		WindowStruct(const char* title = "Origin Engine", uint32_t width = 1280, uint32_t height = 720)
-			: Title(title), Width(width), Height(height) {
+			: Title(title), Width(width), Height(height){
 		}
 	};
 
@@ -29,6 +29,7 @@ namespace Origin {
 		virtual void setVsync(bool state) = 0;
 		virtual bool isVsync() const = 0;
 
+		virtual void* GetNativeWindow() const = 0;
 
 		static Window* Create(const WindowStruct& info = WindowStruct());
 	};

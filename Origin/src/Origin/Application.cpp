@@ -2,16 +2,21 @@
 
 #include "Application.h"
 
-#include "util\log\Log.h"
+#include "Origin/Utility/Log/Log.h"
+
+
+#include "glad/glad.h"
+
 
 
 namespace Origin {
 
-#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
 	Application::Application(){
+		ORIGIN_ASSERT(!s_Instace, "Application is a Sigleton, only one instace may be created.")
+		s_Instace = this;
 		m_Window = std::unique_ptr<Window>(Window::Create());
-		m_Window->setEventCallback(BIND_EVENT_FN(OnEvents));
+		m_Window->setEventCallback(BIND_EVENT_FN(Application::OnEvents));
 	}
 
 	Application::~Application() {
@@ -40,7 +45,7 @@ namespace Origin {
 
 	void Application::OnEvents(Event& e) {
 		EventsDispatcher dispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
+		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::OnWindowClose));
 
 		for (auto layer = m_LayerStack.end(); layer != m_LayerStack.begin();) {
 			(*--layer)->OnEvent(e);
@@ -60,6 +65,9 @@ namespace Origin {
 			for (Layer* layer : m_LayerStack) {
 				layer->OnUpdate();
 			}
+
+			auto [x, y] = Input::GetMousePos();
+			ORIGIN_TRACE("{0}, {1}", x, y);
 
 			m_Window->onUpdate();
 		}

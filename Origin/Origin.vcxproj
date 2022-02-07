@@ -79,8 +79,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>OGpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>OG_PLATFORM_WINDOWS;OG_BUILD_DLL;ORIGIN_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;src;vendor\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>OG_PLATFORM_WINDOWS;OG_BUILD_DLL;GLFW_INCLUDE_NONE;ORIGIN_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>vendor\spdlog\include;src;vendor\glfw\include;vendor\Glad\include;vendor\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -101,8 +101,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>OGpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>OG_PLATFORM_WINDOWS;OG_BUILD_DLL;ORIGIN_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;src;vendor\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>OG_PLATFORM_WINDOWS;OG_BUILD_DLL;GLFW_INCLUDE_NONE;ORIGIN_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>vendor\spdlog\include;src;vendor\glfw\include;vendor\Glad\include;vendor\ImGui\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -127,8 +127,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>OGpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>OG_PLATFORM_WINDOWS;OG_BUILD_DLL;ORIGIN_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;src;vendor\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>OG_PLATFORM_WINDOWS;OG_BUILD_DLL;GLFW_INCLUDE_NONE;ORIGIN_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>vendor\spdlog\include;src;vendor\glfw\include;vendor\Glad\include;vendor\ImGui\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -149,8 +149,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Origin\Layer.h" />
-    <ClInclude Include="src\Origin\LayerStack.h" />
     <ClInclude Include="src\OGpch.h" />
     <ClInclude Include="src\Origin.h" />
     <ClInclude Include="src\Origin\Application.h" />
@@ -159,23 +157,39 @@
     <ClInclude Include="src\Origin\Events\ApplicationEvents.h" />
     <ClInclude Include="src\Origin\Events\Events.h" />
     <ClInclude Include="src\Origin\Events\InputEvents.h" />
-    <ClInclude Include="src\Origin\Platform\Windows\WindowsWindow.h" />
+    <ClInclude Include="src\Origin\Input\Input.h" />
+    <ClInclude Include="src\Origin\Layer\Layer.h" />
+    <ClInclude Include="src\Origin\Layer\LayerStack.h" />
+    <ClInclude Include="src\Origin\Input\KeyCodes.h" />
+    <ClInclude Include="src\Platform\Opengl\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
+    <ClInclude Include="src\Origin\Utility\Imgui\ImGuiLayer.h" />
+    <ClInclude Include="src\Origin\Utility\Log\Log.h" />
     <ClInclude Include="src\Origin\Window.h" />
-    <ClInclude Include="src\Origin\util\log\Log.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Origin\Layer.cpp" />
-    <ClCompile Include="src\Origin\LayerStack.cpp" />
     <ClCompile Include="src\OGpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\Origin\Application.cpp" />
-    <ClCompile Include="src\Origin\Platform\Windows\WindowsWindow.cpp" />
-    <ClCompile Include="src\Origin\util\log\Log.cpp" />
+    <ClCompile Include="src\Origin\Layer\Layer.cpp" />
+    <ClCompile Include="src\Origin\Layer\LayerStack.cpp" />
+    <ClCompile Include="src\Platform\Opengl\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
+    <ClCompile Include="src\Origin\Utility\Imgui\ImGuiLayer.cpp" />
+    <ClCompile Include="src\Origin\Utility\Log\Log.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">
       <Project>{154B857C-0182-860D-AA6E-6C109684020F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="vendor\Glad\Glad.vcxproj">
+      <Project>{BDD6857C-A90D-870D-52FA-6C103E10030F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="vendor\ImGui\ImGui.vcxproj">
+      <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

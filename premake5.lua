@@ -13,8 +13,15 @@ workspace "Origin"
 
     IncludeDir = {}
     IncludeDir["GLFW"] = "Origin/vendor/glfw/include"
+    IncludeDir["Glad"] = "Origin/vendor/Glad/include"
+    IncludeDir["ImGui"] = "Origin/vendor/ImGui"
+
 
     include "Origin/vendor/GLFW"
+    include "Origin/vendor/Glad"
+    include "Origin/vendor/ImGui"
+
+
 
     project "Origin"
         location "Origin"
@@ -35,11 +42,16 @@ workspace "Origin"
         includedirs{
             "%{prj.name}/vendor/spdlog/include",
             "Origin/src",
-            "%{IncludeDir.GLFW}"
+            "%{IncludeDir.GLFW}",
+            "%{IncludeDir.Glad}",
+            "%{IncludeDir.ImGui}"
+
         }
 
         links{
             "GLFW",
+            "Glad",
+            "ImGui",
             "opengl32.lib"
         }
 
@@ -52,6 +64,7 @@ workspace "Origin"
             defines{
                 "OG_PLATFORM_WINDOWS",
                 "OG_BUILD_DLL",
+                "GLFW_INCLUDE_NONE"
             }
             
             postbuildcommands{
