@@ -1,5 +1,5 @@
 # Origin WIP
-Simple game engine.
+Simple game engine made to make my understanding of graphical programming and software architecture wider.
 
 WINDOWS ONLY SUPPORT.
 
