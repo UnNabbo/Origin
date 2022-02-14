@@ -10,6 +10,9 @@
 
 #include "Origin/Utility/Imgui/ImGuiLayer.h"
 
+#include "Platform/Opengl/OpenGLBuffers.h"
+
+
 namespace Origin {
 	class ORIGIN_API Application {
 	public:
@@ -34,11 +37,17 @@ namespace Origin {
 
 		LayerStack m_LayerStack;
 		std::unique_ptr<Window> m_Window;
+
 		ImGuiLayer* m_ImGuiLayer;
 
 		bool m_Running = true;
 
 		inline static Application* s_Instace = nullptr;
+
+		uint32_t m_VAO;
+		VertexBuffer* VBO;
+		IndexBuffer* EBO;
+
 	};
 }
 

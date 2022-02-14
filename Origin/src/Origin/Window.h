@@ -28,6 +28,7 @@ namespace Origin {
 		virtual void setEventCallback(const EventCallbackFn& callback) = 0;
 		virtual void setVsync(bool state) = 0;
 		virtual bool isVsync() const = 0;
+		virtual void Bind() = 0;
 
 		virtual void* GetNativeWindow() const = 0;
 

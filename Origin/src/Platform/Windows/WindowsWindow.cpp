@@ -8,8 +8,7 @@
 
 #include "GLFW\glfw3.h"
 
-#include "glad\glad.h"
-
+#include "Platform/Opengl/OpenGLContex.h"
 
 namespace Origin {
 
@@ -34,7 +33,6 @@ namespace Origin {
 
 		ORIGIN_INFO("Creating Windows {0} ({1}, {2})", m_data.Title, m_data.Width, m_data.Height);
 
-
 		if (!GLFW_init) {
 			int state = glfwInit();
 
@@ -44,13 +42,12 @@ namespace Origin {
 		}
 
 		m_Window = glfwCreateWindow(m_data.Width, m_data.Height, m_data.Title, nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
-		int GL_status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		ORIGIN_ASSERT(GL_status, "Failed to initialize Glad!");
+		
+		m_context = new OpenGLContext(m_Window);
+		m_context->Init();
+		
 		glfwSetWindowUserPointer(m_Window, &m_data);
 		setVsync(true);
-
-		
 
 		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int keycode, int scancode, int action, int mods){
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
@@ -74,7 +71,6 @@ namespace Origin {
 					break;
 				}
 			}
-
 		});
 
 		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double xpos, double ypos) {
@@ -122,7 +118,6 @@ namespace Origin {
 			data.EventCallback(event);
 		});
 
-
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			WindowResizeEvent event(width, height);
@@ -140,20 +135,6 @@ namespace Origin {
 		});
 
 
-		glfwSetWindowFocusCallback(m_Window, [](GLFWwindow* window, int focused) {
-			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-
-			if (focused) {
-				WindowFocusEvent event;
-				data.EventCallback(event);
-			}
-			else {
-				WindowLostFocusEvent event;
-				data.EventCallback(event);
-			}
-
-		});
-
 		glfwSetCharCallback(m_Window, [](GLFWwindow* window, uint32_t character) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			KeyTypedEvent event(character);
@@ -165,10 +146,14 @@ namespace Origin {
 		glfwDestroyWindow(m_Window);
 	}
 
+	void WindowsWindow::Bind() {
+		glfwMakeContextCurrent(m_Window);
+	}
+
 	void WindowsWindow::onUpdate() {
 		glfwPollEvents();
 
-		glfwSwapBuffers(m_Window);
+		m_context->SwapBuffers();
 	}
 
 	void WindowsWindow::setVsync(bool state) {

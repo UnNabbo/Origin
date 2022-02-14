@@ -153,9 +153,15 @@
     <ClInclude Include="src\Origin\Input\MouseCodes.h" />
     <ClInclude Include="src\Origin\Layer\Layer.h" />
     <ClInclude Include="src\Origin\Layer\LayerStack.h" />
+    <ClInclude Include="src\Origin\Rendering\Buffers.h" />
+    <ClInclude Include="src\Origin\Rendering\GraphicsContex.h" />
+    <ClInclude Include="src\Origin\Utility\FileSystem\FileSystem.h" />
     <ClInclude Include="src\Origin\Utility\Imgui\ImGuiLayer.h" />
     <ClInclude Include="src\Origin\Utility\Log\Log.h" />
+    <ClInclude Include="src\Origin\Utility\ResourceManager\ResourceManager.h" />
     <ClInclude Include="src\Origin\Window.h" />
+    <ClInclude Include="src\Platform\Opengl\OpenGLBuffers.h" />
+    <ClInclude Include="src\Platform\Opengl\OpenGLContex.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
   </ItemGroup>
@@ -166,9 +172,14 @@
     <ClCompile Include="src\Origin\Application.cpp" />
     <ClCompile Include="src\Origin\Layer\Layer.cpp" />
     <ClCompile Include="src\Origin\Layer\LayerStack.cpp" />
+    <ClCompile Include="src\Origin\Rendering\Buffers.cpp" />
+    <ClCompile Include="src\Origin\Utility\FileSystem\FileSystem.cpp" />
     <ClCompile Include="src\Origin\Utility\Imgui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Origin\Utility\Imgui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Origin\Utility\Log\Log.cpp" />
+    <ClCompile Include="src\Origin\Utility\ResourceManager\ResourceManager.cpp" />
+    <ClCompile Include="src\Platform\Opengl\OpenGLBuffers.cpp" />
+    <ClCompile Include="src\Platform\Opengl\OpenGLContex.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>

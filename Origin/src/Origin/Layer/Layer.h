@@ -19,7 +19,6 @@ namespace Origin {
 		inline void setName(const char* name) { m_name = name; }
 	protected:
 		const char* m_name;
-		inline static bool show = true;
 	};
 
 }

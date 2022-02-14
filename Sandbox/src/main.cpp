@@ -15,15 +15,7 @@ public:
 
 	void OnImGuiRender() override{
 		
-		if (!show) {
-			return;
-		}
-
-		if (!ImGui::Begin("TEXT", &show)) {
-			ImGui::End();
-			return;
-		}
-
+		ImGui::Begin("TEXT");
 		ImGui::Text("DIO");
 		ImGui::End();
 

@@ -3,7 +3,7 @@
 	url = https://github.com/gabime/spdlog.git
 [submodule "Origin/vendor/glfw"]
 	path = Origin/vendor/glfw
-	url = https://github.com/TheCherno/glfw
+	url = https://github.com/UnNabbo/glfw
 [submodule "Origin/vendor/imgui"]
 	path = Origin/vendor/imgui
 	url = https://github.com/UnNabbo/imgui

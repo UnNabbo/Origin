@@ -12,12 +12,6 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "Origin\Events\Events.h"
-
-#include "Origin\Events\InputEvents.h"
-
-#include "Origin\Events\ApplicationEvents.h"
-
 #ifdef OG_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif // OG_PLATFORM_WINDOWS
