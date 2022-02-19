@@ -2,18 +2,22 @@
 
 #include "ResourceManager.h"
 
+#include "Origin/Utility/Log/Log.h"
+
 namespace Origin {
 
 	std::unordered_map<const char*, ResourceManager::FileData> ResourceManager::s_LoadedResources;
 
-	void ResourceManager::Load(const char* path) {
+	void ResourceManager::Load(const char* path, void* data) {
 		auto& Resource = s_LoadedResources.find(path);
 		if (Resource != s_LoadedResources.end()) {
 			s_LoadedResources[path].references++;
 			return;
 		}
 
-		s_LoadedResources.insert({ path, {1, "napoli\0"} });
+		void* heap_data = new void*;
+		std::memcpy(heap_data, data, sizeof(data));
+		s_LoadedResources.insert({ path, {1,  heap_data} });
 	}
 
 	void* ResourceManager::Retrive(const char* path) {
@@ -30,9 +34,11 @@ namespace Origin {
 		if (Resource == s_LoadedResources.end())
 			return;
 
-		int file_references = --s_LoadedResources[file].references;
+		auto& file_reference = s_LoadedResources[file];
 
-		if (file_references <= 0)
+		if (--file_reference.references <= 0) {
 			s_LoadedResources.erase(file);
+			delete file_reference.data;
+		}
 	}
 }

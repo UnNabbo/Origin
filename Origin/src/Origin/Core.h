@@ -15,3 +15,5 @@
 #endif
 
 #define BIT(x) (1 << x)
+
+#include "Origin/Utility/Log/Log.h"

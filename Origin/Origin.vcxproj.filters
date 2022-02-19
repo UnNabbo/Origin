@@ -83,7 +83,7 @@
     <ClInclude Include="src\Origin\Rendering\GraphicsContex.h">
       <Filter>Origin\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="src\Origin\Utility\FileSystem\FileSystem.h">
+    <ClInclude Include="src\Origin\Utility\FileSystem\Files.h">
       <Filter>Origin\Utility\FileSystem</Filter>
     </ClInclude>
     <ClInclude Include="src\Origin\Utility\Imgui\ImGuiLayer.h">
@@ -110,6 +110,7 @@
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="src\Origin\Utility\FileSystem\FileStream.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\OGpch.cpp" />
@@ -125,7 +126,7 @@
     <ClCompile Include="src\Origin\Rendering\Buffers.cpp">
       <Filter>Origin\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="src\Origin\Utility\FileSystem\FileSystem.cpp">
+    <ClCompile Include="src\Origin\Utility\FileSystem\Files.cpp">
       <Filter>Origin\Utility\FileSystem</Filter>
     </ClCompile>
     <ClCompile Include="src\Origin\Utility\Imgui\ImGuiBuild.cpp">
@@ -152,5 +153,6 @@
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="src\Origin\Utility\FileSystem\FileStream.cpp" />
   </ItemGroup>
 </Project>

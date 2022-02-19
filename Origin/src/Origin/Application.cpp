@@ -6,7 +6,10 @@
 
 #include "glad/glad.h"
 
+#include "Origin/Utility/FileSystem/FileStream.h"
+
 #include "Origin/Utility/ResourceManager/ResourceManager.h"
+
 
 namespace Origin {
 	Application::Application(){
@@ -46,13 +49,14 @@ namespace Origin {
 
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 3, GL_FLOAT, false, 3 * sizeof(float), nullptr);
+		
+			
+		FileStream* file = File::Open("C:/Users/saver/Desktop/Nuova cartella/Text.txt");
+		FileStream* file1= File::Open("C:/Users/saver/Desktop/Nuova cartella/Text.txt");
 
-		ResourceManager::Load("Dio");
-		ORIGIN_TRACE("{0}", (char*)ResourceManager::Retrive("Dio"));
-		ResourceManager::Load("Dio");
-		ResourceManager::Unload("Dio");
-		ResourceManager::Unload("Dio");
-		ORIGIN_TRACE("{0}", (char*)ResourceManager::Retrive("Dio"));
+		ORIGIN_TRACE("{0}", file->Read());
+		ORIGIN_TRACE("{0}", file1->Read());
+
 
 	}
 

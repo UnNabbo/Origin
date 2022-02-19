@@ -155,7 +155,8 @@
     <ClInclude Include="src\Origin\Layer\LayerStack.h" />
     <ClInclude Include="src\Origin\Rendering\Buffers.h" />
     <ClInclude Include="src\Origin\Rendering\GraphicsContex.h" />
-    <ClInclude Include="src\Origin\Utility\FileSystem\FileSystem.h" />
+    <ClInclude Include="src\Origin\Utility\FileSystem\Files.h" />
+    <ClInclude Include="src\Origin\Utility\FileSystem\FileStream.h" />
     <ClInclude Include="src\Origin\Utility\Imgui\ImGuiLayer.h" />
     <ClInclude Include="src\Origin\Utility\Log\Log.h" />
     <ClInclude Include="src\Origin\Utility\ResourceManager\ResourceManager.h" />
@@ -173,7 +174,8 @@
     <ClCompile Include="src\Origin\Layer\Layer.cpp" />
     <ClCompile Include="src\Origin\Layer\LayerStack.cpp" />
     <ClCompile Include="src\Origin\Rendering\Buffers.cpp" />
-    <ClCompile Include="src\Origin\Utility\FileSystem\FileSystem.cpp" />
+    <ClCompile Include="src\Origin\Utility\FileSystem\Files.cpp" />
+    <ClCompile Include="src\Origin\Utility\FileSystem\FileStream.cpp" />
     <ClCompile Include="src\Origin\Utility\Imgui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Origin\Utility\Imgui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Origin\Utility\Log\Log.cpp" />
