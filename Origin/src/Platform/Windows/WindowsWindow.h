@@ -2,7 +2,7 @@
 
 #include "Origin/Window.h"
 
-#include "Origin/Rendering/GraphicsContex.h"
+#include "Origin/Renderer/GraphicsContex.h"
 
 struct GLFWwindow;
 

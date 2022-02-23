@@ -2,17 +2,19 @@
 
 #include "FileStream.h"
 
+#include "Origin/Utility/ResourceManager/AssetPool.h"
+
 #include <sstream>
 #include <fstream>
 
 namespace Origin {
 	FileStream* File::Open(const char* path) {
-		auto data = ResourceManager::Retrive(path);
+		auto data = AssetPool::Retrive(path);
 		if (data) {
-			return (FileStream*)data;
+			return (FileStream *)data;
 		}
 		FileStream* file = new FileStream(path);
-		ResourceManager::Load(path, (void*)file);
+		AssetPool::Load(path, (void*)file);
 		return file;
 	}
 
@@ -20,8 +22,12 @@ namespace Origin {
 		m_path = path;
 	}
 
+	std::string FileStream::GetPath() {
+		return m_path;
+	}
+
 	FileStream::~FileStream() {
-		
+
 	}
 
 	std::string& FileStream::Read() {

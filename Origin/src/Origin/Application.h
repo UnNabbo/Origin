@@ -10,7 +10,11 @@
 
 #include "Origin/Utility/Imgui/ImGuiLayer.h"
 
-#include "Platform/Opengl/OpenGLBuffers.h"
+#include "Renderer/Buffers.h"
+
+#include "Renderer/VertexArray.h"
+
+#include "Origin/Renderer/Shader.h"
 
 
 namespace Origin {
@@ -44,9 +48,14 @@ namespace Origin {
 
 		inline static Application* s_Instace = nullptr;
 
-		uint32_t m_VAO;
-		VertexBuffer* VBO;
-		IndexBuffer* EBO;
+		std::shared_ptr<VertexArray> VAO;
+		std::shared_ptr<VertexBuffer> VBO;
+		std::shared_ptr<IndexBuffer> IBO;
+		std::shared_ptr<Shader> shader;
+
+		
+
+		std::shared_ptr<VertexArray> square_VAO;
 
 	};
 }

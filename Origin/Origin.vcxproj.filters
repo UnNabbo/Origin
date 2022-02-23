@@ -77,11 +77,17 @@
     <ClInclude Include="src\Origin\Layer\LayerStack.h">
       <Filter>Origin\Layer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Origin\Rendering\Buffers.h">
+    <ClInclude Include="src\Origin\Renderer\Buffers.h">
       <Filter>Origin\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="src\Origin\Rendering\GraphicsContex.h">
+    <ClInclude Include="src\Origin\Renderer\GraphicsContex.h">
       <Filter>Origin\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Origin\Renderer\Shader.h">
+      <Filter>Origin\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Origin\Utility\FileSystem\FileStream.h">
+      <Filter>Origin\Utility\FileSystem</Filter>
     </ClInclude>
     <ClInclude Include="src\Origin\Utility\FileSystem\Files.h">
       <Filter>Origin\Utility\FileSystem</Filter>
@@ -92,7 +98,7 @@
     <ClInclude Include="src\Origin\Utility\Log\Log.h">
       <Filter>Origin\Utility\Log</Filter>
     </ClInclude>
-    <ClInclude Include="src\Origin\Utility\ResourceManager\ResourceManager.h">
+    <ClInclude Include="src\Origin\Utility\ResourceManager\AssetPool.h">
       <Filter>Origin\Utility\ResourceManager</Filter>
     </ClInclude>
     <ClInclude Include="src\Origin\Window.h">
@@ -104,13 +110,18 @@
     <ClInclude Include="src\Platform\Opengl\OpenGLContex.h">
       <Filter>Platform\Opengl</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\Opengl\OpenGLShader.h">
+      <Filter>Platform\Opengl</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="src\Origin\Utility\FileSystem\FileStream.h" />
+    <ClInclude Include="src\Origin\Renderer\VertexArray.h" />
+    <ClInclude Include="src\Origin\Renderer\Renderer.h" />
+    <ClInclude Include="src\Platform\Opengl\OpenGLVertexArray.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\OGpch.cpp" />
@@ -123,8 +134,14 @@
     <ClCompile Include="src\Origin\Layer\LayerStack.cpp">
       <Filter>Origin\Layer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Origin\Rendering\Buffers.cpp">
+    <ClCompile Include="src\Origin\Renderer\Buffers.cpp">
       <Filter>Origin\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Origin\Renderer\Shader.cpp">
+      <Filter>Origin\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Origin\Utility\FileSystem\FileStream.cpp">
+      <Filter>Origin\Utility\FileSystem</Filter>
     </ClCompile>
     <ClCompile Include="src\Origin\Utility\FileSystem\Files.cpp">
       <Filter>Origin\Utility\FileSystem</Filter>
@@ -138,7 +155,7 @@
     <ClCompile Include="src\Origin\Utility\Log\Log.cpp">
       <Filter>Origin\Utility\Log</Filter>
     </ClCompile>
-    <ClCompile Include="src\Origin\Utility\ResourceManager\ResourceManager.cpp">
+    <ClCompile Include="src\Origin\Utility\ResourceManager\AssetPool.cpp">
       <Filter>Origin\Utility\ResourceManager</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Opengl\OpenGLBuffers.cpp">
@@ -147,12 +164,17 @@
     <ClCompile Include="src\Platform\Opengl\OpenGLContex.cpp">
       <Filter>Platform\Opengl</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\Opengl\OpenGLShader.cpp">
+      <Filter>Platform\Opengl</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\Origin\Utility\FileSystem\FileStream.cpp" />
+    <ClCompile Include="src\Origin\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\Origin\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Platform\Opengl\OpenGLVertexArray.cpp" />
   </ItemGroup>
 </Project>

@@ -7,13 +7,17 @@
 #include "Origin/Utility/FileSystem/Files.h"
 
 namespace Origin {
-	class ORIGIN_API ResourceManager {
+	class ORIGIN_API AssetPool {
 	public:
 		static void Load(const char* path, void * data);
 		
 		static void* Retrive(const char* path);
 
 		static void Unload(const char* path);
+
+		static void Clear();
+
+
 	private:
 		struct FileData {
 			uint16_t references;

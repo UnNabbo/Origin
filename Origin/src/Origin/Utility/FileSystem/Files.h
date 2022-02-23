@@ -2,8 +2,6 @@
 
 #include "Origin/Core.h"
 
-#include "Origin/Utility/ResourceManager/ResourceManager.h"
-
 namespace Origin {
 
 	class FileStream;

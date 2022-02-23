@@ -5,17 +5,17 @@
 #include "Files.h"
 
 namespace Origin {
-	struct ORIGIN_API FileStream {
+	class ORIGIN_API FileStream {
 	public:
 		FileStream(const char* path);
 		~FileStream();
 
 		std::string& Read();
-
+		std::string GetPath();
 
 	private:
-		const char* m_path;
+		std::string m_path;
 		std::string m_content;
-
+		bool m_IsOpen = false;
 	};
 }

@@ -4,14 +4,17 @@
 
 #include "Origin/Utility/Log/Log.h"
 
-#include "glad/glad.h"
-
 #include "Origin/Utility/FileSystem/FileStream.h"
 
-#include "Origin/Utility/ResourceManager/ResourceManager.h"
+#include "Origin/Utility/ResourceManager/AssetPool.h"
+
+
+
+#include <glad/glad.h>
 
 
 namespace Origin {
+
 	Application::Application(){
 		ORIGIN_ASSERT(!s_Instace, "Application is a Sigleton, only one instace may be created.")
 		s_Instace = this;
@@ -22,46 +25,71 @@ namespace Origin {
 		m_ImGuiLayer = new ImGuiLayer;
 		PushOverlay(m_ImGuiLayer);
 
-		glGenVertexArrays(1, &m_VAO);
-		VBO = VertexBuffer::Create();
-		EBO = IndexBuffer::Create();
+		shader.reset(Shader::Create("E:/DEV/Origin/Origin/asset/Vertex.shader", "E:/DEV/Origin/Origin/asset/Fragment.shader"));
+
+		VAO.reset(VertexArray::Create());
+		VBO.reset(VertexBuffer::Create());
+		IBO.reset(IndexBuffer::Create());
 
 
-		glBindVertexArray(m_VAO);
+		VAO->Bind();
 		VBO->Bind();
-		EBO->Bind();
+		IBO->Bind();
 
-		float vertices[4 * 3] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f,
+		
+		shader->Bind();
+		
+		float vertices[3 * 7] = {
+			-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+			 0.0f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+		};
 
+		float square_vertices[4 * 7] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+			 0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+			 0.5f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+			-0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,
 		};
 
 		uint32_t indices[] = {
 			0,1,2,
-			2,3,0
+		};
+
+		uint32_t  square_indices[] = {
+			0,1,2,2,3,0
 		};
 
 		VBO->SetData(vertices, sizeof(vertices));
-		EBO->SetData(indices, sizeof(indices));
-
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 3, GL_FLOAT, false, 3 * sizeof(float), nullptr);
-		
-			
-		FileStream* file = File::Open("C:/Users/saver/Desktop/Nuova cartella/Text.txt");
-		FileStream* file1= File::Open("C:/Users/saver/Desktop/Nuova cartella/Text.txt");
-
-		ORIGIN_TRACE("{0}", file->Read());
-		ORIGIN_TRACE("{0}", file1->Read());
+		IBO->SetData(indices, sizeof(indices));
 
 
+		BufferLayout layout = {
+			{ShaderDataType::Float3, "a_Position"},
+			{ShaderDataType::Float4, "a_Color"},
+
+		};
+
+		VBO->SetLayout(layout);
+
+		VAO->AddVertexBuffer(VBO);
+		VAO->SetIndexBuffer(IBO);
+
+		square_VAO.reset(VertexArray::Create());
+
+		std::shared_ptr<VertexBuffer> square_VBO;
+		square_VBO.reset(VertexBuffer::Create(square_vertices, sizeof(square_vertices)));
+		square_VBO->Bind();
+		square_VBO->SetLayout(layout);
+		std::shared_ptr<IndexBuffer> square_IBO;
+		square_IBO.reset(IndexBuffer::Create(square_indices, sizeof(square_indices)));
+		square_IBO->Bind();
+		square_VAO->AddVertexBuffer(square_VBO);
+		square_VAO->SetIndexBuffer(square_IBO);
 	}
 
 	Application::~Application() {
-
+		AssetPool::Clear();
 	}
 
 	bool Application::OnWindowClose(WindowCloseEvent& e) {
@@ -87,7 +115,14 @@ namespace Origin {
 			glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
 
-			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+			square_VAO->Bind();
+			shader->Bind();
+			glDrawElements(GL_TRIANGLES, square_VAO->GetIndexBuffers()->GetCount(), GL_UNSIGNED_INT, 0);
+
+
+			VAO->Bind();
+			shader->Bind();
+			glDrawElements(GL_TRIANGLES, VAO->GetIndexBuffers()->GetCount(), GL_UNSIGNED_INT, 0);
 			for (Layer* layer : m_LayerStack) {
 				layer->OnUpdate();
 			}
@@ -102,5 +137,6 @@ namespace Origin {
 			m_Window->onUpdate();
 
 		}
+
 	}
 }
