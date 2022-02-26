@@ -2,7 +2,7 @@
 
 #include "Origin/Core.h"
 
-#include "Origin/Renderer/Shader.h"
+#include "Origin/Renderer/Primitives/Shader.h"
 
 
 
@@ -18,16 +18,21 @@ namespace Origin {
 		virtual void Unbind() const override;
 
 		uint32_t CreateShader(uint32_t id, const std::string& shader) const;
+		uint32_t GetUniformLocation(std::string name);
 
-		virtual int SetUniform(int x) const override;
-		virtual bool SetUniform(bool x) const override;
-		virtual double SetUniform(double x) const override;
-		virtual float SetUniform(float x) const override;
+		virtual void UploadUniform(std::string name, int x) override;
+		virtual void UploadUniform(std::string name, bool x) override;
+		virtual void UploadUniform(std::string name, double x) override;
+		virtual void UploadUniform(std::string name, float x) override;
+		virtual void UploadUniform(std::string name, glm::vec3 vec) override;
+		virtual void UploadUniform(std::string name, glm::vec4 vec) override;
+		virtual void UploadUniform(std::string name, glm::mat4 mat) override;
+
 	private:
 		uint32_t m_ID;
 		std::string m_vertex_path;
 		std::string m_fragment_path;
-
+		std::unordered_map<std::string, uint32_t> m_uniform_map;
 	};
 
 }

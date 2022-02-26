@@ -6,6 +6,8 @@
 
 #include "Origin/Utility/FileSystem/FileStream.h"
 
+#include <glm/gtc/type_ptr.hpp>
+
 namespace Origin {
 
 	OpenGLShader::OpenGLShader(const char * vertex_path, const char* fragment_path)
@@ -69,21 +71,55 @@ namespace Origin {
 		glUseProgram(0);
 	}
 
-	int OpenGLShader::SetUniform(int x) const {
-		return 0;
+	void OpenGLShader::UploadUniform(std::string name, int x) {
+		glUseProgram(m_ID);
+		uint32_t location = GetUniformLocation(name);
+		glUniform1i(location, x);
 	}
 
-	bool OpenGLShader::SetUniform(bool x) const {
-		return 0;
-
+	void OpenGLShader::UploadUniform(std::string name, bool x) {
+		glUseProgram(m_ID);
+		uint32_t location = GetUniformLocation(name);
+		glUniform1i(location, x);
 	}
 
-	double OpenGLShader::SetUniform(double x) const {
-		return 0;
+	void OpenGLShader::UploadUniform(std::string name, double x) {
+		glUseProgram(m_ID);
+		uint32_t location = GetUniformLocation(name);
+		glUniform1d(location, x);
 	}
 
-	float OpenGLShader::SetUniform(float x) const {
-		return 0;
+	void OpenGLShader::UploadUniform(std::string name, float x) {
+		glUseProgram(m_ID);
+		uint32_t location = GetUniformLocation(name);
+		glUniform1f(location, x);
+	}
+
+	void OpenGLShader::UploadUniform(std::string name, glm::vec3 vec) {
+		glUseProgram(m_ID);
+		uint32_t location = GetUniformLocation(name);
+		glUniform3f(location, vec.x, vec.z, vec.y);
+	}
+
+	void OpenGLShader::UploadUniform(std::string name, glm::vec4 vec) {
+		glUseProgram(m_ID);
+		uint32_t location = GetUniformLocation(name);
+		glUniform4f(location, vec.x, vec.z, vec.y, vec.z);
+	}
+
+	void OpenGLShader::UploadUniform(std::string name, glm::mat4 mat) {
+		glUseProgram(m_ID);
+		uint32_t location = GetUniformLocation(name);
+		glUniformMatrix4fv(location, 1, false, glm::value_ptr(mat));
+	}
+
+	uint32_t OpenGLShader::GetUniformLocation(std::string name) {
+		if (m_uniform_map.find(name) != m_uniform_map.end()) {
+			return m_uniform_map[name];
+		}
+		uint32_t uniform_location = glGetUniformLocation(m_ID, name.c_str());
+		m_uniform_map.insert({ name, uniform_location });
+		return m_uniform_map[name];
 	}
 
 	uint32_t OpenGLShader::CreateShader(uint32_t type, const std::string& shader) const {

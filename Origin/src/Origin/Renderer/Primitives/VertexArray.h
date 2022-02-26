@@ -2,7 +2,7 @@
 
 #include "Origin/Core.h"
 
-#include "Origin/Renderer/Buffers.h"
+#include "Origin/Renderer/Primitives/Buffers.h"
 
 
 namespace Origin {

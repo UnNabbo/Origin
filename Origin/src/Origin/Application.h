@@ -2,19 +2,13 @@
 
 #include "Core.h"
 
+#include "Window.h"
+
 #include "Layer/LayerStack.h"
+#include "Utility/Imgui/ImGuiLayer.h"
+
 #include "Events/ApplicationEvents.h"
-
-#include "Origin/Window.h"
-#include "Origin/Input/Input.h"
-
-#include "Origin/Utility/Imgui/ImGuiLayer.h"
-
-#include "Renderer/Buffers.h"
-
-#include "Renderer/VertexArray.h"
-
-#include "Origin/Renderer/Shader.h"
+#include "Input/Input.h"
 
 
 namespace Origin {
@@ -48,14 +42,7 @@ namespace Origin {
 
 		inline static Application* s_Instace = nullptr;
 
-		std::shared_ptr<VertexArray> VAO;
-		std::shared_ptr<VertexBuffer> VBO;
-		std::shared_ptr<IndexBuffer> IBO;
-		std::shared_ptr<Shader> shader;
-
 		
-
-		std::shared_ptr<VertexArray> square_VAO;
 
 	};
 }

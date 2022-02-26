@@ -77,13 +77,13 @@
     <ClInclude Include="src\Origin\Layer\LayerStack.h">
       <Filter>Origin\Layer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Origin\Renderer\Buffers.h">
+    <ClInclude Include="src\Origin\Renderer\Primitives\Buffers.h">
       <Filter>Origin\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="src\Origin\Renderer\GraphicsContex.h">
       <Filter>Origin\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="src\Origin\Renderer\Shader.h">
+    <ClInclude Include="src\Origin\Renderer\Primitives\Shader.h">
       <Filter>Origin\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="src\Origin\Utility\FileSystem\FileStream.h">
@@ -119,9 +119,13 @@
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="src\Origin\Renderer\VertexArray.h" />
+    <ClInclude Include="src\Origin\Renderer\Primitives\VertexArray.h" />
     <ClInclude Include="src\Origin\Renderer\Renderer.h" />
     <ClInclude Include="src\Platform\Opengl\OpenGLVertexArray.h" />
+    <ClInclude Include="src\Origin\Renderer\RendererAPI.h" />
+    <ClInclude Include="src\Origin\Renderer\RenderCommand.h" />
+    <ClInclude Include="src\Platform\Opengl\OpenGLRendererAPI.h" />
+    <ClInclude Include="src\Origin\Renderer\Utility\Camera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\OGpch.cpp" />
@@ -134,10 +138,10 @@
     <ClCompile Include="src\Origin\Layer\LayerStack.cpp">
       <Filter>Origin\Layer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Origin\Renderer\Buffers.cpp">
+    <ClCompile Include="src\Origin\Renderer\Primitives\Buffers.cpp">
       <Filter>Origin\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="src\Origin\Renderer\Shader.cpp">
+    <ClCompile Include="src\Origin\Renderer\Primitives\Shader.cpp">
       <Filter>Origin\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="src\Origin\Utility\FileSystem\FileStream.cpp">
@@ -173,8 +177,12 @@
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\Origin\Renderer\VertexArray.cpp" />
-    <ClCompile Include="src\Origin\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Origin\Renderer\Primitives\VertexArray.cpp" />
+    <ClCompile Include="src\Origin\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\Platform\Opengl\OpenGLVertexArray.cpp" />
+    <ClCompile Include="src\Origin\Renderer\RenderCommand.cpp" />
+    <ClCompile Include="src\Origin\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\Platform\Opengl\OpenGLRendererAPI.cpp" />
+    <ClCompile Include="src\Origin\Renderer\Utility\Camera.cpp" />
   </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@
 
 #include "Origin/Core.h"
 
-#include "Origin/Renderer/VertexArray.h"
+#include "Origin/Renderer/Primitives/VertexArray.h"
 
 
 namespace Origin {

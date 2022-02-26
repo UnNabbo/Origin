@@ -14,8 +14,8 @@ namespace Origin {
 		virtual void OnDeattach() override;
 		virtual void OnImGuiRender() override;
 
-		void Begin();
-		void End();
+		static void Begin();
+		static void End();
 
 	};
 }
