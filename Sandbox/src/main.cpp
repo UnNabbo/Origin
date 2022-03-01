@@ -13,24 +13,17 @@ class Example : public Origin::Layer {
 public:
 	Example()
 		: Layer("Example") {
-		shader.reset(Origin::Shader::Create("E:/DEV/Origin/Origin/asset/Vertex.shader", "E:/DEV/Origin/Origin/asset/Fragment.shader"));
+		shader = Origin::Shader::Create(
+			"E:/DEV/Origin/Origin/asset/Shader.glsl");
 
-		float vertices[3 * 7] = {
-			-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
-			 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
-			 0.0f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+
+		float square_vertices[4 * 5] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f,
 		};
 
-		float square_vertices[4 * 7] = {
-			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,
-			 0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,
-			 0.5f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,
-			-0.5f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f,
-		};
-
-		uint32_t indices[] = {
-			0,1,2,
-		};
 
 		uint32_t  square_indices[] = {
 			0,1,2,2,3,0
@@ -38,34 +31,26 @@ public:
 
 		Origin::BufferLayout layout = {
 			{Origin::ShaderDataType::Float3, "a_Position"},
-			{Origin::ShaderDataType::Float4, "a_Color"},
+			{Origin::ShaderDataType::Float2, "a_TexCoord"},
 
 		};
 
-		VAO.reset(Origin::VertexArray::Create());
-		VBO.reset(Origin::VertexBuffer::Create(vertices, sizeof(vertices)));
-		IBO.reset(Origin::IndexBuffer::Create(indices, sizeof(indices)));
+		square_VAO = Origin::VertexArray::Create();
 
-		shader->Bind();
-
-		VBO->SetLayout(layout);
-
-		VAO->AddVertexBuffer(VBO);
-		VAO->SetIndexBuffer(IBO);
-
-		square_VAO.reset(Origin::VertexArray::Create());
-
-		std::shared_ptr<Origin::VertexBuffer> square_VBO;
-		square_VBO.reset(Origin::VertexBuffer::Create(square_vertices, sizeof(square_vertices)));
+		Origin::AssetRef<Origin::VertexBuffer> square_VBO = Origin::VertexBuffer::Create(square_vertices, sizeof(square_vertices));
 		square_VBO->SetLayout(layout);
 
-		std::shared_ptr<Origin::IndexBuffer> square_IBO;
-		square_IBO.reset(Origin::IndexBuffer::Create(square_indices, sizeof(square_indices)));
+		Origin::AssetRef<Origin::IndexBuffer> square_IBO = Origin::IndexBuffer::Create(square_indices, sizeof(square_indices));
 		
 		square_VAO->AddVertexBuffer(square_VBO);
 		square_VAO->SetIndexBuffer(square_IBO);
 
+		Texture2D = Origin::Texture2D::Create("E:/DEV/Origin/Origin/asset/images/milky-way-full-stars-space.jpg");
+
+		shader->UploadUniform("u_Texture", 0);
+		
 	}
+
 
 	void OnUpdate() override {
 		Origin::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
@@ -73,12 +58,11 @@ public:
 
 		Origin::Renderer::BeginScene(camera);
 
-
-
+		Texture2D->Bind(0);
 		Origin::Renderer::Submit(square_VAO, shader);
-		Origin::Renderer::Submit(VAO,shader);
 		
 		Origin::Renderer::EndScene();
+
 	}
 
 	void OnImGuiRender() override{
@@ -101,7 +85,7 @@ public:
 			value1[2] = 0;
 			check = 0;
 		}
-		camera.SetRotation({ value[0], value[1], value[2] });
+		camera.SetRotation({ value[0] / 3, value[1] / 3, value[2] / 3 });
 		camera.SetPosition({ value1[0], value1[1], value1[2] });
 
 
@@ -112,14 +96,15 @@ public:
 
 	}
 private:
-	std::shared_ptr<Origin::VertexArray> VAO;
-	std::shared_ptr<Origin::VertexBuffer> VBO;
-	std::shared_ptr<Origin::IndexBuffer> IBO;
-	std::shared_ptr<Origin::Shader> shader;
+	Origin::AssetRef<Origin::VertexArray> VAO;
+	Origin::AssetRef<Origin::VertexBuffer> VBO;
+	Origin::AssetRef<Origin::IndexBuffer> IBO;
+	Origin::AssetRef<Origin::Shader> shader;
+	Origin::AssetRef<Origin::Texture2D> Texture2D;
 
 	Origin::Camera camera = (Origin::CameraTypes::Orthographic);
 
-	std::shared_ptr<Origin::VertexArray> square_VAO;
+	Origin::AssetRef<Origin::VertexArray> square_VAO;
 };
 
 class Sandbox : public Origin::Application {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Origin/Core.h"
+#include "Origin/Core/Core.h"
 
 namespace Origin {
 	class ORIGIN_API GraphicsContext {

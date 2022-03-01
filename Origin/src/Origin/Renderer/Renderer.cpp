@@ -6,6 +6,10 @@ namespace Origin {
 
 	Renderer::SceneData* Renderer::m_SceneData = new Renderer::SceneData;
 
+	void Renderer::Init() {
+		RenderCommand::Init();
+	}
+
 	void Renderer::BeginScene(Camera& camera) {
 		m_SceneData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();
 	}
@@ -14,10 +18,11 @@ namespace Origin {
 
 	}
 
-	void Renderer::Submit(std::shared_ptr<VertexArray>& vertexArray, std::shared_ptr<Shader>& shader) {
+	void Renderer::Submit(AssetRef<VertexArray>& vertexArray, AssetRef<Shader>& shader, glm::mat4& model) {
 		
 		shader->UploadUniform("u_ProjectionView", m_SceneData->ViewProjectionMatrix);
-		
+		shader->UploadUniform("u_Model", model);
+
 		vertexArray->Bind();
 		RenderCommand::DrawIndexed(vertexArray);
 	}

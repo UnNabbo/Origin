@@ -2,7 +2,7 @@
 
 #include "FileStream.h"
 
-#include "Origin/Utility/ResourceManager/AssetPool.h"
+#include "Origin/Core/ResourceManager/AssetPool.h"
 
 #include <sstream>
 #include <fstream>
@@ -35,6 +35,7 @@ namespace Origin {
 			return m_content;
 		}
 
+		ORIGIN_ASSERT(File::Exist(m_path.c_str()), "{0} does not exist", m_path);
 		std::stringstream ss;
 		std::ifstream file(m_path);
 		if (file.is_open()) {

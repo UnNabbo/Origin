@@ -16,6 +16,8 @@ workspace "Origin"
     IncludeDir["Glad"] = "Origin/vendor/Glad/include"
     IncludeDir["ImGui"] = "Origin/vendor/ImGui"
     IncludeDir["glm"] = "Origin/vendor/glm"
+    IncludeDir["stb_image"] = "Origin/vendor/stb_image"
+
 
 
 
@@ -40,7 +42,10 @@ workspace "Origin"
 
         files{
             "%{prj.name}/src/**.h",
-            "%{prj.name}/src/**.cpp"
+            "%{prj.name}/src/**.cpp",
+            "%{prj.name}/vendor/stb_image/**.cpp",
+            "%{prj.name}/vendor/stb_image/**.h",
+
         }
 
         includedirs{
@@ -50,7 +55,7 @@ workspace "Origin"
             "%{IncludeDir.Glad}",
             "%{IncludeDir.ImGui}",
             "%{IncludeDir.glm}",
-
+            "%{IncludeDir.stb_image}",
         }
 
         links{

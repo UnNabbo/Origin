@@ -12,7 +12,7 @@ namespace Origin {
 		:m_Type(type), m_ViewMatrix(1.0f) {
 		switch (m_Type) {
 			case Origin::CameraTypes::Orthographic: {
-				m_ProjectionMatrix = glm::ortho(-1.f, 1.0f, -1.0f, 1.0f, -100.0f, 100.0f);
+				m_ProjectionMatrix = glm::ortho(-1.6f, 1.6f, -0.9f, 0.9f, -100.0f, 100.0f);
 				break;
 			}
 			case Origin::CameraTypes::Projection: {

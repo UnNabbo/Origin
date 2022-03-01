@@ -2,7 +2,7 @@
 
 #include <memory>
 
-#include "Origin/Core.h"
+#include "Origin/Core/Core.h"
 
 #include "spdlog/spdlog.h"
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Origin/Core.h"
+#include "Origin/Core/Core.h"
 
 #include "stdint.h"
 
@@ -99,8 +99,8 @@ namespace Origin {
 		virtual ~VertexBuffer() {}
 
 
-		static VertexBuffer* Create();
-		static VertexBuffer* Create(float* data, uint32_t size);
+		static AssetRef<VertexBuffer> Create();
+		static AssetRef<VertexBuffer> Create(float* data, uint32_t size);
 
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;
@@ -116,8 +116,8 @@ namespace Origin {
 	public:
 		virtual ~IndexBuffer(){}
 
-		static IndexBuffer* Create();
-		static IndexBuffer* Create(uint32_t* data, uint32_t size);
+		static AssetRef<IndexBuffer> Create();
+		static AssetRef<IndexBuffer> Create(uint32_t* data, uint32_t size);
 
 
 		virtual void Bind() const = 0;

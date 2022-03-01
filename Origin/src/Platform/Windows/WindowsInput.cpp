@@ -1,7 +1,7 @@
 #include "OGpch.h"
 #include "WindowsInput.h"
 
-#include "Origin/Application.h"
+#include "Origin/Core/Application.h"
 
 #include "GLFW/glfw3.h"
 

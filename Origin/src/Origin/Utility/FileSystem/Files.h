@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Origin/Core.h"
+#include "Origin/Core/Core.h"
 
 namespace Origin {
 
@@ -12,6 +12,7 @@ namespace Origin {
 		static void Delete(const char* path);
 		static void Move(const char* old_path, const char* new_path);
 		static bool Exist(const char* path);
+		const char* GetName(const char* path);
 	};
 
 	

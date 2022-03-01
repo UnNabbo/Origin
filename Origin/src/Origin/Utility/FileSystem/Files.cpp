@@ -2,6 +2,8 @@
 
 #include "Files.h"
 
+#include <filesystem>
+
 namespace Origin {
 
 	void File::Delete(const char* path) {
@@ -15,11 +17,12 @@ namespace Origin {
 	}
 
 	bool File::Exist(const char* path) {
-		if (FILE* file = fopen(path, "r")) {
-			fclose(file);
-			return true;
-		}
-		return false;
+		return Exist(path);
+	}
+
+	const char* File::GetName(const char* path) {
+		std::filesystem::path fs_path = path;
+		return fs_path.stem().string().c_str();
 	}
 
 	
