@@ -135,7 +135,7 @@
     <ClInclude Include="src\Origin\Renderer\RendererAPI.h">
       <Filter>src\Origin\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\Origin\Renderer\Utility\Camera.h">
+    <ClInclude Include="src\Origin\Renderer\Utility\Camera\Camera.h">
       <Filter>src\Origin\Renderer\Utility</Filter>
     </ClInclude>
     <ClInclude Include="src\Origin\Utility\FileSystem\FileStream.h">
@@ -180,6 +180,12 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsFileStream.h" />
+    <ClInclude Include="src\Platform\Platform.h" />
+    <ClInclude Include="src\Origin\Renderer\Utility\Camera\OrthographicCamera.h" />
+    <ClInclude Include="src\Origin\Renderer\Utility\Camera\ProjectionCamera.h" />
+    <ClInclude Include="src\Origin\Renderer\Utility\Camera\CameraControllers\EditorCamera.h" />
+    <ClInclude Include="src\Origin\Core\Math\Math.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\OGpch.cpp">
@@ -218,7 +224,7 @@
     <ClCompile Include="src\Origin\Renderer\RendererAPI.cpp">
       <Filter>src\Origin\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\Origin\Renderer\Utility\Camera.cpp">
+    <ClCompile Include="src\Origin\Renderer\Utility\Camera\Camera.cpp">
       <Filter>src\Origin\Renderer\Utility</Filter>
     </ClCompile>
     <ClCompile Include="src\Origin\Utility\FileSystem\FileStream.cpp">
@@ -266,5 +272,14 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsFileStream.cpp" />
+    <ClCompile Include="src\Platform\Platform.cpp" />
+    <ClCompile Include="src\Origin\Renderer\Utility\Camera\OrthographicCamera.cpp" />
+    <ClCompile Include="src\Origin\Renderer\Utility\Camera\ProjectionCamera.cpp" />
+    <ClCompile Include="src\Origin\Renderer\Utility\Camera\CameraControllers\EditorCamera.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
 </Project>

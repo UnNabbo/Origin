@@ -3,49 +3,83 @@
 
 #include "OpenGLShader.h"
 
-
 #include "Origin/Utility/FileSystem/FileStream.h"
 
 #include <glm/gtc/type_ptr.hpp>
+
+#include <glad/glad.h>
+
 
 namespace Origin {
 
 	static GLenum ShaderTypeFromString(const std::string& type) {
 		if (type == "vertex") return GL_VERTEX_SHADER;
 		if (type == "fragment" || type == "pixel") return GL_FRAGMENT_SHADER;
+		if (type == "geometry") return GL_GEOMETRY_SHADER;
 		ORIGIN_ASSERT(false, "{0} is an unsupported shader type!", type);
 		return 0;
 	}
 
-	OpenGLShader::OpenGLShader(const char * vertex_path, const char* fragment_path)
-		: m_vertex_path(vertex_path), m_fragment_path(fragment_path){
+	static std::string ShaderTypeFromGLenum(GLenum type) {
+		if (type == GL_VERTEX_SHADER) return "VERTEX";
+		if (type == GL_FRAGMENT_SHADER) return "FRAGMENT";
+		if (type == GL_GEOMETRY_SHADER) return "GEOMETRY";
+		ORIGIN_ASSERT(false, "{0} is an unsupported shader type!", type);
+		return 0;
+	}
 
-		FileStream vertex_shader_file(vertex_path);
-		FileStream fragment_shader_file(fragment_path);
+	OpenGLShader::OpenGLShader(const char * name, const char * vertex_path, const char* fragment_path)
+		: m_vertexPath(vertex_path), m_fragmentPath(fragment_path), m_name(name){
+
+		Reference<FileStream> vertexShaderFile = FileStream::Create(vertex_path);
+		Reference<FileStream> fragmentShaderFile = FileStream::Create(fragment_path);
 
 		std::unordered_map<GLenum, std::string> shaderSources;
 
-		shaderSources[GL_VERTEX_SHADER] = vertex_shader_file.Read();
-		shaderSources[GL_FRAGMENT_SHADER] = fragment_shader_file.Read();
+		shaderSources[GL_VERTEX_SHADER] = vertexShaderFile->Read();
+		shaderSources[GL_FRAGMENT_SHADER] = fragmentShaderFile->Read();
 
-		Compile(shaderSources);
+		m_ID = Compile(shaderSources);
 	}
 
 	OpenGLShader::OpenGLShader(const char* path)
-		: m_vertex_path(path), m_fragment_path(path) {
+		: m_vertexPath(path), m_fragmentPath(path), m_name(File::GetName(path)) {
 
-		FileStream shader_file(path);
+		Reference<FileStream> shaderFile = FileStream::Create(path);
 
-		std::string parsed_shader = shader_file.Read();
+		std::string parsedShader = shaderFile->Read();
 
-		auto shaders = PreProcess(parsed_shader);
+		auto& shaders = PreProcess(parsedShader);
 
-		Compile(shaders);
+		m_ID = Compile(shaders);
+
+	
+	}
+
+	void OpenGLShader::Reload() {
+		ORIGIN_WARN("Shader: {0} is beign reloded!", GetName());
+		Reference<FileStream> shaderFile = FileStream::Create(m_vertexPath.c_str());
+
+		std::string parsedShader = shaderFile->Read();
+
+		auto& shaders = PreProcess(parsedShader);
+		uint32_t program = Compile(shaders);
+		if (program == 0) {
+			ORIGIN_ERROR("Shader: {0} could not be reloded!", GetName());
+			return;
+		}
+		ORIGIN_INFO("Shader: {0} was succesfuly reloded!", GetName());
+
+		m_ID = program;
 	}
 
 
 	OpenGLShader::~OpenGLShader() {
 		glDeleteProgram(m_ID);
+	}
+
+	std::string OpenGLShader::GetName() const {
+		return m_name;
 	}
 
 	void OpenGLShader::Bind() const {
@@ -99,39 +133,15 @@ namespace Origin {
 	}
 
 	uint32_t OpenGLShader::GetUniformLocation(std::string name) {
-		if (m_uniform_map.find(name) != m_uniform_map.end()) {
-			return m_uniform_map[name];
+		if (m_uniformMap.find(name) != m_uniformMap.end()) {
+			return m_uniformMap[name];
 		}
 		uint32_t uniform_location = glGetUniformLocation(m_ID, name.c_str());
-		m_uniform_map.insert({ name, uniform_location });
-		return m_uniform_map[name];
+		m_uniformMap.insert({ name, uniform_location });
+		return m_uniformMap[name];
 	}
 
-	uint32_t OpenGLShader::CreateShader(uint32_t type, const std::string& shaderSrc) const {
-		uint32_t shader = glCreateShader(type);
-		const char* src = shaderSrc.c_str();
-
-		glShaderSource(shader, 1, &src, nullptr);
-		glCompileShader(shader);
-
-		int result = 0;
-		glGetShaderiv(shader, GL_COMPILE_STATUS, &result);
-		if (!result) {
-			GLint maxLength = 0;
-			glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &maxLength);
-
-			// The maxLength includes the NULL character
-			std::vector<GLchar> infoLog(maxLength);
-			glGetShaderInfoLog(shader, maxLength, &maxLength, &infoLog[0]);
-
-			glDeleteShader(shader);
-
-			ORIGIN_ASSERT(true, "[SHADER ERRPR] {0}", infoLog.data());
-		}
-		return shader;
-	}
-
-	void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string>& shaderSources) {
+	uint32_t OpenGLShader::Compile(const std::unordered_map<GLenum, std::string>& shaderSources) {
 		GLuint program = glCreateProgram();
 		std::vector<GLenum> glShaderIDs;
 		glShaderIDs.reserve(shaderSources.size());
@@ -155,14 +165,14 @@ namespace Origin {
 
 				glDeleteShader(shader);
 
-				ORIGIN_ASSERT(false, "[SHADER ERRPR] {0}", infoLog.data());
+				ORIGIN_ASSERT(false, "[{0} SHADER ERROR] {1}", ShaderTypeFromGLenum(value.first), infoLog.data());
+				return 0;
 				break;
 			}
 			glAttachShader(program, shader);
 			glShaderIDs.push_back(shader);
 		}
 
-		m_ID = program;
 		// Link our program
 		glLinkProgram(program);
 
@@ -187,12 +197,13 @@ namespace Origin {
 			// Use the infoLog as you see fit.
 			ORIGIN_ASSERT(true, "[Shader Error] Could not link program: {0}", infoLog.data());
 			// In this simple program, we'll just leave
-
+			return 0;
 		}
 		for (auto id : glShaderIDs) {
 			glDetachShader(program, id);
 			glDetachShader(program, id);
 		}
+		return program;
 	}
 	std::unordered_map<GLenum, std::string> OpenGLShader::PreProcess(const std::string& src) {
 		std::unordered_map<GLenum, std::string> shaderSources;

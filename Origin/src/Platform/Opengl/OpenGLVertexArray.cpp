@@ -40,7 +40,7 @@ namespace Origin {
 		glBindVertexArray(0);
 	}
 	
-	void OpenGLVertexArray::AddVertexBuffer(const AssetRef<VertexBuffer>& vertexBuffer) {
+	void OpenGLVertexArray::AddVertexBuffer(const Reference<VertexBuffer>& vertexBuffer) {
 		ORIGIN_ASSERT(vertexBuffer->GetLayout().GetElements().size(), "Vertex Buffer has no layout!");
 		
 		glBindVertexArray(m_RendererID);
@@ -63,7 +63,7 @@ namespace Origin {
 		m_VertexBuffers.push_back(vertexBuffer);
 	}
 
-	void OpenGLVertexArray::SetIndexBuffer(const AssetRef<IndexBuffer>& indexBuffer) {
+	void OpenGLVertexArray::SetIndexBuffer(const Reference<IndexBuffer>& indexBuffer) {
 		glBindVertexArray(m_RendererID);
 		indexBuffer->Bind();
 		m_IndexBuffer = indexBuffer;

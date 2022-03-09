@@ -124,7 +124,6 @@ namespace Origin {
 			data.Height = height;
 			data.Width = width;
 			data.EventCallback(event);
-			glViewport(0, 0, width, height);
 		});
 
 

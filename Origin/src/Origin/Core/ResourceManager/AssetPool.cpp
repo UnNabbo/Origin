@@ -4,48 +4,50 @@
 
 #include "Origin/Utility/Log/Log.h"
 
+
 namespace Origin {
 
-	std::unordered_map<const char*, AssetPool::FileData> AssetPool::s_LoadedResources;
-
-	void AssetPool::Load(const char* path, void* data) {
-		auto& Resource = s_LoadedResources.find(path);
-		if (Resource != s_LoadedResources.end()) {
-			s_LoadedResources[path].references++;
-			return;
+	template <typename T>
+	Reference<T> AssetPool<T>::Load(const char* path, const Reference<T>& data) {
+		if (Exist(path)) {
+			return s_LoadedResources[path];
 		}
 
-		s_LoadedResources.insert({ path, {1,  data} });
+		s_LoadedResources[path] = data;
+		return data;
 	}
+	 
+	template <typename T>
+	Reference<T> AssetPool<T>::Retrive(const char* path) {
 
-	void* AssetPool::Retrive(const char* path) {
-
-		auto& Resource = s_LoadedResources.find(path);
-		if (Resource != s_LoadedResources.end()) {
-			s_LoadedResources[path].references++;
-			return s_LoadedResources[path].data;
+		if (Exist(path)) {
+			return s_LoadedResources[path];
 		}
 		return nullptr;
 
 	}
 
-	void AssetPool::Unload(const char* file) {
-		auto& Resource = s_LoadedResources.find(file);
-		if (Resource == s_LoadedResources.end())
+	template <typename T>
+	void AssetPool<T>::Unload(const char* path) {
+		auto& Resource = s_LoadedResources.find(path);
+		if (!Exist(path))
 			return;
 
-		auto data = s_LoadedResources[file];
-		if (--data.references <= 0) {
-			s_LoadedResources.erase(file);
-			delete data.data;
-		}
+		s_LoadedResources.erase(path);
 		
 	}
 
-	void AssetPool::Clear() {
-		for (auto& pair : s_LoadedResources) {
-			delete pair.second.data;
-		}
+	template <typename T>
+	void AssetPool<T>::Clear() {
 		s_LoadedResources.clear();
 	}
+
+	template <typename T>
+	bool AssetPool<T>::Exist(const char * path) {
+		return s_LoadedResources.find(path) != s_LoadedResources.end();
+	}
+
+	template class AssetPool<Shader>;
+	template class AssetPool<VertexArray>;
+
 }

@@ -1,7 +1,6 @@
 #pragma once
 
 
-
 #ifdef OG_PLATFORM_WINDOWS
 
 extern Origin::Application* CreateApplication();
@@ -9,7 +8,6 @@ extern Origin::Application* CreateApplication();
 void main() {
 
 	Origin::Log::Init();
-
 
 	auto app = CreateApplication();
 	app->Run();

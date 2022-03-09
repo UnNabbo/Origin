@@ -4,26 +4,32 @@
 
 #include <stdint.h>
 
-#include "Origin/Utility/FileSystem/Files.h"
+#include "Origin/Renderer/Primitives/Shader.h"
+#include "Origin/Renderer/Primitives/VertexArray.h"
+
+
 
 namespace Origin {
+	template <class T>
 	class ORIGIN_API AssetPool {
 	public:
-		static void Load(const char* path, void * data);
+		static Reference<T> Load(const char* path, const Reference<T>& data);
 		
-		static void* Retrive(const char* path);
+		static Reference<T> Retrive(const char* path);
 
 		static void Unload(const char* path);
+
+		static bool Exist(const char* path);
 
 		static void Clear();
 
 
 	private:
-		struct FileData {
-			uint16_t references;
-			void* data;
-		};
 
-		static std::unordered_map<const char*, FileData> s_LoadedResources;
+		inline static std::unordered_map<const char*, Reference<T>> s_LoadedResources;
 	};
+
+	using ShaderAssetPool = AssetPool<Shader>;
+	using VertexArrayAssetPool = AssetPool<VertexArray>;
+
 }

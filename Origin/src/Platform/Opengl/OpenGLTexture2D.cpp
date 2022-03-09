@@ -23,10 +23,12 @@ namespace Origin {
 			case 4: {
 				internalFormat = GL_RGBA8;
 				dataFormat = GL_RGBA;
+				break;
 			}
 			case 3: {
 				internalFormat = GL_RGB8;
 				dataFormat = GL_RGB;
+				break;
 			}
 		}
 
@@ -36,7 +38,7 @@ namespace Origin {
 		glTextureStorage2D(m_RedererID, 1, internalFormat, m_width, m_height);
 
 		glTextureParameteri(m_RedererID, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTextureParameteri(m_RedererID, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTextureParameteri(m_RedererID, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
 		glTextureSubImage2D(m_RedererID, 0, 0, 0, m_width, m_height, dataFormat, GL_UNSIGNED_BYTE, data);
 

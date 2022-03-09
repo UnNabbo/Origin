@@ -10,7 +10,7 @@ namespace Origin {
 		virtual bool IsKeyPressedImpl(int keycode) override;
 		virtual bool IsMouseButtonPressedImpl(int button) override;
 		virtual std::pair<float, float> GetMousePosImpl() override;
-
+		virtual void LockCursorImpl(bool state) override;
 
 	};
 

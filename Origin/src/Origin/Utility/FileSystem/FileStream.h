@@ -7,15 +7,12 @@
 namespace Origin {
 	class ORIGIN_API FileStream {
 	public:
-		FileStream(const char* path);
-		~FileStream();
 
-		std::string& Read();
-		std::string GetPath();
+		virtual ~FileStream() = default;
 
-	private:
-		std::string m_path;
-		std::string m_content;
-		bool m_IsOpen = false;
+		static Reference<FileStream> Create(const char *path);
+
+		virtual std::string& Read() = 0;
+		virtual std::string& GetPath() = 0;
 	};
 }

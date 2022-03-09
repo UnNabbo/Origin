@@ -15,6 +15,6 @@ namespace Origin {
 	public:
 		virtual ~Texture2D() = default;
 
-		static AssetRef<Texture2D> Create(const std::string& path);
+		static Reference<Texture2D> Create(const std::string& path);
 	};
 }

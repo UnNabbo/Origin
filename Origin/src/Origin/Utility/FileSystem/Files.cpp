@@ -17,12 +17,16 @@ namespace Origin {
 	}
 
 	bool File::Exist(const char* path) {
-		return Exist(path);
+		FILE* file = fopen(path, "r");
+		if (!file) {
+			return false;
+		}
+		return true;
 	}
 
-	const char* File::GetName(const char* path) {
+	std::string File::GetName(const char* path) {
 		std::filesystem::path fs_path = path;
-		return fs_path.stem().string().c_str();
+		return fs_path.stem().string();
 	}
 
 	

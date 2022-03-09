@@ -8,12 +8,14 @@
 
 #include "Origin/Renderer/Renderer.h"
 
+#include "ResourceManager/AssetPool.h"
+
 namespace Origin {
 
 	Application::Application(){
 		ORIGIN_ASSERT(!s_Instace, "Application is a Sigleton, only one instace may be created.")
 		s_Instace = this;
-		m_Window = ScopedAssetRef<Window>(Window::Create());
+		m_Window = ScopedReference<Window>(Window::Create());
 		m_Window->setEventCallback(BIND_EVENT_FN(Application::OnEvents));
 		m_Window->setVsync(false);
 
@@ -26,6 +28,8 @@ namespace Origin {
 
 	Application::~Application() {
 		//Pool::Clear();
+		ShaderAssetPool::Clear();
+		VertexArrayAssetPool::Clear();
 	}
 
 	bool Application::OnWindowClose(WindowCloseEvent& e) {
@@ -33,9 +37,18 @@ namespace Origin {
 		return true;
 	}
 
+	bool Application::OnWindowResize(WindowResizeEvent& e) {
+		if (e.GetWidth() == 0 || e.GetHeight() == 0) {
+			return false;
+		}
+		Renderer::ResizeWindow(e.GetWidth(), e.GetHeight());
+		return false;
+	}
+
 	void Application::OnEvents(Event& e) {
 		EventsDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(Application::OnWindowResize));
 
 		for (auto layer = m_LayerStack.end(); layer != m_LayerStack.begin();) {
 			(*--layer)->OnEvent(e);

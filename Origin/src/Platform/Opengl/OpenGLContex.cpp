@@ -4,6 +4,9 @@
 
 #include "OpenGLContex.h"
 
+#include "glad/glad.h"
+#include "GLFW/glfw3.h"
+
 namespace Origin {
 	OpenGLContext::OpenGLContext(GLFWwindow* windowHandle) 
 		: m_windowHandle(windowHandle) {

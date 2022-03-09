@@ -50,8 +50,10 @@ namespace Origin {
 	class ORIGIN_API WindowResizeEvent : public Event {
 	public:
 		WindowResizeEvent(uint32_t Width, uint32_t Height) 
-			: m_Width(Width), m_Height(Height) {
-}
+			: m_Width(Width), m_Height(Height) {}
+
+		inline uint32_t GetWidth() { return m_Width; }
+		inline uint32_t GetHeight() { return m_Height; }
 
 		EVENT_CLASS_TYPE(WindowResize);
 		EVENT_CLASS_CATEGORY(EventCategoryApplication);

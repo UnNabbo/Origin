@@ -8,11 +8,11 @@ namespace Origin {
 
 	class ORIGIN_API File {
 	public:
-		static FileStream* Open(const char* path);
+		static Reference<FileStream> Open(const char* path);
 		static void Delete(const char* path);
 		static void Move(const char* old_path, const char* new_path);
 		static bool Exist(const char* path);
-		const char* GetName(const char* path);
+		static std::string GetName(const char* path);
 	};
 
 	

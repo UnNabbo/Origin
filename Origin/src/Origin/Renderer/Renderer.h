@@ -4,7 +4,7 @@
 
 #include "RenderCommand.h"
 
-#include "Utility/Camera.h"
+#include "Utility/Camera/Camera.h"
 
 #include "Primitives/Shader.h"
 
@@ -18,7 +18,8 @@ namespace Origin {
 		static void BeginScene(Camera& camera);
 		static void EndScene();
 
-		static void Submit(AssetRef<VertexArray>& vertexArray, AssetRef<Shader>& shader, glm::mat4& model = glm::mat4(1));
+		static void ResizeWindow(uint32_t width, uint32_t height);
+		static void Submit(Reference<VertexArray>& vertexArray, Reference<Shader>& shader, glm::mat4& model = glm::mat4(1));
 
 		inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
 	private:

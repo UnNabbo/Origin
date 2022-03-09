@@ -2,50 +2,15 @@
 
 #include "FileStream.h"
 
-#include "Origin/Core/ResourceManager/AssetPool.h"
+#include "Platform/Windows/WindowsFileStream.h"
 
-#include <sstream>
-#include <fstream>
+#include "Platform/Platform.h"
 
 namespace Origin {
-	FileStream* File::Open(const char* path) {
-		auto data = AssetPool::Retrive(path);
-		if (data) {
-			return (FileStream *)data;
+	Reference<FileStream> FileStream::Create(const char* path) {
+		switch (Platform::GetAPI()) {
+			case Platform::PlatformAPI::None:    ORIGIN_ASSERT(false, "PlatformAPI cannot be PlatformAPI::None!"); return nullptr;
+			case Platform::PlatformAPI::Windows:  return std::make_shared<WindowsFileStream>(path);
 		}
-		FileStream* file = new FileStream(path);
-		AssetPool::Load(path, (void*)file);
-		return file;
-	}
-
-	FileStream::FileStream(const char* path) {
-		m_path = path;
-	}
-
-	std::string FileStream::GetPath() {
-		return m_path;
-	}
-
-	FileStream::~FileStream() {
-
-	}
-
-	std::string& FileStream::Read() {
-		if (!m_content.empty()) {
-			return m_content;
-		}
-
-		ORIGIN_ASSERT(File::Exist(m_path.c_str()), "{0} does not exist", m_path);
-		std::stringstream ss;
-		std::ifstream file(m_path);
-		if (file.is_open()) {
-			std::string temp;
-			while (std::getline(file, temp)) {
-				ss << temp << "\n";
-			}
-		}
-
-		m_content = ss.str();
-		return m_content;
 	}
 }

@@ -8,9 +8,12 @@ namespace Origin {
 	void OpenGLRendererAPI::Init() {
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
+		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	}
 
+	void OpenGLRendererAPI::ResizeWindow(uint32_t width, uint32_t height) {
+		glViewport(0, 0, width, height);
+	}
 
 	void OpenGLRendererAPI::SetClearColor(const glm::vec4& color) {
 		glClearColor(color.r, color.g, color.b, color.a);

@@ -13,6 +13,7 @@ namespace Origin {
 
 		return glfwGetKey(Window, keycode) != GLFW_RELEASE;
 	}
+
 	bool WindowsInput::IsMouseButtonPressedImpl(int button) {
 		const auto& Window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 
@@ -25,4 +26,14 @@ namespace Origin {
 
 		return  { (float)xpos, (float)ypos };
 	} 
+
+	void WindowsInput::LockCursorImpl(bool state) {
+		const auto& Window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+		if(state)
+			glfwSetInputMode(Window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+		else
+			glfwSetInputMode(Window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+
+	}
+
 }

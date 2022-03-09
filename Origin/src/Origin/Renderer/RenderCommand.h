@@ -10,19 +10,21 @@ namespace Origin {
 
 		inline static void Init() {
 			s_RendererAPI->Init();
+		}
 
+		inline static void ResizeWindow(uint32_t width, uint32_t height) {
+			s_RendererAPI->ResizeWindow(width, height);
 		}
 
 		inline static void SetClearColor(const glm::vec4& color) {
 			s_RendererAPI->SetClearColor(color);
-
 		}
 
 		inline static void Clear() {
 			s_RendererAPI->Clear();
 		}
 
-		inline static void DrawIndexed(const AssetRef<VertexArray>& vertexArray) {
+		inline static void DrawIndexed(const Reference<VertexArray>& vertexArray) {
 			s_RendererAPI->DrawIndexed(vertexArray);
 		}
 	private:

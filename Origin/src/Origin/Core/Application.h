@@ -20,7 +20,6 @@ namespace Origin {
 
 		void OnEvents(Event& e);
 
-
 		inline void PushLayer(Layer* layer) { m_LayerStack.PushLayer(layer);  }
 		inline void PushOverlay(Layer* overlay) { m_LayerStack.PushOverlay(overlay); }
 		inline void PopLayer(Layer* layer) { m_LayerStack.PopLayer(layer); }
@@ -32,9 +31,10 @@ namespace Origin {
 		void Run();
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
+		bool OnWindowResize(WindowResizeEvent& e);
 
 		LayerStack m_LayerStack;
-		ScopedAssetRef<Window> m_Window;
+		ScopedReference<Window> m_Window;
 
 		ImGuiLayer* m_ImGuiLayer;
 

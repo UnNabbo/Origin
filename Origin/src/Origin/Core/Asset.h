@@ -5,9 +5,9 @@
 namespace Origin {
 
 	template<typename T>
-	using ScopedAssetRef = std::unique_ptr<T>;
+	using ScopedReference = std::unique_ptr<T>;
 
 	template<typename T>
-	using AssetRef = std::shared_ptr<T>;
+	using Reference = std::shared_ptr<T>;
 
 }

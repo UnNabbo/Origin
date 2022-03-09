@@ -21,7 +21,6 @@ namespace Origin {
 	};
 
 	class ORIGIN_API KeyPressedEvent : public KeyEvent {
-		friend std::ostream& operator<<(std::ostream& os, KeyPressedEvent& e);
 	public:
 		KeyPressedEvent(int keycode,int mods, bool held)
 			: KeyEvent(keycode), m_mods(mods),m_held(held){}
@@ -35,11 +34,6 @@ namespace Origin {
 		bool m_held;
 		int m_mods;
 	};
-
-	std::ostream& operator<<(std::ostream& os, KeyPressedEvent& e) {
-		os << e.GetKeyCode();
-		return os;
-	}
 
 	class ORIGIN_API KeyReleasedEvent : public KeyEvent {
 	public:
@@ -109,8 +103,8 @@ namespace Origin {
 		MouseScrolledEvent(float xOffset, float yOffset)
 			: m_MouseXoffset(xOffset), m_MouseYoffset(yOffset) {}
 
-		inline float GetXoffeset() { return m_MouseXoffset; }
-		inline float GetYoffeset() { return m_MouseYoffset; }
+		inline float GetXoffnset() { return m_MouseXoffset; }
+		inline float GetYoffset() { return m_MouseYoffset; }
 
 
 		EVENT_CLASS_TYPE(MouseScrolled)

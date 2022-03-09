@@ -8,14 +8,15 @@ namespace Origin {
 	public:
 
 		static void Update();
+		static float GetTime();
 		static float GetSeconds() { return m_DeltaTime; }
 		static float GetMilliseconds() { return m_DeltaTime * 1000; }
 
-		operator float() const { return m_DeltaTime; }
 	private:
 		inline static float m_DeltaTime = 0;
 		inline static float m_CurrentTime = 0;
-
+		inline static float m_TimeFromStart = 0;
+	
 	};
 
 }

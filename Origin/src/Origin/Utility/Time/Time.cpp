@@ -5,8 +5,12 @@
 
 namespace Origin{
 	void Time::Update() {
-		float newTime = (float)glfwGetTime();
-		m_DeltaTime = newTime - m_CurrentTime;
-		m_CurrentTime = newTime;
+		m_TimeFromStart = (float)glfwGetTime();
+		m_DeltaTime = m_TimeFromStart - m_CurrentTime;
+		m_CurrentTime = m_TimeFromStart;
+	}
+
+	float Time::GetTime() {
+		return m_TimeFromStart;
 	}
 }
