@@ -23,7 +23,7 @@ namespace Origin {
 
 		static void Clear();
 
-
+		static const std::unordered_map<const char*, Reference<T>>& RetriveIterator();
 	private:
 
 		inline static std::unordered_map<const char*, Reference<T>> s_LoadedResources;

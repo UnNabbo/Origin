@@ -28,6 +28,12 @@ namespace Origin {
 	}
 
 	template <typename T>
+	const std::unordered_map<const char*, Reference<T>>& AssetPool<T>::RetriveIterator() {
+
+		return s_LoadedResources;
+	}
+
+	template <typename T>
 	void AssetPool<T>::Unload(const char* path) {
 		auto& Resource = s_LoadedResources.find(path);
 		if (!Exist(path))

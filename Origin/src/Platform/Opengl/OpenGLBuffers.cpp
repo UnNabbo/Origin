@@ -12,6 +12,12 @@ namespace Origin {
 
 	}
 
+	OpenGLVertexBuffer::OpenGLVertexBuffer(uint32_t size) {
+		glCreateBuffers(1, &m_RendererID);
+		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
+		glBufferData(GL_ARRAY_BUFFER, size, nullptr, GL_DYNAMIC_DRAW);
+	}
+
 	OpenGLVertexBuffer::OpenGLVertexBuffer(float* data, uint32_t size) {
 		glCreateBuffers(1, &m_RendererID);
 		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
@@ -40,10 +46,19 @@ namespace Origin {
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_RendererID);
 	}
 
+	OpenGLIndexBuffer::OpenGLIndexBuffer(uint32_t size)
+		: m_Count(size / sizeof(uint32_t)) {
+		glCreateBuffers(1, &m_RendererID);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_RendererID);
+
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, nullptr, GL_DYNAMIC_DRAW);
+	}
+
 	OpenGLIndexBuffer::OpenGLIndexBuffer(uint32_t* data, uint32_t size) 
 	: m_Count(size / sizeof(uint32_t)){
 		glCreateBuffers(1, &m_RendererID);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_RendererID);
+
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
 	}
 

@@ -7,6 +7,7 @@ namespace Origin {
 	class ORIGIN_API OpenGLVertexBuffer : public VertexBuffer{
 	public:
 		OpenGLVertexBuffer();
+		OpenGLVertexBuffer(uint32_t size);
 		OpenGLVertexBuffer(float* data, uint32_t size);
 		~OpenGLVertexBuffer();
 
@@ -26,6 +27,7 @@ namespace Origin {
 	class ORIGIN_API OpenGLIndexBuffer : public IndexBuffer {
 	public:
 		OpenGLIndexBuffer();
+		OpenGLIndexBuffer(uint32_t size);
 		OpenGLIndexBuffer(uint32_t* data, uint32_t size);
 		~OpenGLIndexBuffer();
 

@@ -8,8 +8,13 @@ namespace Origin {
 	class ORIGIN_API RenderCommand {
 	public:
 
+
 		inline static void Init() {
 			s_RendererAPI->Init();
+		}
+
+		inline static void SetWireFrameView(bool state) {
+			s_RendererAPI->SetWireFrameView(state);
 		}
 
 		inline static void ResizeWindow(uint32_t width, uint32_t height) {

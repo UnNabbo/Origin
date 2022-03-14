@@ -83,11 +83,19 @@ namespace Origin {
 	}
 
 	void OpenGLShader::Bind() const {
-		glUseProgram(m_ID);
+		GLint id;
+		glGetIntegerv(GL_CURRENT_PROGRAM, &id);
+		if (id != m_ID) {
+			glUseProgram(m_ID);
+		}
 	}
 
 	void OpenGLShader::Unbind() const {
-		glUseProgram(0);
+		GLint id;
+		glGetIntegerv(GL_CURRENT_PROGRAM, &id);
+		if (id == m_ID) {
+			glUseProgram(0);
+		}
 	}
 
 	void OpenGLShader::UploadUniform(std::string name, int x) {
@@ -123,7 +131,7 @@ namespace Origin {
 	void OpenGLShader::UploadUniform(std::string name, glm::vec4 vec) {
 		glUseProgram(m_ID);
 		uint32_t location = GetUniformLocation(name);
-		glUniform4f(location, vec.x, vec.z, vec.y, vec.z);
+		glUniform4f(location, vec.x, vec.y, vec.z, vec.w);
 	}
 
 	void OpenGLShader::UploadUniform(std::string name, glm::mat4 mat) {

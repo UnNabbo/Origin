@@ -17,14 +17,14 @@ namespace Origin {
 
 		const glm::vec3& GetRotation() { return m_Rotation; }
 		void SetRotation(glm::vec3 rotation) { m_Rotation = rotation; UpdateView(); }
-
 	private:
 		void UpdateView();
+	public:
+		glm::vec3 m_Position{ 0.0f, 0.0f, 0.0f };
+		glm::vec3 m_Rotation{ 0.0f, 0.0f, 0.0f };
 
 	private:
 		float left = -1.28, right = 1.28, botton = -0.72, top = 0.72;
 
-		glm::vec3 m_Position{ 0.0f, 0.0f, 0.0f };
-		glm::vec3 m_Rotation{ 0.0f, 0.0f, 0.0f };
 	};
 }

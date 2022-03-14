@@ -31,6 +31,8 @@ namespace Origin {
 		void OnUpdate();
 		void OnEvent(Event& e);
 
+		void setOrthographic(bool state);
+
 	private:
 		bool OnWindowResize(WindowResizeEvent& e);
 		bool OnMouseScrolled(MouseScrolledEvent& e);
@@ -43,6 +45,7 @@ namespace Origin {
 	private:
 		float m_FOV = 45.0f, m_AspectRatio = 1.77778f, m_NearClip = 0.1f, m_FarClip = 1000.0f;
 
+		bool m_RotationLock = false;
 
 		glm::vec3 m_Position{ 0.0f, 0.0f, 10.0f };
 		glm::vec3 m_Rotation{ 0.0f, 0.0f, 0.0f };

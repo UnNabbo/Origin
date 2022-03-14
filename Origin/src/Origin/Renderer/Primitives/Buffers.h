@@ -100,6 +100,7 @@ namespace Origin {
 
 
 		static Reference<VertexBuffer> Create();
+		static Reference<VertexBuffer> Create(uint32_t size);
 		static Reference<VertexBuffer> Create(float* data, uint32_t size);
 
 		virtual void Bind() const = 0;
@@ -117,6 +118,7 @@ namespace Origin {
 		virtual ~IndexBuffer(){}
 
 		static Reference<IndexBuffer> Create();
+		static Reference<IndexBuffer> Create(uint32_t size);
 		static Reference<IndexBuffer> Create(uint32_t* data, uint32_t size);
 
 

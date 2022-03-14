@@ -7,8 +7,17 @@
 namespace Origin {
 	void OpenGLRendererAPI::Init() {
 		glEnable(GL_BLEND);
+
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		glEnable(GL_DEPTH_TEST);
+	}
+	
+	void OpenGLRendererAPI::SetWireFrameView(bool state) {
+		if (state) {
+			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		} else {
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		}
 	}
 
 	void OpenGLRendererAPI::ResizeWindow(uint32_t width, uint32_t height) {

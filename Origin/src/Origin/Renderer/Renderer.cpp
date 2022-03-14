@@ -1,6 +1,8 @@
 #include "OGpch.h"
 
 #include "Renderer.h"
+#include "Renderer2D.h"
+
 
 namespace Origin {
 
@@ -8,6 +10,7 @@ namespace Origin {
 
 	void Renderer::Init() {
 		RenderCommand::Init();
+		Renderer2D::Init();
 	}
 
 	void Renderer::ResizeWindow(uint32_t width, uint32_t height) {

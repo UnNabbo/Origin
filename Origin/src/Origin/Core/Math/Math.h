@@ -2,6 +2,9 @@
 
 #include "Origin/Core/Core.h"
 
-namespace Origin {
+#include "glm/glm.hpp"
+#include "glm/gtc/quaternion.hpp"
 
+namespace Origin {
+	glm::quat EulerToQuat(const glm::vec3& euler);
 }

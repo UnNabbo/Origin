@@ -37,10 +37,10 @@ namespace Origin {
 	void EditorCamera::OnUpdate() {
 		if (Input::IsMouseButtonPressed(OG_MOUSE_BUTTON_MIDDLE)) {
 			Input::LockCursor(true);
-			auto [xSpeed, ySpeed] = PanSpeed();
 			glm::vec2 delta = GetMouseDelta();
 
 
+			auto [xSpeed, ySpeed] = PanSpeed();
 			m_Position += -GetRightDirection() * delta.x * xSpeed * m_Distance;
 			m_Position += GetUpDirection() * delta.y * ySpeed * m_Distance;
 
@@ -49,10 +49,15 @@ namespace Origin {
 
 			glm::vec2 delta = GetMouseDelta();
 
-			float yawSign = GetUpDirection().y < 0 ? 1.0f : -1.0f;
-			m_Rotation.y += yawSign * delta.x * 0.8f;
-			m_Rotation.x += -delta.y * 0.8f;
-			
+			if (!m_RotationLock) {
+				float yawSign = GetUpDirection().y < 0 ? 1.0f : -1.0f;
+				m_Rotation.y += yawSign * delta.x * 0.8f;
+				m_Rotation.x += -delta.y * 0.8f;
+			} else {
+				auto [xSpeed, ySpeed] = PanSpeed();
+				m_Position += -GetRightDirection() * delta.x * xSpeed * m_Distance;
+				m_Position += GetUpDirection() * delta.y * ySpeed * m_Distance;
+			}
 		}
 		if (!Input::IsMouseButtonPressed(OG_MOUSE_BUTTON_MIDDLE) && !Input::IsMouseButtonPressed(OG_MOUSE_BUTTON_RIGHT)) {
 			auto [x, y] = Input::GetMousePos();
@@ -106,6 +111,14 @@ namespace Origin {
 		dispatcher.Dispatch<MouseScrolledEvent>(BIND_EVENT_FN(EditorCamera::OnMouseScrolled));
 		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(EditorCamera::OnWindowResize));
 
+	}
+
+	void EditorCamera::setOrthographic(bool state) {
+		m_RotationLock = state;
+		if (state) {
+			m_Rotation = { 0,0,0 };
+			UpdateView();
+		}
 	}
 
 	glm::vec3 EditorCamera::GetUpDirection() const {

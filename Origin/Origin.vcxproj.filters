@@ -186,6 +186,7 @@
     <ClInclude Include="src\Origin\Renderer\Utility\Camera\ProjectionCamera.h" />
     <ClInclude Include="src\Origin\Renderer\Utility\Camera\CameraControllers\EditorCamera.h" />
     <ClInclude Include="src\Origin\Core\Math\Math.h" />
+    <ClInclude Include="src\Origin\Renderer\Renderer2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\OGpch.cpp">
@@ -277,6 +278,8 @@
     <ClCompile Include="src\Origin\Renderer\Utility\Camera\OrthographicCamera.cpp" />
     <ClCompile Include="src\Origin\Renderer\Utility\Camera\ProjectionCamera.cpp" />
     <ClCompile Include="src\Origin\Renderer\Utility\Camera\CameraControllers\EditorCamera.cpp" />
+    <ClCompile Include="src\Origin\Renderer\Renderer2D.cpp" />
+    <ClCompile Include="src\Origin\Core\Math\Math.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
