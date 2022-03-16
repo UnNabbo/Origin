@@ -32,7 +32,8 @@ namespace Origin {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
-	void OpenGLRendererAPI::DrawIndexed(const std::shared_ptr<VertexArray>& vertexArray) {
-		glDrawElements(GL_TRIANGLES, vertexArray->GetIndexBuffers()->GetCount(), GL_UNSIGNED_INT, nullptr);
+	void OpenGLRendererAPI::DrawIndexed(const Reference<VertexArray>& vertexArray, const uint32_t count) {
+		uint32_t indexCount = count ? vertexArray->GetIndexBuffers()->GetCount() : count;
+		glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, nullptr);
 	}
 }

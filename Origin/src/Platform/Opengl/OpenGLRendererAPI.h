@@ -13,6 +13,7 @@ namespace Origin {
 		virtual void ResizeWindow(uint32_t width, uint32_t height) override;
 		virtual void SetWireFrameView(bool state) override;
 
-		virtual void DrawIndexed(const Reference<VertexArray>& vertexArray) override;
+		virtual void DrawIndexed(const Reference<VertexArray>& vertexArray, const uint32_t count = 0) override;
+
 	};
 }

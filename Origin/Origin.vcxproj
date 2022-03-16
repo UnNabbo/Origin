@@ -198,10 +198,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Origin\Core\Math\Math.cpp" />
+    <ClCompile Include="src\Origin\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\Origin\Renderer\Utility\Camera\CameraControllers\EditorCamera.cpp" />
     <ClCompile Include="src\Origin\Renderer\Utility\Camera\OrthographicCamera.cpp" />
     <ClCompile Include="src\Origin\Renderer\Utility\Camera\ProjectionCamera.cpp" />
-    <ClCompile Include="src\Origin\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\Platform\Platform.cpp" />
     <ClCompile Include="src\OGpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>

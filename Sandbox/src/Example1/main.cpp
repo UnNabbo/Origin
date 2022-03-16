@@ -8,12 +8,11 @@
 
 class Example : public Origin::Layer {
 public:
-	Example()
-		: Layer("Example") {
+	Example(): Layer("Example") {}
 
+	void OnAttach() override {
 		texture = Origin::Texture2D::Create("E:/DEV/Origin/Origin/asset/images/Amogus.png");
 	}
-
 
 	void OnUpdate() override {
 		camera.OnUpdate();
@@ -22,7 +21,12 @@ public:
 		Origin::RenderCommand::Clear();
 
 		Origin::Renderer2D::BeginScene(camera);
-		Origin::Renderer2D::DrawQuad({ 0,0,0 }, { 1,1 }, texture);
+		
+		for(float i = 0; i < sqrt(ka); i++)
+			for (float j = 0; j < sqrt(ka); j++)
+				Origin::Renderer2D::DrawQuad({ i + 0.2 * (i - 1),j + 0.2 * (j - 1),0 }, { 1,1 }, texture);
+
+		//Origin::Renderer2D::DrawQuad({ 1,1,0 }, { 1,1 }, texture);
 
 		Origin::Renderer2D::EndScene();
 
@@ -32,9 +36,17 @@ public:
 	void OnImGuiRender() override{
 		ImGui::Begin("Settings");
 
+		auto stats = Origin::Renderer2D::GetStats();
+
+		ImGui::Text("Renderer2D Stats: \n");
+		ImGui::Text("DrawCall: %i\nQuad Drawn: %i", stats.DrawCalls, stats.QuadDrawn);
+
+
 		static bool check = 1;
 		static bool check1 = 0;
 		static bool check2 = 0;
+
+		ImGui::SliderInt("Qaud", &ka, 1, 16384 * 2);
 
 		ImGui::Checkbox("Camera Mode", &check);
 		ImGui::Checkbox("WireFrame View", &check1);
@@ -68,8 +80,8 @@ public:
 private:
 	Origin::Reference<Origin::Texture2D> texture;
 
-
-	Origin::EditorCamera camera = Origin::EditorCamera(45.0f, 1280.0f/720.0f, 0.1f, 1000.0f);
+	int ka = 1;
+	Origin::EditorCamera camera = Origin::EditorCamera(45.0f, 1280.0f/720.0f, 0.001f, 1000.0f);
 
 };
 

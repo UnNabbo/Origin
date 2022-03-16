@@ -8,8 +8,10 @@
 
 class Game : public Origin::Layer {
 public:
-	Game() {
-		pipe1.SetSize(pipe1.GetSize() * glm::vec2( 1, -1 ));
+	Game() : Layer("Game"){}
+		
+	void OnAttach() override {
+		pipe1.SetSize(pipe1.GetSize() * glm::vec2(1, -1));
 		pipe1.SetPosition(pipe1.GetPosition() * glm::vec3(1, -1, 1));
 	}
 
@@ -35,6 +37,8 @@ public:
 			pipe1.Update(offset);
 
 		}
+
+		camera.SetPosition(camera.GetPosition() + glm::vec3(0, 0, 0.2));
 		Origin::Renderer2D::EndScene();
 
 

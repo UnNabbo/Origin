@@ -4,6 +4,8 @@
 
 #include <glad/glad.h>
 
+#include "Origin/Utility/FileSystem/Files.h"
+
 namespace Origin {
 	class ORIGIN_API OpenGLTexture2D : public Texture2D {
 	public:
@@ -14,6 +16,7 @@ namespace Origin {
 
 		virtual uint32_t GetWidth() const override { return m_width; }
 		virtual uint32_t GetHeight() const override { return m_height; };
+		virtual std::string GetName() const override { return File::GetName(m_path.c_str()); };
 
 		virtual void SetData(void* data, size_t size) override;
 

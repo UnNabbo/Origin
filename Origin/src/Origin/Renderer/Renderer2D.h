@@ -14,6 +14,11 @@
 namespace Origin {
 	class ORIGIN_API Renderer2D{
 	public:
+		static struct Statistics {
+			uint32_t DrawCalls;
+			uint32_t QuadDrawn;
+		};
+
 		static void Init();
 		static void Shutdown();
 		
@@ -23,20 +28,21 @@ namespace Origin {
 		static void Flush();
 		static void FlushAndReset();
 
+		static Renderer2D::Statistics GetStats();
+		static void ResetStats();
+
+
 		static void DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color);
 		static void DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color);
-		static void DrawQuad(const glm::vec2& position, const glm::vec2& size, const Reference<Texture2D>& texture);
-		static void DrawQuad(const glm::vec3& position, const glm::vec2& size, const Reference<Texture2D>& texture);
-		static void DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color, const Reference<Texture2D>& texture);
-		static void DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color, const Reference<Texture2D>& texture);
+		static void DrawQuad(const glm::vec2& position, const glm::vec2& size, const Reference<Texture2D>& texture, const glm::vec4& color = glm::vec4(1));
+		static void DrawQuad(const glm::vec3& position, const glm::vec2& size, const Reference<Texture2D>& texture, const glm::vec4& color = glm::vec4(1));
 
 		static void DrawRotatedQuad(const glm::vec2& position, const glm::vec3& rotation, const glm::vec2& size, const glm::vec4& color);
 		static void DrawRotatedQuad(const glm::vec3& position, const glm::vec3& rotation, const glm::vec2& size, const glm::vec4& color);
-		static void DrawRotatedQuad(const glm::vec2& position, const glm::vec3& rotation, const glm::vec2& size, const Reference<Texture2D>& texture);
-		static void DrawRotatedQuad(const glm::vec3& position, const glm::vec3& rotation, const glm::vec2& size, const Reference<Texture2D>& texture);
-		static void DrawRotatedQuad(const glm::vec2& position, const glm::vec3& rotation, const glm::vec2& size, const glm::vec4& color, const Reference<Texture2D>& texture);
-		static void DrawRotatedQuad(const glm::vec3& position, const glm::vec3& rotation, const glm::vec2& size, const glm::vec4& color, const Reference<Texture2D>& texture);
+		static void DrawRotatedQuad(const glm::vec2& position, const glm::vec3& rotation, const glm::vec2& size, const Reference<Texture2D>& texture, const glm::vec4& color = glm::vec4(1));
+		static void DrawRotatedQuad(const glm::vec3& position, const glm::vec3& rotation, const glm::vec2& size, const Reference<Texture2D>& texture, const glm::vec4& color = glm::vec4(1));
 
+		
 
 		static void EndScene();
 	};

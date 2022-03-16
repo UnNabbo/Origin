@@ -6,7 +6,7 @@
 
 namespace Origin {
 	OpenGLTexture2D::OpenGLTexture2D(uint32_t width, uint32_t height)
-		: m_width(width), m_height(height) {
+		: m_width(width), m_height(height), m_path("Null") {
 
 		m_InternalFormat = GL_RGBA8;
 		m_Format = GL_RGBA;

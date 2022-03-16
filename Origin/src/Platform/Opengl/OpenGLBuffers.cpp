@@ -6,15 +6,10 @@
 
 namespace Origin {
 
-	OpenGLVertexBuffer::OpenGLVertexBuffer() {
-		glCreateBuffers(1, &m_RendererID);
-		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
-
-	}
-
 	OpenGLVertexBuffer::OpenGLVertexBuffer(uint32_t size) {
 		glCreateBuffers(1, &m_RendererID);
 		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
+		m_Size = size;
 		glBufferData(GL_ARRAY_BUFFER, size, nullptr, GL_DYNAMIC_DRAW);
 	}
 
@@ -36,14 +31,12 @@ namespace Origin {
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}
 
-	void OpenGLVertexBuffer::SetData(float* data, uint32_t size) {
-		glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
-	}
-
-	OpenGLIndexBuffer::OpenGLIndexBuffer()
-	 : m_Count(0){
-		glCreateBuffers(1, &m_RendererID);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_RendererID);
+	void OpenGLVertexBuffer::SetData(const void* data, uint32_t size) {
+		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
+		//void* dio = malloc(m_Size);
+		//glBufferSubData(GL_ARRAY_BUFFER, 0, m_Size, dio);
+		glBufferSubData(GL_ARRAY_BUFFER, 0, size, data);
+		//free(dio);
 	}
 
 	OpenGLIndexBuffer::OpenGLIndexBuffer(uint32_t size)

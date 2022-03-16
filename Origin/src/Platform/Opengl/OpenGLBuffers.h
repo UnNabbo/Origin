@@ -6,7 +6,7 @@ namespace Origin {
 
 	class ORIGIN_API OpenGLVertexBuffer : public VertexBuffer{
 	public:
-		OpenGLVertexBuffer();
+
 		OpenGLVertexBuffer(uint32_t size);
 		OpenGLVertexBuffer(float* data, uint32_t size);
 		~OpenGLVertexBuffer();
@@ -18,15 +18,16 @@ namespace Origin {
 		virtual const BufferLayout& GetLayout() const override { return m_Layout; }
 
 
-		virtual void SetData(float* data, uint32_t size) override;
+		virtual void SetData(const void* data, uint32_t size) override;
 	private:
 		uint32_t m_RendererID;
+		uint32_t m_Size;
 		BufferLayout m_Layout = {};
 	};
 
 	class ORIGIN_API OpenGLIndexBuffer : public IndexBuffer {
 	public:
-		OpenGLIndexBuffer();
+
 		OpenGLIndexBuffer(uint32_t size);
 		OpenGLIndexBuffer(uint32_t* data, uint32_t size);
 		~OpenGLIndexBuffer();

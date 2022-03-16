@@ -21,6 +21,8 @@ namespace Origin {
 		virtual void Reload() = 0;
 
 
+		virtual void UploadUniform(std::string name, int* data, uint32_t size) = 0;
+
 		virtual void UploadUniform(std::string name, int x) = 0;
 		virtual void UploadUniform(std::string name, bool x) = 0;
 		virtual void UploadUniform(std::string name, double x) = 0;

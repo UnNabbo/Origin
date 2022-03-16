@@ -98,6 +98,13 @@ namespace Origin {
 		}
 	}
 
+	void OpenGLShader::UploadUniform(std::string name, int* data, uint32_t size) {
+		glUseProgram(m_ID);
+		uint32_t location = GetUniformLocation(name);
+		glUniform1iv(location, size, data);
+
+	}
+
 	void OpenGLShader::UploadUniform(std::string name, int x) {
 		glUseProgram(m_ID);
 		uint32_t location = GetUniformLocation(name);

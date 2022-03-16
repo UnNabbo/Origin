@@ -21,6 +21,7 @@ namespace Origin {
 
 		virtual void Reload() override;
 		//----------TODO REMOVE!--------
+		virtual void UploadUniform(std::string name, int* data, uint32_t size) override;
 		virtual void UploadUniform(std::string name, int x) override;
 		virtual void UploadUniform(std::string name, bool x) override;
 		virtual void UploadUniform(std::string name, double x) override;
