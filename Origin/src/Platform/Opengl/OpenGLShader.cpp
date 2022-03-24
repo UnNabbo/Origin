@@ -216,7 +216,6 @@ namespace Origin {
 		}
 		for (auto id : glShaderIDs) {
 			glDetachShader(program, id);
-			glDetachShader(program, id);
 		}
 		return program;
 	}

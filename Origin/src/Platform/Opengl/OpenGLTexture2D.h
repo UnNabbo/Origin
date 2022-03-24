@@ -21,6 +21,10 @@ namespace Origin {
 		virtual void SetData(void* data, size_t size) override;
 
 		virtual void Bind(uint32_t slot = 0) const override;
+
+		virtual bool operator ==(const Texture2D& other) const override{
+			return m_RedererID == ((OpenGLTexture2D&)other).m_RedererID;
+		}
 	private:
 		std::string m_path;
 		uint32_t m_width, m_height;

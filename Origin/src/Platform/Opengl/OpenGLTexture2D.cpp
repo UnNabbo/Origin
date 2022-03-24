@@ -16,7 +16,6 @@ namespace Origin {
 
 		glTextureParameteri(m_RedererID, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTextureParameteri(m_RedererID, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-
 	}
 	
 	OpenGLTexture2D::OpenGLTexture2D(const std::string& path)

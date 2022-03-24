@@ -32,7 +32,7 @@ namespace Origin {
 	#define ORIGIN_INFO(...) ::Origin::Log::getCoreLogger()->info(__VA_ARGS__)
 	#define ORIGIN_WARN(...) ::Origin::Log::getCoreLogger()->warn(__VA_ARGS__)
 	#define ORIGIN_ERROR(...) ::Origin::Log::getCoreLogger()->error(__VA_ARGS__)
-	#define ORIGIN_FATAL(...) ::Origin::Log::getCoreLogger()->fatal(__VA_ARGS__)
+	#define ORIGIN_CRITICAL(...) ::Origin::Log::getCoreLogger()->critical(__VA_ARGS__)
 	
 	#define ORIGIN_ASSERT(x, ...) if(!x) { ::Origin::Log::getCoreLogger()->error(__VA_ARGS__); __debugbreak(); }
 

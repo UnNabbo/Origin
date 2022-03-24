@@ -187,6 +187,7 @@
     <ClInclude Include="src\Origin\Renderer\Utility\Camera\CameraControllers\EditorCamera.h" />
     <ClInclude Include="src\Origin\Core\Math\Math.h" />
     <ClInclude Include="src\Origin\Renderer\Renderer2D.h" />
+    <ClInclude Include="src\Origin\Renderer\Primitives\TextureAtlas.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\OGpch.cpp">
@@ -280,9 +281,6 @@
     <ClCompile Include="src\Origin\Renderer\Utility\Camera\CameraControllers\EditorCamera.cpp" />
     <ClCompile Include="src\Origin\Core\Math\Math.cpp" />
     <ClCompile Include="src\Origin\Renderer\Renderer2D.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-    <None Include="ClassDiagram1.cd" />
+    <ClCompile Include="src\Origin\Renderer\Primitives\TextureAtlas.cpp" />
   </ItemGroup>
 </Project>

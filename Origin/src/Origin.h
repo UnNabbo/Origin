@@ -14,6 +14,7 @@
 #include "Origin/Renderer/Primitives/Buffers.h"
 #include "Origin/Renderer/Primitives/Shader.h"
 #include "Origin/Renderer/Primitives/VertexArray.h"
+#include "Origin/Renderer/Primitives/TextureAtlas.h"
 #include "Origin/Renderer/Primitives/Texture.h"
 
 #include "Origin/Renderer/Utility/Camera/CameraControllers/EditorCamera.h"

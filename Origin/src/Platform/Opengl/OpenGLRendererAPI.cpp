@@ -5,8 +5,33 @@
 #include "glad/glad.h"
 
 namespace Origin {
+	void OpenGLMessageCallback(
+		uint32_t source,
+		uint32_t type,
+		uint32_t id,
+		uint32_t severity,
+		int length,
+		const char* message,
+		const void* userParam){
+		switch (severity) {
+		case GL_DEBUG_SEVERITY_HIGH:         ORIGIN_CRITICAL(message); return;
+		case GL_DEBUG_SEVERITY_MEDIUM:       ORIGIN_ERROR(message); return;
+		case GL_DEBUG_SEVERITY_LOW:          ORIGIN_WARN(message); return;
+		case GL_DEBUG_SEVERITY_NOTIFICATION: ORIGIN_TRACE(message); return;
+		}
+
+		ORIGIN_ASSERT(false, "Unknown severity level!");
+	}
+
+
 	void OpenGLRendererAPI::Init() {
 		glEnable(GL_BLEND);
+
+		glEnable(GL_DEBUG_OUTPUT);
+		glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+		glDebugMessageCallback(OpenGLMessageCallback, nullptr);
+
+		glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DEBUG_SEVERITY_NOTIFICATION, 0, NULL, GL_FALSE);
 
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glEnable(GL_DEPTH_TEST);

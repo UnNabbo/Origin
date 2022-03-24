@@ -2,8 +2,10 @@
 
 #include <memory>
 
-namespace Origin {
 
+
+namespace Origin {
+	
 	template<typename T>
 	using ScopedReference = std::unique_ptr<T>;
 
