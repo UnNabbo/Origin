@@ -1,7 +1,7 @@
 # Origin WIP
 Simple game engine made to make my understanding of graphical programming and software architecture wider.
 
-Architecture Ispired by [Hazel](https://github.com/TheCherno/Hazel).
+Architecture Heavily Ispired by [Hazel](https://github.com/TheCherno/Hazel).
 
 **WINDOWS ONLY SUPPORT.**
 
