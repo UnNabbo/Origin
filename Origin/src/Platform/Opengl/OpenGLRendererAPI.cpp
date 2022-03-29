@@ -14,7 +14,7 @@ namespace Origin {
 		const char* message,
 		const void* userParam){
 		switch (severity) {
-		case GL_DEBUG_SEVERITY_HIGH:         ORIGIN_CRITICAL(message); return;
+		case GL_DEBUG_SEVERITY_HIGH:         ORIGIN_ASSERT(false, message); return;
 		case GL_DEBUG_SEVERITY_MEDIUM:       ORIGIN_ERROR(message); return;
 		case GL_DEBUG_SEVERITY_LOW:          ORIGIN_WARN(message); return;
 		case GL_DEBUG_SEVERITY_NOTIFICATION: ORIGIN_TRACE(message); return;
@@ -26,15 +26,15 @@ namespace Origin {
 
 	void OpenGLRendererAPI::Init() {
 		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 		glEnable(GL_DEBUG_OUTPUT);
 		glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
 		glDebugMessageCallback(OpenGLMessageCallback, nullptr);
-
 		glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DEBUG_SEVERITY_NOTIFICATION, 0, NULL, GL_FALSE);
 
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glEnable(GL_DEPTH_TEST);
+		glDepthFunc(GL_LESS);
 	}
 	
 	void OpenGLRendererAPI::SetWireFrameView(bool state) {
