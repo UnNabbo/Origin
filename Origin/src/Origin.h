@@ -12,6 +12,7 @@
 #include "Origin/Renderer/RenderCommand.h"
 
 #include "Origin/Renderer/Primitives/Buffers.h"
+#include "Origin/Renderer/Primitives/FrameBuffer.h"
 #include "Origin/Renderer/Primitives/Shader.h"
 #include "Origin/Renderer/Primitives/VertexArray.h"
 #include "Origin/Renderer/Primitives/TextureAtlas.h"
@@ -21,7 +22,3 @@
 #include "Origin/Renderer/Utility/Camera/OrthographicCamera.h"
 
 #include "Origin/Core/Math/Math.h"
-
-#ifdef OG_ENTRYPOINT
-#include "Origin/Core/EntryPoint.h"
-#endif

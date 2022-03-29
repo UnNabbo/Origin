@@ -10,6 +10,9 @@
     <Filter Include="src\Origin\Core">
       <UniqueIdentifier>{DC0FCF63-489B-3C28-51AC-BF1CBDB69828}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Origin\Core\Math">
+      <UniqueIdentifier>{35BE3D1F-214D-C7E8-CA6B-DBE3B6D9D78E}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Origin\Core\ResourceManager">
       <UniqueIdentifier>{EE302EF9-5A14-3D39-6317-6B75CF79038A}</UniqueIdentifier>
     </Filter>
@@ -30,6 +33,12 @@
     </Filter>
     <Filter Include="src\Origin\Renderer\Utility">
       <UniqueIdentifier>{6D99CAA3-D9A6-F889-628D-F474CE99C440}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Origin\Renderer\Utility\Camera">
+      <UniqueIdentifier>{45B11FF2-31ED-225C-9AFF-3A53865ACB76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Origin\Renderer\Utility\Camera\CameraControllers">
+      <UniqueIdentifier>{94B35224-80F2-FC9F-2975-D9D11593B20A}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Origin\Utility">
       <UniqueIdentifier>{472BC682-330F-87D8-9C6F-812B8872715A}</UniqueIdentifier>
@@ -81,6 +90,9 @@
     <ClInclude Include="src\Origin\Core\EntryPoint.h">
       <Filter>src\Origin\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Origin\Core\Math\Math.h">
+      <Filter>src\Origin\Core\Math</Filter>
+    </ClInclude>
     <ClInclude Include="src\Origin\Core\ResourceManager\AssetPool.h">
       <Filter>src\Origin\Core\ResourceManager</Filter>
     </ClInclude>
@@ -117,10 +129,16 @@
     <ClInclude Include="src\Origin\Renderer\Primitives\Buffers.h">
       <Filter>src\Origin\Renderer\Primitives</Filter>
     </ClInclude>
+    <ClInclude Include="src\Origin\Renderer\Primitives\FrameBuffer.h">
+      <Filter>src\Origin\Renderer\Primitives</Filter>
+    </ClInclude>
     <ClInclude Include="src\Origin\Renderer\Primitives\Shader.h">
       <Filter>src\Origin\Renderer\Primitives</Filter>
     </ClInclude>
     <ClInclude Include="src\Origin\Renderer\Primitives\Texture.h">
+      <Filter>src\Origin\Renderer\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Origin\Renderer\Primitives\TextureAtlas.h">
       <Filter>src\Origin\Renderer\Primitives</Filter>
     </ClInclude>
     <ClInclude Include="src\Origin\Renderer\Primitives\VertexArray.h">
@@ -132,11 +150,23 @@
     <ClInclude Include="src\Origin\Renderer\Renderer.h">
       <Filter>src\Origin\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Origin\Renderer\Renderer2D.h">
+      <Filter>src\Origin\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Origin\Renderer\RendererAPI.h">
       <Filter>src\Origin\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Origin\Renderer\Utility\Camera\Camera.h">
-      <Filter>src\Origin\Renderer\Utility</Filter>
+      <Filter>src\Origin\Renderer\Utility\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Origin\Renderer\Utility\Camera\CameraControllers\EditorCamera.h">
+      <Filter>src\Origin\Renderer\Utility\Camera\CameraControllers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Origin\Renderer\Utility\Camera\OrthographicCamera.h">
+      <Filter>src\Origin\Renderer\Utility\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Origin\Renderer\Utility\Camera\ProjectionCamera.h">
+      <Filter>src\Origin\Renderer\Utility\Camera</Filter>
     </ClInclude>
     <ClInclude Include="src\Origin\Utility\FileSystem\FileStream.h">
       <Filter>src\Origin\Utility\FileSystem</Filter>
@@ -159,6 +189,9 @@
     <ClInclude Include="src\Platform\Opengl\OpenGLContex.h">
       <Filter>src\Platform\Opengl</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\Opengl\OpenGLFrameBuffer.h">
+      <Filter>src\Platform\Opengl</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Opengl\OpenGLRendererAPI.h">
       <Filter>src\Platform\Opengl</Filter>
     </ClInclude>
@@ -171,7 +204,10 @@
     <ClInclude Include="src\Platform\Opengl\OpenGLVertexArray.h">
       <Filter>src\Platform\Opengl</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+    <ClInclude Include="src\Platform\Platform.h">
+      <Filter>src\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsFileStream.h">
       <Filter>src\Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
@@ -180,14 +216,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\Windows\WindowsFileStream.h" />
-    <ClInclude Include="src\Platform\Platform.h" />
-    <ClInclude Include="src\Origin\Renderer\Utility\Camera\OrthographicCamera.h" />
-    <ClInclude Include="src\Origin\Renderer\Utility\Camera\ProjectionCamera.h" />
-    <ClInclude Include="src\Origin\Renderer\Utility\Camera\CameraControllers\EditorCamera.h" />
-    <ClInclude Include="src\Origin\Core\Math\Math.h" />
-    <ClInclude Include="src\Origin\Renderer\Renderer2D.h" />
-    <ClInclude Include="src\Origin\Renderer\Primitives\TextureAtlas.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\OGpch.cpp">
@@ -195,6 +223,9 @@
     </ClCompile>
     <ClCompile Include="src\Origin\Core\Application.cpp">
       <Filter>src\Origin\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Origin\Core\Math\Math.cpp">
+      <Filter>src\Origin\Core\Math</Filter>
     </ClCompile>
     <ClCompile Include="src\Origin\Core\ResourceManager\AssetPool.cpp">
       <Filter>src\Origin\Core\ResourceManager</Filter>
@@ -208,10 +239,16 @@
     <ClCompile Include="src\Origin\Renderer\Primitives\Buffers.cpp">
       <Filter>src\Origin\Renderer\Primitives</Filter>
     </ClCompile>
+    <ClCompile Include="src\Origin\Renderer\Primitives\FrameBuffer.cpp">
+      <Filter>src\Origin\Renderer\Primitives</Filter>
+    </ClCompile>
     <ClCompile Include="src\Origin\Renderer\Primitives\Shader.cpp">
       <Filter>src\Origin\Renderer\Primitives</Filter>
     </ClCompile>
     <ClCompile Include="src\Origin\Renderer\Primitives\Texture.cpp">
+      <Filter>src\Origin\Renderer\Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Origin\Renderer\Primitives\TextureAtlas.cpp">
       <Filter>src\Origin\Renderer\Primitives</Filter>
     </ClCompile>
     <ClCompile Include="src\Origin\Renderer\Primitives\VertexArray.cpp">
@@ -223,11 +260,23 @@
     <ClCompile Include="src\Origin\Renderer\Renderer.cpp">
       <Filter>src\Origin\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Origin\Renderer\Renderer2D.cpp">
+      <Filter>src\Origin\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Origin\Renderer\RendererAPI.cpp">
       <Filter>src\Origin\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Origin\Renderer\Utility\Camera\Camera.cpp">
-      <Filter>src\Origin\Renderer\Utility</Filter>
+      <Filter>src\Origin\Renderer\Utility\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Origin\Renderer\Utility\Camera\CameraControllers\EditorCamera.cpp">
+      <Filter>src\Origin\Renderer\Utility\Camera\CameraControllers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Origin\Renderer\Utility\Camera\OrthographicCamera.cpp">
+      <Filter>src\Origin\Renderer\Utility\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Origin\Renderer\Utility\Camera\ProjectionCamera.cpp">
+      <Filter>src\Origin\Renderer\Utility\Camera</Filter>
     </ClCompile>
     <ClCompile Include="src\Origin\Utility\FileSystem\FileStream.cpp">
       <Filter>src\Origin\Utility\FileSystem</Filter>
@@ -253,6 +302,9 @@
     <ClCompile Include="src\Platform\Opengl\OpenGLContex.cpp">
       <Filter>src\Platform\Opengl</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\Opengl\OpenGLFrameBuffer.cpp">
+      <Filter>src\Platform\Opengl</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Opengl\OpenGLRendererAPI.cpp">
       <Filter>src\Platform\Opengl</Filter>
     </ClCompile>
@@ -265,22 +317,18 @@
     <ClCompile Include="src\Platform\Opengl\OpenGLVertexArray.cpp">
       <Filter>src\Platform\Opengl</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+    <ClCompile Include="src\Platform\Platform.cpp">
+      <Filter>src\Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsFileStream.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\Windows\WindowsFileStream.cpp" />
-    <ClCompile Include="src\Platform\Platform.cpp" />
-    <ClCompile Include="src\Origin\Renderer\Utility\Camera\OrthographicCamera.cpp" />
-    <ClCompile Include="src\Origin\Renderer\Utility\Camera\ProjectionCamera.cpp" />
-    <ClCompile Include="src\Origin\Renderer\Utility\Camera\CameraControllers\EditorCamera.cpp" />
-    <ClCompile Include="src\Origin\Core\Math\Math.cpp" />
-    <ClCompile Include="src\Origin\Renderer\Renderer2D.cpp" />
-    <ClCompile Include="src\Origin\Renderer\Primitives\TextureAtlas.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
 </Project>

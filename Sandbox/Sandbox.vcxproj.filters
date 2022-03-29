@@ -1,22 +1,26 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Example1">
+      <UniqueIdentifier>{223CF628-0E09-5134-3722-3FDC234E86C2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="Example2">
+      <UniqueIdentifier>{233CF628-0F09-5134-3822-3FDC244E86C2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Example2\Bird">
+      <UniqueIdentifier>{73C8587D-DF88-D4B3-A8C3-1D3114431990}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Example2\Pipe">
+      <UniqueIdentifier>{8075607D-EC35-DCB3-B570-253121F02090}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Example2\Random">
+      <UniqueIdentifier>{73546C5B-DFDF-D91F-E8F0-5C1454FB3520}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Example3">
+      <UniqueIdentifier>{243CF628-1009-5134-3922-3FDC254E86C2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Example1\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClCompile Include="src\Example1\main.cpp" />
   </ItemGroup>
 </Project>
