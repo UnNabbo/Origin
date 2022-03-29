@@ -140,13 +140,31 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Origin\Core\Math\Math.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="src\Origin\Renderer\Primitives\TextureAtlas.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="src\Origin\Renderer\Renderer2D.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="src\Origin\Renderer\Utility\Camera\CameraControllers\EditorCamera.h" />
+    <ClInclude Include="src\Origin\Renderer\Utility\Camera\ProjectionCamera.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="src\Origin\Renderer\Utility\Camera\OrthographicCamera.h" />
+    <ClInclude Include="src\Platform\Platform.h" />
     <ClInclude Include="src\OGpch.h" />
     <ClInclude Include="src\Origin.h" />
     <ClInclude Include="src\Origin\Core\Application.h" />
     <ClInclude Include="src\Origin\Core\Asset.h" />
     <ClInclude Include="src\Origin\Core\Core.h" />
     <ClInclude Include="src\Origin\Core\EntryPoint.h" />
-    <ClInclude Include="src\Origin\Core\Math\Math.h" />
     <ClInclude Include="src\Origin\Core\ResourceManager\AssetPool.h" />
     <ClInclude Include="src\Origin\Core\Window.h" />
     <ClInclude Include="src\Origin\Events\ApplicationEvents.h" />
@@ -159,19 +177,13 @@
     <ClInclude Include="src\Origin\Layer\LayerStack.h" />
     <ClInclude Include="src\Origin\Renderer\GraphicsContex.h" />
     <ClInclude Include="src\Origin\Renderer\Primitives\Buffers.h" />
-    <ClInclude Include="src\Origin\Renderer\Primitives\FrameBuffer.h" />
     <ClInclude Include="src\Origin\Renderer\Primitives\Shader.h" />
     <ClInclude Include="src\Origin\Renderer\Primitives\Texture.h" />
-    <ClInclude Include="src\Origin\Renderer\Primitives\TextureAtlas.h" />
     <ClInclude Include="src\Origin\Renderer\Primitives\VertexArray.h" />
     <ClInclude Include="src\Origin\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Origin\Renderer\Renderer.h" />
-    <ClInclude Include="src\Origin\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Origin\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Origin\Renderer\Utility\Camera\Camera.h" />
-    <ClInclude Include="src\Origin\Renderer\Utility\Camera\CameraControllers\EditorCamera.h" />
-    <ClInclude Include="src\Origin\Renderer\Utility\Camera\OrthographicCamera.h" />
-    <ClInclude Include="src\Origin\Renderer\Utility\Camera\ProjectionCamera.h" />
     <ClInclude Include="src\Origin\Utility\FileSystem\FileStream.h" />
     <ClInclude Include="src\Origin\Utility\FileSystem\Files.h" />
     <ClInclude Include="src\Origin\Utility\Imgui\ImGuiLayer.h" />
@@ -179,39 +191,38 @@
     <ClInclude Include="src\Origin\Utility\Time\Time.h" />
     <ClInclude Include="src\Platform\Opengl\OpenGLBuffers.h" />
     <ClInclude Include="src\Platform\Opengl\OpenGLContex.h" />
-    <ClInclude Include="src\Platform\Opengl\OpenGLFrameBuffer.h" />
     <ClInclude Include="src\Platform\Opengl\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Platform\Opengl\OpenGLShader.h" />
     <ClInclude Include="src\Platform\Opengl\OpenGLTexture2D.h" />
     <ClInclude Include="src\Platform\Opengl\OpenGLVertexArray.h" />
-    <ClInclude Include="src\Platform\Platform.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsFileStream.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="vendor\stb_image\stb_image.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsFileStream.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Origin\Core\Math\Math.cpp" />
+    <ClCompile Include="src\Origin\Renderer\Primitives\TextureAtlas.cpp" />
+    <ClCompile Include="src\Origin\Renderer\Renderer2D.cpp" />
+    <ClCompile Include="src\Origin\Renderer\Utility\Camera\CameraControllers\EditorCamera.cpp" />
+    <ClCompile Include="src\Origin\Renderer\Utility\Camera\OrthographicCamera.cpp" />
+    <ClCompile Include="src\Origin\Renderer\Utility\Camera\ProjectionCamera.cpp" />
+    <ClCompile Include="src\Platform\Platform.cpp" />
     <ClCompile Include="src\OGpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\Origin\Core\Application.cpp" />
-    <ClCompile Include="src\Origin\Core\Math\Math.cpp" />
     <ClCompile Include="src\Origin\Core\ResourceManager\AssetPool.cpp" />
     <ClCompile Include="src\Origin\Layer\Layer.cpp" />
     <ClCompile Include="src\Origin\Layer\LayerStack.cpp" />
     <ClCompile Include="src\Origin\Renderer\Primitives\Buffers.cpp" />
-    <ClCompile Include="src\Origin\Renderer\Primitives\FrameBuffer.cpp" />
     <ClCompile Include="src\Origin\Renderer\Primitives\Shader.cpp" />
     <ClCompile Include="src\Origin\Renderer\Primitives\Texture.cpp" />
-    <ClCompile Include="src\Origin\Renderer\Primitives\TextureAtlas.cpp" />
     <ClCompile Include="src\Origin\Renderer\Primitives\VertexArray.cpp" />
     <ClCompile Include="src\Origin\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Origin\Renderer\Renderer.cpp" />
-    <ClCompile Include="src\Origin\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\Origin\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\Origin\Renderer\Utility\Camera\Camera.cpp" />
-    <ClCompile Include="src\Origin\Renderer\Utility\Camera\CameraControllers\EditorCamera.cpp" />
-    <ClCompile Include="src\Origin\Renderer\Utility\Camera\OrthographicCamera.cpp" />
-    <ClCompile Include="src\Origin\Renderer\Utility\Camera\ProjectionCamera.cpp" />
     <ClCompile Include="src\Origin\Utility\FileSystem\FileStream.cpp" />
     <ClCompile Include="src\Origin\Utility\FileSystem\Files.cpp" />
     <ClCompile Include="src\Origin\Utility\Imgui\ImGuiBuild.cpp" />
@@ -220,16 +231,14 @@
     <ClCompile Include="src\Origin\Utility\Time\Time.cpp" />
     <ClCompile Include="src\Platform\Opengl\OpenGLBuffers.cpp" />
     <ClCompile Include="src\Platform\Opengl\OpenGLContex.cpp" />
-    <ClCompile Include="src\Platform\Opengl\OpenGLFrameBuffer.cpp" />
     <ClCompile Include="src\Platform\Opengl\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Platform\Opengl\OpenGLShader.cpp" />
     <ClCompile Include="src\Platform\Opengl\OpenGLTexture2D.cpp" />
     <ClCompile Include="src\Platform\Opengl\OpenGLVertexArray.cpp" />
-    <ClCompile Include="src\Platform\Platform.cpp" />
-    <ClCompile Include="src\Platform\Windows\WindowsFileStream.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="vendor\stb_image\stb_image.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsFileStream.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">

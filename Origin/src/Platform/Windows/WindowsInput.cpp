@@ -1,23 +1,25 @@
 #include "OGpch.h"
-#include "Origin/Input/Input.h"
+#include "WindowsInput.h"
 
 #include "Origin/Core/Application.h"
 
 #include "GLFW/glfw3.h"
 
 namespace Origin {
-	bool Input::IsKeyPressed(int keycode) {
+	Input* Input::m_Instace = new WindowsInput;
+
+	bool WindowsInput::IsKeyPressedImpl(int keycode) {
 		const auto& Window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 
 		return glfwGetKey(Window, keycode) != GLFW_RELEASE;
 	}
 
-	bool Input::IsMouseButtonPressed(int button) {
+	bool WindowsInput::IsMouseButtonPressedImpl(int button) {
 		const auto& Window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 
 		return glfwGetMouseButton(Window, button) != GLFW_RELEASE;
 	}
-	std::pair<float, float> Input::GetMousePos() {
+	std::pair<float, float> WindowsInput::GetMousePosImpl() {
 		const auto& Window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		double xpos, ypos;
 		glfwGetCursorPos(Window, &xpos, &ypos);
@@ -25,7 +27,7 @@ namespace Origin {
 		return  { (float)xpos, (float)ypos };
 	} 
 
-	void Input::LockCursor(bool state) {
+	void WindowsInput::LockCursorImpl(bool state) {
 		const auto& Window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 		if(state)
 			glfwSetInputMode(Window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);

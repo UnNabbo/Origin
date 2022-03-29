@@ -11,8 +11,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImGui", "Origin\vendor\ImGu
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Origin", "Origin\Origin.vcxproj", "{CDCF70C8-B971-9B9E-A22C-AFF28E6D22EF}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OriginEditor", "OriginEditor\OriginEditor.vcxproj", "{54CB3300-402E-C3A4-E9B3-FB5AD5F58E27}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -50,12 +48,6 @@ Global
 		{CDCF70C8-B971-9B9E-A22C-AFF28E6D22EF}.Dist|x64.Build.0 = Dist|x64
 		{CDCF70C8-B971-9B9E-A22C-AFF28E6D22EF}.Release|x64.ActiveCfg = Release|x64
 		{CDCF70C8-B971-9B9E-A22C-AFF28E6D22EF}.Release|x64.Build.0 = Release|x64
-		{54CB3300-402E-C3A4-E9B3-FB5AD5F58E27}.Debug|x64.ActiveCfg = Debug|x64
-		{54CB3300-402E-C3A4-E9B3-FB5AD5F58E27}.Debug|x64.Build.0 = Debug|x64
-		{54CB3300-402E-C3A4-E9B3-FB5AD5F58E27}.Dist|x64.ActiveCfg = Dist|x64
-		{54CB3300-402E-C3A4-E9B3-FB5AD5F58E27}.Dist|x64.Build.0 = Dist|x64
-		{54CB3300-402E-C3A4-E9B3-FB5AD5F58E27}.Release|x64.ActiveCfg = Release|x64
-		{54CB3300-402E-C3A4-E9B3-FB5AD5F58E27}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,5 @@
+#define OG_ENTRYPOINT
 #include "Origin.h"
-#include <Origin/Core/EntryPoint.h>
-
 #include "ImGui/imgui.h"
 
 #include "Origin/Renderer/Utility/Camera/CameraControllers/EditorCamera.h"
@@ -12,13 +11,6 @@ public:
 	Example(): Layer("Example") {}
 
 	void OnAttach() override {
-		Origin::FrameBufferFormat format = { 
-			{Origin::AttachmentType::Depth, "Cane"},
-
-			{Origin::AttachmentType::Color, "Dio"},
-		};
-		frameBuffer = Origin::FrameBuffer::Create({ 1280, 720, format });
-
 		textureAtlas = Origin::TextureAtlas::Create("E:/DEV/Origin/Origin/asset/images/S9OtX.jpg", {16,16});
 		texture = Origin::Texture2D::Create("E:/DEV/Origin/Origin/asset/images/Amogus.png");
 
@@ -39,15 +31,10 @@ public:
 	
 
 		Origin::Renderer2D::DrawQuad({ 0,0,0 }, { 2,1 }, subtexture);
-		Origin::Renderer2D::DrawQuad({ 0,1,-3 }, { 1,1 }, subtexture1);
-		Origin::Renderer2D::DrawQuad({ 0,3,3 }, { 1,1 }, texture);
+		Origin::Renderer2D::DrawQuad({ 0,1,0 }, { 1,1 }, subtexture1);
+		Origin::Renderer2D::DrawQuad({ 0,3,0 }, { 1,1 }, texture);
 
-		Origin::Renderer2D::DrawQuad({ 0,2,-1 }, { 2,1 }, subtexture2);
-
-		Origin::Renderer2D::EndScene();
-		Origin::Renderer2D::BeginScene(camera);
-
-		Origin::Renderer2D::DrawQuad({ 0,0,2 }, { 1,1 }, texture);
+		Origin::Renderer2D::DrawQuad({ 0,2,0 }, { 2,1 }, subtexture2);
 
 		Origin::Renderer2D::EndScene();
 
@@ -84,10 +71,9 @@ public:
 			}
 			Origin::Renderer2D::ReloadSamplers();
 		}
-		
-		
-		ImGui::End();
+	
 
+		ImGui::End();
 
 
 		ImGui::Begin("FPS");
@@ -95,9 +81,6 @@ public:
 		ImGui::Text("FPS: %f\nMS: %f", 1 / Origin::Time::GetSeconds(), Origin::Time::GetMilliseconds());
 
 		ImGui::End();
-
-	
-
 
 	}
 
@@ -112,7 +95,7 @@ private:
 	Origin::Reference<Origin::SubTexture2D> subtexture1;
 	Origin::Reference<Origin::SubTexture2D> subtexture2;
 
-	Origin::Reference<Origin::FrameBuffer> frameBuffer;
+
 
 	int ka = 1;
 	Origin::EditorCamera camera = Origin::EditorCamera(45.0f, 1280.0f/720.0f, 0.001f, 1000.0f);

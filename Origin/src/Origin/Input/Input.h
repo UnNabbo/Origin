@@ -7,9 +7,19 @@
 namespace Origin{
 	class ORIGIN_API Input {
 	public:
-		static void LockCursor(bool state);
-		static bool IsKeyPressed(int keycode);
-		static bool IsMouseButtonPressed(int button);
-		static std::pair<float, float> GetMousePos();
+		static inline void LockCursor(bool state) { m_Instace->LockCursorImpl(state); }
+		static inline bool IsKeyPressed(int keycode){ return m_Instace->IsKeyPressedImpl(keycode); }
+		static inline bool IsMouseButtonPressed(int button) { return m_Instace->IsMouseButtonPressedImpl(button); }
+		static inline std::pair<float, float> GetMousePos() { return m_Instace->GetMousePosImpl(); }
+
+	protected:
+		virtual bool IsKeyPressedImpl(int keycode) = 0;
+		virtual bool IsMouseButtonPressedImpl(int button) = 0;
+		virtual void LockCursorImpl(bool state) = 0;
+
+		virtual std::pair<float, float> GetMousePosImpl() = 0;
+
+	private:
+		static Input* m_Instace;
 	};
 }
