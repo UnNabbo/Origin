@@ -1,50 +1,66 @@
 #include "EditorLayer.h"
 
 #include "ImGui/imgui.h"
+#include "ImGui/imgui_internal.h"
 
-#include "Origin/Renderer/Utility/Camera/CameraControllers/EditorCamera.h"
 
 #include "Origin/Core/ResourceManager/AssetPool.h"
 
 
+
 namespace Origin {
-		
+	static int n = 1;
+	static int k = 1;
+
 		void EditorLayer::OnAttach() {
+			scene = MakeReference<Scene>();
+
 			FrameBufferFormat format = {
 				{AttachmentType::Color, "Dio"},
 				{AttachmentType::Depth, "Cane"},
 			};
-			frameBuffer = FrameBuffer::Create({ 1280, 720, format });
+			EditorFrameBuffer = FrameBuffer::Create({ 1280, 720, format });
+			RuntimeFrameBuffer = FrameBuffer::Create({ 1280, 720, format });
 
-			textureAtlas = TextureAtlas::Create("E:/DEV/Origin/Origin/asset/images/S9OtX.jpg", { 16,16 });
-			texture = Texture2D::Create("E:/DEV/Origin/Origin/asset/images/Amogus.png");
 
-			subtexture = textureAtlas->GetSubTexture({ 6,6 }, { 2,1 });
-			subtexture1 = textureAtlas->GetSubTexture({ 0,14 }, { 1,1 });
-			subtexture2 = textureAtlas->GetSubTexture({ 6,7 }, { 2,1 });
+			texture = Texture2D::Create("E:/DEV/Origin/Origin/asset/images/bird.png");
 
+
+			{
+				Entity e = scene->CreateEntity("Main Camera");
+				auto& transform = e.GetComponent<TransformComponent>();
+				transform.Position = { 0, 0, -10};
+				auto& camera = e.AddComponent<CameraComponent>(1280, 720);
+				camera.Main = true;
+			}
+			
+
+
+			SceneHierarchy.SetContext(scene);
 		}
 
 		void EditorLayer::OnUpdate() {
-			camera.OnUpdate();
-			frameBuffer->Bind();
+			if(m_IsViewPortHoverd)
+				camera.OnUpdate();
+
+	
+			EditorFrameBuffer->Bind();
 
 			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
 			RenderCommand::Clear();
 
-			Renderer2D::BeginScene(camera);
+			scene->OnEditorUpdate(camera);
+
+			EditorFrameBuffer->Unbind();
+			if (m_IsViewPortHoverd)
+				camera.OnUpdate();
 
 
-			for (float y = -50.0f; y < 50.0f; y += 0.5f) {
-				for (float x = -50.0f; x < 50.0f; x += 0.5f) {
-					glm::vec4 color = { (x + 5.0f) / 10.0f, 0.4f, (y + 5.0f) / 10.0f, 1.0f };
-					Renderer2D::DrawQuad({ x, y }, { 0.45f, 0.45f }, texture,color);
-				}
-			}
+			RuntimeFrameBuffer->Bind();
 
-			Renderer2D::EndScene();
+			scene->OnRuntimeUpdate();
 
-			frameBuffer->Unbind();
+			RuntimeFrameBuffer->Unbind();
 		}
 
 
@@ -80,7 +96,7 @@ namespace Origin {
 			// We cannot preserve the docking relationship between an active window and an inactive docking, otherwise 
 			// any change of dockspace/settings would lead to windows being stuck in limbo and never being visible.
 			ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
-			ImGui::Begin("DockSpace Demo", &dockspaceOpen, window_flags);
+			ImGui::Begin("DockSpace", &dockspaceOpen, window_flags);
 			ImGui::PopStyleVar();
 
 			if (opt_fullscreen)
@@ -106,23 +122,6 @@ namespace Origin {
 				ImGui::EndMenuBar();
 			}
 
-			ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
-			ImGui::Begin("ViewPort");
-			ImVec2 viewPortPanelSize = ImGui::GetContentRegionAvail();
-			if (m_ViewPortSize != *(glm::vec2*)&viewPortPanelSize) {
-				frameBuffer->Resize(viewPortPanelSize.x, viewPortPanelSize.y);
-				camera.SetViewportSize(viewPortPanelSize.x, viewPortPanelSize.y);
-				m_ViewPortSize = { viewPortPanelSize.x, viewPortPanelSize.y };
-			}
-
-			uint32_t id = frameBuffer->GetAttachments()[0].AttachmentID;
-			ImGui::Image((void*)id, ImVec2{ m_ViewPortSize.x, m_ViewPortSize.y }, ImVec2{ 0,1 }, ImVec2{ 1,0 });
-
-			ImGui::End();
-			ImGui::PopStyleVar();
-
-
-
 
 			ImGui::Begin("Settings");
 
@@ -140,19 +139,14 @@ namespace Origin {
 			ImGui::Checkbox("WireFrame View", &check1);
 			check2 = ImGui::Button("Reload Shaders", ImVec2(128, 32));
 
-
-
 			RenderCommand::SetWireFrameView(check1);
-			camera.setOrthographic(check);
-
+	
 			if (check2) {
 				for (auto& shader : ShaderAssetPool::RetriveIterator()) {
 					shader.second->Reload();
 				}
 				Renderer2D::ReloadSamplers();
 			}
-
-
 			ImGui::End();
 
 			static int corner = 3;
@@ -186,13 +180,62 @@ namespace Origin {
 			}
 			ImGui::End();
 
+			ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
+			ImGuiWindowClass window_class;
+			//window_class.DockNodeFlagsOverrideSet = ImGuiDockNodeFlags_NoTabBar;
+			ImGui::SetNextWindowClass(&window_class);
+			ImGui::Begin("Editor");
+
+			static bool CameraMode = 0;
+			if (ImGui::Button("2D", ImVec2{ 25,25 })) {
+				if (CameraMode) {
+					CameraMode = false;
+				} else {
+					CameraMode = true;
+				}
+				camera.setOrthographic(CameraMode);
+			}
+			m_IsViewPortHoverd = ImGui::IsWindowHovered();
+			m_IsViewPortFocused = ImGui::IsWindowFocused();
+			Application::Get().GetImGuiLayer()->SetBlockEvents(m_IsViewPortHoverd || m_IsViewPortFocused);
+			ImVec2 viewPortPanelSize = ImGui::GetContentRegionAvail();
+			if (m_ViewPortSize != *(glm::vec2*)&viewPortPanelSize) {
+				EditorFrameBuffer->Resize(viewPortPanelSize.x, viewPortPanelSize.y);
+				camera.SetViewportSize(viewPortPanelSize.x, viewPortPanelSize.y);
+				m_ViewPortSize = { viewPortPanelSize.x, viewPortPanelSize.y };
+			}
+
+			uint32_t id = EditorFrameBuffer->GetAttachments()[0].AttachmentID;
+			ImGui::Image((void*)id, ImVec2{ m_ViewPortSize.x, m_ViewPortSize.y }, ImVec2{ 0,1 }, ImVec2{ 1,0 });
+
+			ImGui::End();
+
+			ImGui::Begin("Game");
+			ImVec2 RunTimeViewPortPanelSize = ImGui::GetContentRegionAvail();
+			if (m_RuntimeViewPortSize != *(glm::vec2*)&RunTimeViewPortPanelSize) {
+				RuntimeFrameBuffer->Resize(RunTimeViewPortPanelSize.x, RunTimeViewPortPanelSize.y);
+				scene->ResizeCameras(RunTimeViewPortPanelSize.x, RunTimeViewPortPanelSize.y);
+				m_RuntimeViewPortSize = { RunTimeViewPortPanelSize.x, RunTimeViewPortPanelSize.y };
+			}
+
+			uint32_t RuntimeID = RuntimeFrameBuffer->GetAttachments()[0].AttachmentID;
+			ImGui::Image((void*)RuntimeID, ImVec2{ m_RuntimeViewPortSize.x, m_RuntimeViewPortSize.y }, ImVec2{ 0,1 }, ImVec2{ 1,0 });
+
+			ImGui::End();
+			ImGui::PopStyleVar();
+
+			SceneHierarchy.OnImGuiRender();
+
 			ImGui::End();
 
 			
 		}
 
 		void EditorLayer::OnEvent(Event& e) {
-			camera.OnEvent(e);
+			if (m_IsViewPortHoverd) {
+				camera.OnEvent(e);
+			}
+			
 		}
 
 

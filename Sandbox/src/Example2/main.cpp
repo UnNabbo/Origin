@@ -1,5 +1,7 @@
-#define OG_ENTRYPOINT
+
 #include "Origin.h"
+#include <Origin/Core/EntryPoint.h>
+
 #include "ImGui/imgui.h"
 
 #include "Bird/Bird.h"
@@ -27,16 +29,9 @@ public:
 
 
 		bird.Update();
-		if (!lost) {
-			if (bird.GetPosition().y - bird.GetSize().y / 2 <= -height / 100 || pipe.IsInsidePipe(bird.GetPosition()) || pipe1.IsInsidePipe(bird.GetPosition())) {
-				bird.HasCollided();
-				lost = 1;
-			}
-
+	
 			pipe.Update(offset);
 			pipe1.Update(offset);
-
-		}
 
 		camera.SetPosition(camera.GetPosition() + glm::vec3(0, 0, 0.2));
 		Origin::Renderer2D::EndScene();

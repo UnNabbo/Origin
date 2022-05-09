@@ -16,16 +16,15 @@ workspace "Origin"
     IncludeDir["Glad"] = "Origin/vendor/Glad/include"
     IncludeDir["ImGui"] = "Origin/vendor/ImGui"
     IncludeDir["glm"] = "Origin/vendor/glm"
+    IncludeDir["Necs"] = "Origin/vendor/Necs/Necs/include"
+    IncludeDir["entt"] = "Origin/vendor/entt"
+
+
     IncludeDir["stb_image"] = "Origin/vendor/stb_image"
-
-
-
 
     include "Origin/vendor/GLFW"
     include "Origin/vendor/Glad"
     include "Origin/vendor/ImGui"
-
-
 
     project "Origin"
         location "Origin"
@@ -45,17 +44,20 @@ workspace "Origin"
             "%{prj.name}/src/**.cpp",
             "%{prj.name}/vendor/stb_image/**.cpp",
             "%{prj.name}/vendor/stb_image/**.h",
-
+            "%{prj.name}/vendor/entt/**.hpp",
         }
 
         includedirs{
             "%{prj.name}/vendor/spdlog/include",
             "Origin/src",
+            "Origin/vendor",
             "%{IncludeDir.GLFW}",
             "%{IncludeDir.Glad}",
             "%{IncludeDir.ImGui}",
             "%{IncludeDir.glm}",
             "%{IncludeDir.stb_image}",
+            "%{IncludeDir.Necs}",
+            "%{IncludeDir.entt}",
         }
 
         links{
@@ -113,9 +115,8 @@ workspace "Origin"
             "Origin/vendor/spdlog/include",
             "Origin/src",
             "%{IncludeDir.GLFW}",
-            "Origin/vendor",
+            "Origin/vendor",    
             "%{IncludeDir.glm}",
-
         }
 
         links{
@@ -164,7 +165,8 @@ workspace "Origin"
             "%{IncludeDir.GLFW}",
             "Origin/vendor",
             "%{IncludeDir.glm}",
-
+            "%{IncludeDir.Necs}",
+            "%{IncludeDir.entt}",
         }
 
         links{

@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OG_PLATFORM_WINDOWS;ORIGIN_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Origin\vendor\spdlog\include;..\Origin\src;..\Origin\vendor\glfw\include;..\Origin\vendor;..\Origin\vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Origin\vendor\spdlog\include;..\Origin\src;..\Origin\vendor\glfw\include;..\Origin\vendor;..\Origin\vendor\glm;..\Origin\vendor\Necs\Necs\include;..\Origin\vendor\entt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -95,7 +95,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OG_PLATFORM_WINDOWS;ORIGIN_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Origin\vendor\spdlog\include;..\Origin\src;..\Origin\vendor\glfw\include;..\Origin\vendor;..\Origin\vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Origin\vendor\spdlog\include;..\Origin\src;..\Origin\vendor\glfw\include;..\Origin\vendor;..\Origin\vendor\glm;..\Origin\vendor\Necs\Necs\include;..\Origin\vendor\entt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -115,7 +115,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OG_PLATFORM_WINDOWS;ORIGIN_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Origin\vendor\spdlog\include;..\Origin\src;..\Origin\vendor\glfw\include;..\Origin\vendor;..\Origin\vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Origin\vendor\spdlog\include;..\Origin\src;..\Origin\vendor\glfw\include;..\Origin\vendor;..\Origin\vendor\glm;..\Origin\vendor\Necs\Necs\include;..\Origin\vendor\entt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -131,19 +131,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Origin\Origin.vcxproj">
-      <Project>{CDCF70C8-B971-9B9E-A22C-AFF28E6D22EF}</Project>
-    </ProjectReference>
+    <ClInclude Include="src\EditorLayer.h" />
+    <ClInclude Include="src\Panels\SceneHierarchy.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\EditorLayer.cpp" />
     <ClCompile Include="src\OriginEditorApp.cpp" />
+    <ClCompile Include="src\Panels\SceneHierarchy.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\EditorLayer.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
+    <ProjectReference Include="..\Origin\Origin.vcxproj">
+      <Project>{CDCF70C8-B971-9B9E-A22C-AFF28E6D22EF}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

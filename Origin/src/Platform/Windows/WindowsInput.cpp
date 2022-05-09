@@ -5,24 +5,46 @@
 
 #include "GLFW/glfw3.h"
 
+#include "imgui.h"
+
 namespace Origin {
 	bool Input::IsKeyPressed(int keycode) {
-		const auto& Window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+		ImGuiContext* context = ImGui::GetCurrentContext();
+		if (0) {
+			return ImGui::IsKeyDown(keycode);
+			
+		} else {
+			const auto& Window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
 
-		return glfwGetKey(Window, keycode) != GLFW_RELEASE;
+			return glfwGetKey(Window, keycode) != GLFW_RELEASE;
+		}
 	}
 
 	bool Input::IsMouseButtonPressed(int button) {
-		const auto& Window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+		ImGuiContext* context = ImGui::GetCurrentContext();
 
-		return glfwGetMouseButton(Window, button) != GLFW_RELEASE;
+		if (0) {
+			return ImGui::IsMouseDown(button);
+
+		} else {
+			const auto& Window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+
+			return glfwGetMouseButton(Window, button) != GLFW_RELEASE;
+		}
 	}
 	std::pair<float, float> Input::GetMousePos() {
-		const auto& Window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
-		double xpos, ypos;
-		glfwGetCursorPos(Window, &xpos, &ypos);
+		ImGuiContext* context = ImGui::GetCurrentContext();
+		if (0) {
+			ImVec2 pos = ImGui::GetMousePos();
+			return  { (float)pos.x, (float)pos.y };
 
-		return  { (float)xpos, (float)ypos };
+		} else {
+			const auto& Window = static_cast<GLFWwindow*>(Application::Get().GetWindow().GetNativeWindow());
+			double xpos, ypos;
+			glfwGetCursorPos(Window, &xpos, &ypos);
+
+			return  { (float)xpos, (float)ypos };
+		}
 	} 
 
 	void Input::LockCursor(bool state) {

@@ -6,8 +6,6 @@
 
 struct GLFWwindow;
 
-
-
 namespace Origin {
 	class ORIGIN_API WindowsWindow : public Window {
 	public:

@@ -37,8 +37,8 @@
     <Filter Include="src\Origin\Renderer\Utility\Camera">
       <UniqueIdentifier>{45B11FF2-31ED-225C-9AFF-3A53865ACB76}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Origin\Renderer\Utility\Camera\CameraControllers">
-      <UniqueIdentifier>{94B35224-80F2-FC9F-2975-D9D11593B20A}</UniqueIdentifier>
+    <Filter Include="src\Origin\Scene">
+      <UniqueIdentifier>{21C9CBDE-0DC2-EA30-36F4-CFB5224CCA3C}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Origin\Utility">
       <UniqueIdentifier>{472BC682-330F-87D8-9C6F-812B8872715A}</UniqueIdentifier>
@@ -66,6 +66,9 @@
     </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\entt">
+      <UniqueIdentifier>{DD8078C1-4936-F1B6-D22A-EB8D3EDFE7BA}</UniqueIdentifier>
     </Filter>
     <Filter Include="vendor\stb_image">
       <UniqueIdentifier>{0DA0BA59-F998-D9AB-22CB-BE300E23B9B7}</UniqueIdentifier>
@@ -159,20 +162,29 @@
     <ClInclude Include="src\Origin\Renderer\Utility\Camera\Camera.h">
       <Filter>src\Origin\Renderer\Utility\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="src\Origin\Renderer\Utility\Camera\CameraControllers\EditorCamera.h">
-      <Filter>src\Origin\Renderer\Utility\Camera\CameraControllers</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Origin\Renderer\Utility\Camera\OrthographicCamera.h">
+    <ClInclude Include="src\Origin\Renderer\Utility\Camera\EditorCamera.h">
       <Filter>src\Origin\Renderer\Utility\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="src\Origin\Renderer\Utility\Camera\ProjectionCamera.h">
+    <ClInclude Include="src\Origin\Renderer\Utility\Camera\SceneCamera.h">
       <Filter>src\Origin\Renderer\Utility\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Origin\Scene\Components.h">
+      <Filter>src\Origin\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Origin\Scene\Entity.h">
+      <Filter>src\Origin\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Origin\Scene\Scene.h">
+      <Filter>src\Origin\Scene</Filter>
     </ClInclude>
     <ClInclude Include="src\Origin\Utility\FileSystem\FileStream.h">
       <Filter>src\Origin\Utility\FileSystem</Filter>
     </ClInclude>
     <ClInclude Include="src\Origin\Utility\FileSystem\Files.h">
       <Filter>src\Origin\Utility\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Origin\Utility\Imgui\ImGuiCustom.h">
+      <Filter>src\Origin\Utility\Imgui</Filter>
     </ClInclude>
     <ClInclude Include="src\Origin\Utility\Imgui\ImGuiLayer.h">
       <Filter>src\Origin\Utility\Imgui</Filter>
@@ -212,6 +224,9 @@
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>src\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\entt\entt.hpp">
+      <Filter>vendor\entt</Filter>
     </ClInclude>
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
@@ -269,14 +284,17 @@
     <ClCompile Include="src\Origin\Renderer\Utility\Camera\Camera.cpp">
       <Filter>src\Origin\Renderer\Utility\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="src\Origin\Renderer\Utility\Camera\CameraControllers\EditorCamera.cpp">
-      <Filter>src\Origin\Renderer\Utility\Camera\CameraControllers</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Origin\Renderer\Utility\Camera\OrthographicCamera.cpp">
+    <ClCompile Include="src\Origin\Renderer\Utility\Camera\EditorCamera.cpp">
       <Filter>src\Origin\Renderer\Utility\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="src\Origin\Renderer\Utility\Camera\ProjectionCamera.cpp">
+    <ClCompile Include="src\Origin\Renderer\Utility\Camera\SceneCamera.cpp">
       <Filter>src\Origin\Renderer\Utility\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Origin\Scene\Entity.cpp">
+      <Filter>src\Origin\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Origin\Scene\Scene.cpp">
+      <Filter>src\Origin\Scene</Filter>
     </ClCompile>
     <ClCompile Include="src\Origin\Utility\FileSystem\FileStream.cpp">
       <Filter>src\Origin\Utility\FileSystem</Filter>
@@ -285,6 +303,9 @@
       <Filter>src\Origin\Utility\FileSystem</Filter>
     </ClCompile>
     <ClCompile Include="src\Origin\Utility\Imgui\ImGuiBuild.cpp">
+      <Filter>src\Origin\Utility\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Origin\Utility\Imgui\ImGuiCustom.cpp">
       <Filter>src\Origin\Utility\Imgui</Filter>
     </ClCompile>
     <ClCompile Include="src\Origin\Utility\Imgui\ImGuiLayer.cpp">
@@ -326,9 +347,14 @@
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>src\Platform\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="asset\Grid.glsl" />
   </ItemGroup>
 </Project>

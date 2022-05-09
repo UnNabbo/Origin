@@ -19,7 +19,7 @@ namespace Origin {
 		static void EndScene();
 
 		static void ResizeWindow(uint32_t width, uint32_t height);
-		static void Submit(Reference<VertexArray>& vertexArray, Reference<Shader>& shader, glm::mat4& model = glm::mat4(1));
+		static void Submit(Reference<VertexArray>& vertexArray, Reference<Shader>& shader, glm::mat4& model = glm::mat4{ 1 });
 
 		inline static RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
 	private:

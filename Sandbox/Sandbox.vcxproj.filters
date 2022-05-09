@@ -21,6 +21,34 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Example1\main.cpp" />
+    <ClInclude Include="src\Example2\Bird\Bird.h">
+      <Filter>Example2\Bird</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Example2\Pipe\Pipe.h">
+      <Filter>Example2\Pipe</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Example2\Random\Random.h">
+      <Filter>Example2\Random</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Example1\main.cpp">
+      <Filter>Example1</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Example2\Bird\Bird.cpp">
+      <Filter>Example2\Bird</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Example2\Pipe\Pipe.cpp">
+      <Filter>Example2\Pipe</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Example2\Random\Random.cpp">
+      <Filter>Example2\Random</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Example2\main.cpp">
+      <Filter>Example2</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Example3\main.cpp">
+      <Filter>Example3</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

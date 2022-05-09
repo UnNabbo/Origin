@@ -10,3 +10,6 @@
 [submodule "Origin/vendor/glm"]
 	path = Origin/vendor/glm
 	url = https://github.com/g-truc/glm.git
+[submodule "Origin/vendor/Necs"]
+	path = Origin/vendor/Necs
+	url = https://github.com/UnNabbo/Necs

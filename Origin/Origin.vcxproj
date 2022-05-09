@@ -77,7 +77,7 @@
       <PrecompiledHeaderFile>OGpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;OG_PLATFORM_WINDOWS;OG_STATIC_LINK;OG_CORE;GLFW_INCLUDE_NONE;ORIGIN_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;src;vendor\glfw\include;vendor\Glad\include;vendor\ImGui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>vendor\spdlog\include;src;vendor;vendor\glfw\include;vendor\Glad\include;vendor\ImGui;vendor\glm;vendor\stb_image;vendor\Necs\Necs\include;vendor\entt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -97,7 +97,7 @@
       <PrecompiledHeaderFile>OGpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;OG_PLATFORM_WINDOWS;OG_STATIC_LINK;OG_CORE;GLFW_INCLUDE_NONE;ORIGIN_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;src;vendor\glfw\include;vendor\Glad\include;vendor\ImGui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>vendor\spdlog\include;src;vendor;vendor\glfw\include;vendor\Glad\include;vendor\ImGui;vendor\glm;vendor\stb_image;vendor\Necs\Necs\include;vendor\entt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -121,7 +121,7 @@
       <PrecompiledHeaderFile>OGpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;OG_PLATFORM_WINDOWS;OG_STATIC_LINK;OG_CORE;GLFW_INCLUDE_NONE;ORIGIN_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;src;vendor\glfw\include;vendor\Glad\include;vendor\ImGui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>vendor\spdlog\include;src;vendor;vendor\glfw\include;vendor\Glad\include;vendor\ImGui;vendor\glm;vendor\stb_image;vendor\Necs\Necs\include;vendor\entt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -169,11 +169,14 @@
     <ClInclude Include="src\Origin\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Origin\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Origin\Renderer\Utility\Camera\Camera.h" />
-    <ClInclude Include="src\Origin\Renderer\Utility\Camera\CameraControllers\EditorCamera.h" />
-    <ClInclude Include="src\Origin\Renderer\Utility\Camera\OrthographicCamera.h" />
-    <ClInclude Include="src\Origin\Renderer\Utility\Camera\ProjectionCamera.h" />
+    <ClInclude Include="src\Origin\Renderer\Utility\Camera\EditorCamera.h" />
+    <ClInclude Include="src\Origin\Renderer\Utility\Camera\SceneCamera.h" />
+    <ClInclude Include="src\Origin\Scene\Components.h" />
+    <ClInclude Include="src\Origin\Scene\Entity.h" />
+    <ClInclude Include="src\Origin\Scene\Scene.h" />
     <ClInclude Include="src\Origin\Utility\FileSystem\FileStream.h" />
     <ClInclude Include="src\Origin\Utility\FileSystem\Files.h" />
+    <ClInclude Include="src\Origin\Utility\Imgui\ImGuiCustom.h" />
     <ClInclude Include="src\Origin\Utility\Imgui\ImGuiLayer.h" />
     <ClInclude Include="src\Origin\Utility\Log\Log.h" />
     <ClInclude Include="src\Origin\Utility\Time\Time.h" />
@@ -187,6 +190,7 @@
     <ClInclude Include="src\Platform\Platform.h" />
     <ClInclude Include="src\Platform\Windows\WindowsFileStream.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
+    <ClInclude Include="vendor\entt\entt.hpp" />
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
@@ -209,12 +213,14 @@
     <ClCompile Include="src\Origin\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\Origin\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\Origin\Renderer\Utility\Camera\Camera.cpp" />
-    <ClCompile Include="src\Origin\Renderer\Utility\Camera\CameraControllers\EditorCamera.cpp" />
-    <ClCompile Include="src\Origin\Renderer\Utility\Camera\OrthographicCamera.cpp" />
-    <ClCompile Include="src\Origin\Renderer\Utility\Camera\ProjectionCamera.cpp" />
+    <ClCompile Include="src\Origin\Renderer\Utility\Camera\EditorCamera.cpp" />
+    <ClCompile Include="src\Origin\Renderer\Utility\Camera\SceneCamera.cpp" />
+    <ClCompile Include="src\Origin\Scene\Entity.cpp" />
+    <ClCompile Include="src\Origin\Scene\Scene.cpp" />
     <ClCompile Include="src\Origin\Utility\FileSystem\FileStream.cpp" />
     <ClCompile Include="src\Origin\Utility\FileSystem\Files.cpp" />
     <ClCompile Include="src\Origin\Utility\Imgui\ImGuiBuild.cpp" />
+    <ClCompile Include="src\Origin\Utility\Imgui\ImGuiCustom.cpp" />
     <ClCompile Include="src\Origin\Utility\Imgui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Origin\Utility\Log\Log.cpp" />
     <ClCompile Include="src\Origin\Utility\Time\Time.cpp" />
@@ -241,6 +247,9 @@
     <ProjectReference Include="vendor\ImGui\ImGui.vcxproj">
       <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="asset\Grid.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

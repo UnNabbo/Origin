@@ -12,10 +12,14 @@ namespace Origin {
 
 		virtual void OnAttach() override;
 		virtual void OnDeattach() override;
-		virtual void OnImGuiRender() override;
+		virtual void OnEvent(Event& e) override;
+		void SetDarkThemeColors();
+
+		inline void SetBlockEvents(bool state) { m_BlockEvents = state; }
 
 		static void Begin();
 		static void End();
-
+	private:
+		bool m_BlockEvents = true;
 	};
 }

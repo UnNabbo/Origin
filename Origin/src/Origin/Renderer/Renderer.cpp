@@ -18,7 +18,7 @@ namespace Origin {
 	}
 
 	void Renderer::BeginScene(Camera& camera) {
-		m_SceneData->ViewProjectionMatrix = camera.GetViewProjection();
+		//m_SceneData->ViewProjectionMatrix = camera.GetViewProjection();
 	}
 
 	void Renderer::EndScene() {

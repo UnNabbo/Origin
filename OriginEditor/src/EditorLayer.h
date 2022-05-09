@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Origin.h"
+#include "Panels/SceneHierarchy.h"
 
 namespace Origin {
 
@@ -10,7 +11,6 @@ namespace Origin {
 
 		virtual void OnAttach() override;
 
-
 		virtual void OnUpdate() override;
 
 		virtual void OnImGuiRender() override;
@@ -18,16 +18,20 @@ namespace Origin {
 		virtual void OnEvent(Event& e) override;
 	private:
 		glm::vec2 m_ViewPortSize{0,0};
+		glm::vec2 m_RuntimeViewPortSize{ 0,0 };
 
 		Reference<Texture2D> texture;
+
 		Reference<TextureAtlas> textureAtlas;
 
-		Reference<SubTexture2D> subtexture;
-		Reference<SubTexture2D> subtexture1;
-		Reference<SubTexture2D> subtexture2;
+		Reference<Scene> scene;
 
-		Reference<FrameBuffer> frameBuffer;
-		EditorCamera camera = EditorCamera(45.0f, 1280.0f / 720.0f, 0.001f, 1000.0f);
+		Reference<FrameBuffer> EditorFrameBuffer;
+		Reference<FrameBuffer> RuntimeFrameBuffer;
 
+		EditorCamera camera = EditorCamera(45.0f, (float)Application::Get().GetWindow().GetWidth() / Application::Get().GetWindow().GetHeight(), 0.001f, 10000.0f);
+		bool m_IsViewPortHoverd = false;
+		bool m_IsViewPortFocused = false;
+		Panels::SceneHierarchy SceneHierarchy;
 	};
 }

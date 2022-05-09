@@ -25,7 +25,9 @@ namespace Origin {
 		inline void PopLayer(Layer* layer) { m_LayerStack.PopLayer(layer); }
 		inline void PopOverlay(Layer* overlay) { m_LayerStack.PopOverlay(overlay); }
 
+		inline ImGuiLayer* GetImGuiLayer() { return m_ImGuiLayer; }
 		inline Window& GetWindow() { return *m_Window; }
+
 		inline static Application& Get() { return *s_Instace; }
 
 		void Run();

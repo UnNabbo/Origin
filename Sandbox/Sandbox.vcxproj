@@ -131,12 +131,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Origin\Origin.vcxproj">
-      <Project>{CDCF70C8-B971-9B9E-A22C-AFF28E6D22EF}</Project>
-    </ProjectReference>
+    <ClInclude Include="src\Example2\Bird\Bird.h" />
+    <ClInclude Include="src\Example2\Pipe\Pipe.h" />
+    <ClInclude Include="src\Example2\Random\Random.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Example1\main.cpp" />
+    <ClCompile Include="src\Example2\Bird\Bird.cpp" />
+    <ClCompile Include="src\Example2\Pipe\Pipe.cpp" />
+    <ClCompile Include="src\Example2\Random\Random.cpp" />
+    <ClCompile Include="src\Example2\main.cpp">
+      <ObjectFileName>$(IntDir)\main1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="src\Example3\main.cpp">
+      <ObjectFileName>$(IntDir)\main2.obj</ObjectFileName>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Origin\Origin.vcxproj">
+      <Project>{CDCF70C8-B971-9B9E-A22C-AFF28E6D22EF}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
